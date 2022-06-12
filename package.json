@@ -1,5 +1,5 @@
 {
-  "name": "todo-list",
+  "name": "atomic",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GDimitroff/todo-list.git"
+    "url": "git+https://github.com/GDimitroff/atomic.git"
   },
   "keywords": [],
   "author": "Gospodin Dimitrov <gospodindimitroff@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/GDimitroff/todo-list/issues"
+    "url": "https://github.com/GDimitroff/atomic/issues"
   },
-  "homepage": "https://github.com/GDimitroff/todo-list#readme",
+  "homepage": "https://github.com/GDimitroff/atomic#readme",
   "devDependencies": {
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.0.0",
