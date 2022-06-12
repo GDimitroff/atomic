@@ -1,6 +1,6 @@
 :root {
-  --primary-blue: #3a7bfd;
-  --primary-purple: #c058f3;
+  --primary-purple: #6710c2;
+  --primary-pink: #ff00cc;
   --primary-cyan: #57ddff;
 
   --primary-light: #fafafa;
@@ -54,8 +54,8 @@ body {
   padding: 3rem;
   background: linear-gradient(
     to right,
-    var(--primary-blue) 0%,
-    var(--primary-purple) 100%
+    var(--primary-purple) 0%,
+    var(--primary-pink) 100%
   );
 }
 
@@ -64,11 +64,11 @@ body {
 }
 
 .hamburger > i {
-  font-size: 2.8rem;
+  font-size: 2.4rem;
   padding: 5px 10px;
   color: var(--primary-light);
   background-color: var(--primary-dark);
-  border-radius: 2px;
+  border-radius: 6px;
   cursor: pointer;
 }
 
@@ -83,17 +83,17 @@ body {
 }
 
 .logo > i {
-  font-size: 2.8rem;
-  color: var(--primary-blue);
+  font-size: 1.8rem;
+  color: var(--primary-light);
   background-color: var(--primary-dark);
-  padding: 1rem;
-  margin-right: 12px;
-  border-radius: 2px;
+  padding: 1.2rem;
+  margin-right: 6px;
+  border-radius: 6px;
 }
 
 .sidebar {
   position: fixed;
-  width: 280px;
+  width: 300px;
   height: 100%;
   padding: 3rem;
   background-color: var(--secondary-dark);
@@ -118,10 +118,10 @@ hr {
   border: 0;
   background: linear-gradient(
     to right,
-    var(--primary-blue) 0%,
-    var(--primary-purple) 100%
+    var(--primary-purple) 0%,
+    var(--primary-pink) 100%
   );
-  border-radius: 2px;
+  border-radius: 6px;
   margin: 0.4rem 0 1.4rem 0;
 }
 
@@ -138,23 +138,31 @@ hr {
   align-items: center;
   gap: 8px;
   border: 2px solid transparent;
-  border-radius: 2px;
-  padding: 0.6rem 2rem;
+  border-radius: 6px;
+  padding: 0.8rem 1.6rem;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .sidebar .tile:hover {
-  border: 2px solid var(--primary-blue);
+  background-color: var(--primary-dark);
+  border: 2px solid var(--primary-purple);
 }
 
 .sidebar .tile.active {
-  background-color: var(--primary-blue);
+  background-color: var(--primary-purple);
 }
 
 .sidebar .tile > i {
-  min-width: 18px;
+  min-width: 20px;
 }
 
 .main {
-  margin-left: 280px;
+  margin-left: 300px;
+  padding: 3rem;
+  color: var(--primary-light);
+}
+
+.main > h2 {
+  font-size: 3.8rem;
 }
