@@ -1,3 +1,86 @@
+:root {
+  --primary-blue: #3a7bfd;
+  --primary-purple: #c058f3;
+  --primary-cyan: #57ddff;
+
+  --primary-light: #fafafa;
+  --primary-dark: #25273c;
+
+  /*  
+  ### Light Theme
+
+    - Very Light Gray: hsl(0, 0%, 98%)
+    - Very Light Grayish Blue: hsl(236, 33%, 92%)
+    - Light Grayish Blue: hsl(233, 11%, 84%)
+    - Dark Grayish Blue: hsl(236, 9%, 61%)
+    - Very Dark Grayish Blue: hsl(235, 19%, 35%)
+
+  ### Dark Theme
+
+    - Very Dark Blue: hsl(235, 21%, 11%)
+    - Very Dark Desaturated Blue: hsl(235, 24%, 19%)
+    - Light Grayish Blue: hsl(234, 39%, 85%)
+    - Light Grayish Blue (hover): hsl(236, 33%, 92%)
+    - Dark Grayish Blue: hsl(234, 11%, 52%)
+    - Very Dark Grayish Blue: hsl(233, 14%, 35%)
+    - Very Dark Grayish Blue: hsl(237, 14%, 26%) 
+  */
+}
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
 body {
-  background-color: purple;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem;
+  background: linear-gradient(
+    to right,
+    var(--primary-blue) 0%,
+    var(--primary-purple) 100%
+  );
+}
+
+.hamburger > i {
+  font-size: 2.8rem;
+  padding: 5px 10px;
+  color: var(--primary-light);
+  background-color: var(--primary-dark);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.logo {
+  background-color: var(--primary-dark);
+  display: flex;
+  align-items: center;
+  border-radius: 2px;
+  padding: 0 1.4rem;
+}
+
+.logo > h1 {
+  color: var(--primary-light);
+  font-size: 3.2rem;
+}
+
+.logo > i {
+  font-size: 2.8rem;
+  color: var(--primary-blue);
+  margin-right: 5px;
 }
