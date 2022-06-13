@@ -1,9 +1,8 @@
 import './main.css';
 
-function component() {
-  const element = document.createElement('div');
-
-  element.textContent = 'Working!';
-
-  return element;
-}
+const taskCard = document.querySelector('.task-card');
+taskCard.addEventListener('click', (e) => {
+  console.log('hjere');
+  const classes = e.currentTarget.classList;
+  classes.toggle('completed');
+});
