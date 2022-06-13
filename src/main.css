@@ -4,6 +4,7 @@
   --primary-cyan: #57ddff;
 
   --primary-light: #fafafa;
+  --secondary-light: #9394a5;
   --primary-dark: #161722;
   --secondary-dark: #25273c;
 
@@ -42,16 +43,16 @@ html {
 
 body {
   font-family: 'Roboto', sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 400;
   background-color: var(--primary-dark);
 }
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 3rem;
+  gap: 6px;
+  padding: 1rem 3rem;
   background: linear-gradient(
     to right,
     var(--primary-purple) 0%,
@@ -59,36 +60,25 @@ body {
   );
 }
 
-.hamburger {
-  display: none;
+.toggle-menu {
+  border-radius: 6px;
+  transition: all 0.3s ease;
 }
 
-.hamburger > i {
-  font-size: 2.4rem;
+.toggle-menu > i {
+  font-size: 2.2rem;
   padding: 5px 10px;
   color: var(--primary-light);
-  background-color: var(--primary-dark);
-  border-radius: 6px;
   cursor: pointer;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
+.toggle-menu:hover {
+  background-color: var(--secondary-dark);
 }
 
 .logo > h1 {
   color: var(--primary-light);
-  font-size: 3.8rem;
-}
-
-.logo > i {
-  font-size: 1.8rem;
-  color: var(--primary-light);
-  background-color: var(--primary-dark);
-  padding: 1.2rem;
-  margin-right: 6px;
-  border-radius: 6px;
+  font-size: 2.4rem;
 }
 
 .sidebar {
@@ -96,25 +86,84 @@ body {
   width: 300px;
   height: 100%;
   padding: 3rem;
-  background-color: var(--secondary-dark);
-}
-
-.sidebar > .home,
-.sidebar > .projects {
   color: var(--primary-light);
+  background-color: var(--secondary-dark);
 }
 
 .sidebar > .home {
   margin-bottom: 2rem;
 }
 
-.sidebar h2 {
-  font-size: 2rem;
+.projects-tiles {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tile {
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 6px;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tile:hover {
+  background-color: var(--primary-dark);
+}
+
+.tile.active {
+  background-color: var(--primary-purple);
+}
+
+.tile-left {
+  display: flex;
+  gap: 6px;
+}
+
+.tile-left > i {
+  min-width: 18px;
+}
+
+.tile-right {
+  color: var(--secondary-light);
+  display: flex;
+  gap: 6px;
+}
+
+.tile-right > i {
+  transition: all 0.3s ease;
+}
+
+.tile-right > i:hover {
+  color: var(--primary-light);
+}
+
+.projects-header {
+  font-size: 1.4rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.projects-header .fa-plus {
+  padding: 5px 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.projects-header .fa-plus:hover {
+  background-color: var(--primary-dark);
 }
 
 hr {
-  width: 100%;
-  height: 3px;
+  height: 1px;
   border: 0;
   background: linear-gradient(
     to right,
@@ -122,39 +171,7 @@ hr {
     var(--primary-pink) 100%
   );
   border-radius: 6px;
-  margin: 0.4rem 0 1.4rem 0;
-}
-
-.sidebar .projects-tiles {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.sidebar .tile {
-  font-size: 1.6rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border: 2px solid transparent;
-  border-radius: 6px;
-  padding: 0.8rem 1.6rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.sidebar .tile:hover {
-  background-color: var(--primary-dark);
-  border: 2px solid var(--primary-purple);
-}
-
-.sidebar .tile.active {
-  background-color: var(--primary-purple);
-}
-
-.sidebar .tile > i {
-  min-width: 20px;
+  margin: 1rem 0;
 }
 
 .main {
@@ -164,5 +181,21 @@ hr {
 }
 
 .main > h2 {
-  font-size: 3.8rem;
+  font-size: 2.2rem;
+}
+
+.pink {
+  color: var(--primary-pink);
+}
+
+.dark {
+  color: var(--primary-dark);
+}
+
+.darkgoldenrod {
+  color: darkgoldenrod;
+}
+
+.cyan {
+  color: var(--primary-cyan);
 }

@@ -18,47 +18,116 @@
   </head>
   <body>
     <header class="header">
-      <div class="logo">
-        <i class="fa-solid fa-check"></i>
-        <h1>Atomic</h1>
+      <div class="toggle-menu">
+        <i class="fa-solid fa-bars"></i>
       </div>
 
-      <div class="hamburger">
-        <i class="fa-solid fa-bars"></i>
+      <div class="logo">
+        <h1>Atomic</h1>
       </div>
     </header>
 
     <nav class="sidebar">
       <div class="home">
-        <h2>Home</h2>
-        <hr />
-        <ul class="projects-tiles">
-          <li class="tile active">
-            <i class="fa-solid fa-globe"></i>
-            <p>All</p>
-          </li>
-          <li class="tile">
-            <i class="fa-solid fa-calendar-day"></i>
-            <p>Today</p>
-          </li>
-          <li class="tile">
-            <i class="fa-solid fa-calendar-days"></i>
-            <p>This Week</p>
-          </li>
-          <li class="tile">
-            <i class="fa-solid fa-star"></i>
-            <p>Important</p>
-          </li>
-          <li class="tile">
-            <i class="fa-solid fa-check"></i>
-            <p>Completed</p>
-          </li>
-        </ul>
+        <div class="projects-tiles">
+          <div class="tile active">
+            <div class="tile-left">
+              <i class="fa-solid fa-globe"></i>
+              <p>All</p>
+            </div>
+            <div class="tile-right">
+              <p>26</p>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="tile-left">
+              <i class="fa-solid fa-calendar-day"></i>
+              <p>Today</p>
+            </div>
+            <div class="tile-right">
+              <p>3</p>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="tile-left">
+              <i class="fa-solid fa-calendar-days"></i>
+              <p>This Week</p>
+            </div>
+            <div class="tile-right">
+              <p>13</p>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="tile-left">
+              <i class="fa-solid fa-star"></i>
+              <p>Important</p>
+            </div>
+            <div class="tile-right">
+              <p>2</p>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="tile-left">
+              <i class="fa-solid fa-check-double"></i>
+              <p>Completed</p>
+            </div>
+            <div class="tile-right">
+              <p>9</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="projects">
-        <h2>Projects</h2>
+        <div class="projects-header">
+          <p>Projects <span class="projects-count">(4)</span></p>
+          <i class="fa-solid fa-plus"></i>
+        </div>
+
         <hr />
+
+        <div class="projects-list">
+          <div class="tile">
+            <div class="tile-left">
+              <i class="fa-solid fa-circle-dot pink"></i>
+              <p>Personal</p>
+            </div>
+            <div class="tile-right">
+              <i class="fa-solid fa-pen-to-square"></i>
+              <i class="fa-solid fa-trash-can"></i>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="tile-left">
+              <i class="fa-solid fa-circle-dot dark"></i>
+              <p>Workout</p>
+            </div>
+            <div class="tile-right">
+              <i class="fa-solid fa-pen-to-square"></i>
+              <i class="fa-solid fa-trash-can"></i>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="tile-left">
+              <i class="fa-solid fa-circle-dot darkgoldenrod"></i>
+              <p>Education</p>
+            </div>
+            <div class="tile-right">
+              <i class="fa-solid fa-pen-to-square"></i>
+              <i class="fa-solid fa-trash-can"></i>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="tile-left">
+              <i class="fa-solid fa-circle-dot cyan"></i>
+              <p>Work</p>
+            </div>
+            <div class="tile-right">
+              <i class="fa-solid fa-pen-to-square"></i>
+              <i class="fa-solid fa-trash-can"></i>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
 
