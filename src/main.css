@@ -46,6 +46,7 @@ body {
   font-size: 1.6rem;
   font-weight: 400;
   background-color: var(--primary-dark);
+  overflow: hidden;
 }
 
 .header {
@@ -56,12 +57,14 @@ body {
   align-items: center;
   gap: 6px;
 
-  padding: 1rem 3rem;
+  height: 60px;
+  padding: 0 3rem;
   background: linear-gradient(
     to right,
     var(--primary-purple) 0%,
     var(--primary-pink) 100%
   );
+  animation: 0.7s slide-down;
 }
 
 .toggle-menu {
@@ -92,6 +95,7 @@ body {
   padding: 3rem;
   color: var(--primary-light);
   background-color: var(--secondary-dark);
+  animation: 1.5s slide-up;
 }
 
 .sidebar > .home {
@@ -183,9 +187,11 @@ hr {
 }
 
 .main {
+  height: calc(100vh - 60px);
   margin-left: 300px;
   padding: 3.4rem 3rem;
   color: var(--primary-light);
+  animation: 1.7s slide-up;
 }
 
 .tasks-title {
@@ -283,4 +289,22 @@ hr {
 
 .high {
   color: #ff0000;
+}
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
 }
