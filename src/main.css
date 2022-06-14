@@ -3,30 +3,10 @@
   --primary-pink: #ff00cc;
   --primary-cyan: #57ddff;
 
-  --primary-light: #fafafa;
-  --secondary-light: #9394a5;
-  --primary-dark: #161722;
-  --secondary-dark: #25273c;
-
-  /*  
-  ### Light Theme
-
-    - Very Light Gray: hsl(0, 0%, 98%)
-    - Very Light Grayish Blue: hsl(236, 33%, 92%)
-    - Light Grayish Blue: hsl(233, 11%, 84%)
-    - Dark Grayish Blue: hsl(236, 9%, 61%)
-    - Very Dark Grayish Blue: hsl(235, 19%, 35%)
-
-  ### Dark Theme
-
-    - Very Dark Blue: hsl(235, 21%, 11%)
-    - Very Dark Desaturated Blue: hsl(235, 24%, 19%)
-    - Light Grayish Blue: hsl(234, 39%, 85%)
-    - Light Grayish Blue (hover): hsl(236, 33%, 92%)
-    - Dark Grayish Blue: hsl(234, 11%, 52%)
-    - Very Dark Grayish Blue: hsl(233, 14%, 35%)
-    - Very Dark Grayish Blue: hsl(237, 14%, 26%) 
-  */
+  --text-color: #fafafa;
+  --grey-text-color: #94a3b8;
+  --primary-background-color: #161722;
+  --secondary-background-color: #25273c;
 }
 
 *,
@@ -45,8 +25,16 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 1.6rem;
   font-weight: 400;
-  background-color: var(--primary-dark);
+  background-color: var(--primary-background-color);
+  transition: color 1s ease-in-out;
   overflow: hidden;
+}
+
+body.light {
+  --text-color: #161722;
+  --grey-text-color: #64748b;
+  --primary-background-color: #cbd5e1;
+  --secondary-background-color: #fafafa;
 }
 
 .header {
@@ -54,11 +42,12 @@ body {
   top: 0;
 
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 6px;
 
   height: 60px;
   padding: 0 3rem;
+  color: #fafafa;
   background: linear-gradient(
     to right,
     var(--primary-purple) 0%,
@@ -67,24 +56,31 @@ body {
   animation: slide-down 0.3s ease-in;
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.header-right,
 .toggle-menu {
   border-radius: 6px;
   transition: all 0.3s ease;
 }
 
+.header-right > i,
 .toggle-menu > i {
   font-size: 2.2rem;
   padding: 5px 10px;
-  color: var(--primary-light);
   cursor: pointer;
 }
 
+.header-right:hover,
 .toggle-menu:hover {
-  background-color: var(--secondary-dark);
+  background-color: var(--primary-background-color);
 }
 
 .logo > h1 {
-  color: var(--primary-light);
   font-size: 2.4rem;
 }
 
@@ -93,8 +89,8 @@ body {
   width: 300px;
   height: 100%;
   padding: 3rem;
-  color: var(--primary-light);
-  background-color: var(--secondary-dark);
+  color: var(--text-color);
+  background-color: var(--secondary-background-color);
   animation: slide-right 0.8s ease-in;
 }
 
@@ -120,10 +116,11 @@ body {
 }
 
 .tile:hover {
-  background-color: var(--primary-dark);
+  background-color: var(--primary-background-color);
 }
 
 .tile.active {
+  color: #fafafa;
   background-color: var(--primary-purple);
 }
 
@@ -137,7 +134,7 @@ body {
 }
 
 .tile-right {
-  color: var(--secondary-light);
+  color: var(--grey-text-color);
   display: flex;
   gap: 6px;
 }
@@ -145,13 +142,12 @@ body {
 .tile-right > i,
 .card-actions > i {
   cursor: pointer;
-  color: var(--secondary-light);
   transition: all 0.3s ease;
 }
 
 .tile-right > i:hover,
 .card-actions > i:hover {
-  color: var(--primary-light);
+  color: var(--text-color);
 }
 
 .projects-header {
@@ -171,7 +167,7 @@ body {
 }
 
 .projects-header .fa-plus:hover {
-  background-color: var(--primary-dark);
+  background-color: var(--primary-background-color);
 }
 
 hr {
@@ -190,7 +186,7 @@ hr {
   height: calc(100vh - 60px);
   margin-left: 300px;
   padding: 3.4rem 3rem;
-  color: var(--primary-light);
+  color: var(--text-color);
   animation: slide-left 1s ease;
 }
 
@@ -208,7 +204,7 @@ hr {
 .task-card {
   font-size: 1.4rem;
   padding: 1.4rem;
-  background-color: var(--secondary-dark);
+  background-color: var(--secondary-background-color);
   border-radius: 6px;
   border-right: 4px solid transparent;
   border-left: 4px solid transparent;
@@ -226,8 +222,8 @@ hr {
 }
 
 .task-card.completed {
-  text-decoration: line-through 2px var(--primary-light);
-  filter: grayscale(90%);
+  text-decoration: line-through 2px var(--text-color);
+  filter: grayscale(100%);
 }
 
 .task-card.completed .card-footer {
@@ -246,7 +242,7 @@ hr {
 }
 
 .card-date {
-  color: var(--secondary-light);
+  color: var(--grey-text-color);
   font-size: 1.2rem;
   margin-top: 0.4rem;
 }
@@ -260,6 +256,7 @@ hr {
 }
 
 .card-footer {
+  color: var(--grey-text-color);
   margin-top: 2rem;
 }
 
@@ -277,7 +274,7 @@ hr {
 }
 
 .dark {
-  color: var(--primary-dark);
+  color: var(--primary-background-color);
 }
 
 .darkgoldenrod {
