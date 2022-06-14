@@ -64,7 +64,7 @@ body {
     var(--primary-purple) 0%,
     var(--primary-pink) 100%
   );
-  animation: 0.7s slide-down;
+  animation: slide-down 0.3s ease-in;
 }
 
 .toggle-menu {
@@ -95,7 +95,7 @@ body {
   padding: 3rem;
   color: var(--primary-light);
   background-color: var(--secondary-dark);
-  animation: 1.5s slide-right;
+  animation: slide-right 0.8s ease-in;
 }
 
 .sidebar > .home {
@@ -191,7 +191,7 @@ hr {
   margin-left: 300px;
   padding: 3.4rem 3rem;
   color: var(--primary-light);
-  animation: 1.5s slide-left;
+  animation: slide-left 1s ease;
 }
 
 .tasks-title {
@@ -210,19 +210,28 @@ hr {
   padding: 1.4rem;
   background-color: var(--secondary-dark);
   border-radius: 6px;
-  border-right: 3px solid transparent;
-  border-left: 3px solid transparent;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
 
   display: flex;
   flex-direction: column;
   text-decoration: line-through 2px transparent;
   transition: all 0.6s ease;
+  cursor: pointer;
+}
+
+.task-card:hover {
+  border-right: 4px solid var(--primary-pink);
+  border-left: 4px solid var(--primary-purple);
 }
 
 .task-card.completed {
   text-decoration: line-through 2px var(--primary-light);
-  border-right: 3px solid var(--primary-pink);
-  border-left: 3px solid var(--primary-purple);
+  filter: grayscale(90%);
+}
+
+.task-card.completed .card-footer {
+  pointer-events: none;
 }
 
 .card-header,
@@ -306,7 +315,7 @@ hr {
     transform: translateX(100%);
   }
   100% {
-    transform: translateX(0%);
+    transform: translateX(0);
     opacity: 1;
   }
 }
@@ -317,7 +326,7 @@ hr {
     transform: translateX(-100%);
   }
   100% {
-    transform: translateX(0%);
     opacity: 1;
+    transform: translateX(0);
   }
 }
