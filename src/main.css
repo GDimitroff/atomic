@@ -32,9 +32,26 @@ body {
 
 body.light {
   --text-color: #161722;
-  --grey-text-color: #64748b;
   --primary-background-color: #cbd5e1;
   --secondary-background-color: #fafafa;
+}
+
+body.light .fa-sun {
+  display: none;
+}
+
+body.light .fa-moon {
+  display: block;
+  animation: 0.6s slide-down;
+}
+
+.fa-moon {
+  display: none;
+}
+
+.fa-sun {
+  display: block;
+  animation: 0.6s slide-down;
 }
 
 .header {
@@ -75,7 +92,6 @@ body.light {
   cursor: pointer;
 }
 
-.header-right:hover,
 .toggle-menu:hover {
   background-color: var(--primary-background-color);
 }
