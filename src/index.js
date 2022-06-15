@@ -10,3 +10,9 @@ const changeTheme = document.querySelector('.header-right');
 changeTheme.addEventListener('click', (e) => {
   document.querySelector('body').classList.toggle('light');
 });
+
+const addNewProject = document.querySelector('.projects-header > .fa-plus');
+addNewProject.addEventListener('click', (e) => {
+  const divNewProject = document.querySelector('.new-project');
+  divNewProject.classList.toggle('show');
+});

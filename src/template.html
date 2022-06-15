@@ -93,6 +93,51 @@
 
         <hr />
 
+        <div class="new-project">
+          <form class="new-project-form">
+            <div class="input">
+              <label for="project-name">
+                <input
+                  type="text"
+                  id="project-name"
+                  placeholder="Name..."
+                  required
+                />
+              </label>
+            </div>
+
+            <div class="colors">
+              <p>Pick color: &nbsp;</p>
+              <label class="form-control">
+                <input type="radio" name="radio" class="default" checked />
+              </label>
+              <label class="form-control">
+                <input type="radio" name="radio" class="pink" />
+              </label>
+              <label class="form-control">
+                <input type="radio" name="radio" class="cyan" />
+              </label>
+              <label class="form-control">
+                <input type="radio" name="radio" class="green" />
+              </label>
+              <label class="form-control">
+                <input type="radio" name="radio" class="gold" />
+              </label>
+              <label class="form-control">
+                <input type="radio" name="radio" class="red" />
+              </label>
+              <label class="form-control">
+                <input type="radio" name="radio" class="purple" />
+              </label>
+            </div>
+
+            <div class="new-project-actions">
+              <button type="button" class="btn-cancel">Cancel</button>
+              <button type="submit" class="btn-submit">Add</button>
+            </div>
+          </form>
+        </div>
+
         <div class="projects-list">
           <div class="tile">
             <div class="tile-left">
@@ -106,7 +151,7 @@
           </div>
           <div class="tile">
             <div class="tile-left">
-              <i class="fa-solid fa-circle-dot dark"></i>
+              <i class="fa-solid fa-circle-dot green"></i>
               <p>Workout</p>
             </div>
             <div class="tile-right">
@@ -116,7 +161,7 @@
           </div>
           <div class="tile">
             <div class="tile-left">
-              <i class="fa-solid fa-circle-dot darkgoldenrod"></i>
+              <i class="fa-solid fa-circle-dot gold"></i>
               <p>Education</p>
             </div>
             <div class="tile-right">
@@ -155,7 +200,7 @@
               </p>
             </div>
             <div class="card-footer">
-              <i class="fa-solid fa-circle high"></i>
+              <i class="fa-solid fa-circle red"></i>
               <div class="card-actions">
                 <i class="fa-solid fa-star important"></i>
                 <i class="fa-solid fa-pen-to-square"></i>
@@ -167,7 +212,7 @@
           <div class="task-card">
             <div class="card-header">
               <h3>Finish The Odin Project Curriculum</h3>
-              <p class="darkgoldenrod">Education</p>
+              <p class="gold">Education</p>
             </div>
             <p class="card-date">25.09.2022</p>
             <div class="card-content">
@@ -177,7 +222,7 @@
               </p>
             </div>
             <div class="card-footer">
-              <i class="fa-solid fa-circle medium"></i>
+              <i class="fa-solid fa-circle gold"></i>
               <div class="card-actions">
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-pen-to-square"></i>
@@ -201,7 +246,7 @@
               </p>
             </div>
             <div class="card-footer">
-              <i class="fa-solid fa-circle low"></i>
+              <i class="fa-solid fa-circle green"></i>
               <div class="card-actions">
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-pen-to-square"></i>
@@ -213,7 +258,7 @@
           <div class="task-card">
             <div class="card-header">
               <h3>Buy gift for my bae</h3>
-              <p class="pink">Personal</p>
+              <p class="green">Personal</p>
             </div>
             <p class="card-date">11.03.2023</p>
             <div class="card-content">
@@ -223,7 +268,7 @@
               </p>
             </div>
             <div class="card-footer">
-              <i class="fa-solid fa-circle high"></i>
+              <i class="fa-solid fa-circle red"></i>
               <div class="card-actions">
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-pen-to-square"></i>
@@ -234,5 +279,8 @@
         </div>
       </div>
     </main>
+
+    <div class="overlay"></div>
+    <div class="modal"></div>
   </body>
 </html>
