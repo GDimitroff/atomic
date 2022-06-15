@@ -187,6 +187,48 @@
       <div class="tasks-container">
         <h2 class="tasks-title">All tasks</h2>
         <div class="tasks">
+          <!-- Add new task form. Hidden by default -->
+          <form class="new-task-form">
+            <div class="add-new-card">
+              <div class="new-card-header">
+                <input type="text" placeholder="Task title..." required />
+                <div class="select">
+                  <select name="projects" id="projects">
+                    <option value="default">Default</option>
+                    <option value="education">Education</option>
+                    <option value="workout">Workout</option>
+                  </select>
+                  <span class="select-focus"></span>
+                </div>
+              </div>
+              <div class="new-card-content">
+                <textarea
+                  id="task-description"
+                  placeholder="Your description here..."
+                ></textarea>
+              </div>
+              <div class="new-card-footer">
+                <div class="card-footer-left">
+                  <div class="select">
+                    <select name="priority" id="priority">
+                      <option value="low">Low</option>
+                      <option value="medium">Medium</option>
+                      <option value="high">High</option>
+                    </select>
+                    <span class="select-focus"></span>
+                  </div>
+                  <input type="date" />
+                </div>
+                <div class="card-footer-right">
+                  <div class="new-card-actions">
+                    <button type="button" class="btn-cancel">Cancel</button>
+                    <button type="submit" class="btn-submit">Add</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
           <div class="task-card">
             <div class="card-header">
               <h3>Buy gift for my bae</h3>

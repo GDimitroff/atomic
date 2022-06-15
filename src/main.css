@@ -173,6 +173,7 @@ body.light .fa-moon {
   justify-content: space-between;
   align-items: center;
   padding-left: 10px;
+  margin-bottom: 1rem;
 }
 
 .projects-header .fa-plus {
@@ -187,7 +188,7 @@ body.light .fa-moon {
 }
 
 hr {
-  height: 1px;
+  height: 2px;
   border: 0;
   background: linear-gradient(
     to right,
@@ -195,29 +196,40 @@ hr {
     var(--primary-pink) 100%
   );
   border-radius: 6px;
-  margin: 1rem 0;
 }
 
 .new-project {
-  border-radius: 6px;
-  overflow: hidden;
   height: 0;
-  margin: 0;
+  margin-bottom: 1rem;
   opacity: 0;
-  box-shadow: rgba(0, 0, 0, 0.180) 0px 2px 8px;
-  transition: all 0.7s ease;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 8px;
+
+  background: linear-gradient(
+        var(--secondary-background-color),
+        var(--secondary-background-color)
+      )
+      padding-box,
+    linear-gradient(to right, var(--primary-purple), var(--primary-pink))
+      border-box;
+  border-radius: 3px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border: 2px solid transparent;
+  border-top: none;
+
+  transition: all 0.5s ease;
+  overflow: hidden;
 }
 
 .new-project.show {
   opacity: 1;
-  height: 113px;
-  margin: 2rem 0 1rem 0;
+  height: 110px;
 }
 
 .new-project-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   padding: 10px;
 }
 
@@ -228,19 +240,19 @@ hr {
 
 .colors > p {
   font-size: 1.4rem;
-  padding-left: 5px;
+  padding-left: 2px;
 }
 
 input {
   border-radius: 3px;
   font-family: inherit;
   border: none;
-  border-left: 2px solid var(--primary-purple);
+  border-left: 2px solid var(--primary-background-color);
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   outline: none;
   color: var(--text-color);
-  background-color: var(--secondary-background-color);
+  background-color: var(--primary-background-color);
   padding-left: 5px;
   width: 100%;
   height: 26px;
@@ -314,36 +326,24 @@ input[class='red'] {
 .new-project-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 8px;
+  gap: 2px;
 }
 
-.new-project-actions > button {
+button {
   font-family: inherit;
-  font-size: 1.4rem;
-  color: #fafafa;
-  border: 0;
-  padding: 0.1rem 0.6rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-color);
+  border: none;
+  background-color: transparent;
+  padding: 0.4rem 0.6rem;
   border-radius: 3px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.btn-cancel {
-  background-color: var(--grey-text-color);
-}
-
-.btn-submit {
-  background-color: #22c55e;
-}
-
-.btn-cancel:hover,
-.btn-cancel:active {
-  background-color: #ff0000;
-}
-
-.btn-submit:hover,
-.btn-submit:active {
-  background-color: #22c55e;
+button:hover {
+  background-color: var(--primary-background-color);
 }
 
 .main {
@@ -383,6 +383,131 @@ input[class='red'] {
 .task-card:hover {
   border-right: 4px solid var(--primary-pink);
   border-left: 4px solid var(--primary-purple);
+}
+
+.add-new-card {
+  font-size: 1.4rem;
+  padding: 1.4rem;
+  background-color: var(--secondary-background-color);
+
+  background: linear-gradient(
+        var(--secondary-background-color),
+        var(--secondary-background-color)
+      )
+      padding-box,
+    linear-gradient(to right, var(--primary-purple), var(--primary-pink))
+      border-box;
+  border-radius: 6px;
+  border: 2px solid transparent;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 8px;
+  overflow: hidden;
+}
+
+.new-card-header,
+.new-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-footer-left {
+  display: flex;
+  gap: 8px;
+}
+
+.new-card-header input[type='text'] {
+  width: 70%;
+}
+
+.new-card-footer input[type='date'] {
+  width: 55%;
+  padding: 5px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 75px;
+  font-size: 1.4rem;
+  padding: 5px;
+  border: none;
+  border-left: 2px solid transparent;
+  border-radius: 3px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  color: var(--text-color);
+  background-color: var(--primary-background-color);
+  outline: none;
+  resize: none;
+  transition: all 0.6s ease;
+}
+
+textarea:focus {
+  border-left: 2px solid var(--primary-pink);
+}
+
+select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--text-color);
+  cursor: inherit;
+  line-height: inherit;
+  outline: none;
+}
+
+.select {
+  width: 75px;
+  border: 2px solid transparent;
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1.1;
+
+  background-color: var(--primary-background-color);
+  display: grid;
+  grid-template-areas: 'select';
+  align-items: center;
+  position: relative;
+}
+
+.select::after {
+  content: '';
+  width: 0.8em;
+  height: 0.5em;
+  background-color: var(--primary-pink);
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+}
+
+select,
+.select:after {
+  grid-area: select;
+  justify-self: end;
+}
+
+select option {
+  color: var(--text-color);
+  background-color: var(--primary-background-color);
+}
+
+select:focus + .select-focus {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid var(--primary-pink);
+  border-radius: inherit;
 }
 
 .task-card.completed {
