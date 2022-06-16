@@ -1,4 +1,5 @@
 import './main.css';
+import Project from './models/Project';
 
 const taskCard = document.querySelector('.task-card:not(:first-child)');
 taskCard.addEventListener('click', (e) => {
@@ -22,3 +23,10 @@ const addNewBtn = document.querySelector('.add-task-button');
 addNewBtn.addEventListener('click', (e) => {
   newTaskForm.classList.toggle('show');
 });
+
+const project1 = new Project('first', 'red');
+console.log(project1.name);
+project1.name = 'second';
+console.log(project1.name);
+project1.addTask('1');
+console.log(project1.tasks);
