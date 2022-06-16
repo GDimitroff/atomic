@@ -2,10 +2,19 @@ import { projectsController } from './projectsController';
 
 export const displayController = (() => {
   const body = document.querySelector('body');
+  const sidebar = body.querySelector('.sidebar');
+  const main = body.querySelector('.main');
+  const toggleMenu = body.querySelector('.toggle-menu');
   const changeTheme = body.querySelector('.header-right');
   const newProjectBtn = body.querySelector('.projects-header > .fa-plus');
   const newTaskBtn = body.querySelector('.add-task-button');
   const newTaskForm = body.querySelector('.new-task-form');
+
+  toggleMenu.addEventListener('click', (e) => {
+    sidebar.classList.toggle('hide');
+    sidebar.classList.toggle('show');
+    main.classList.toggle('full-width');
+  });
 
   changeTheme.addEventListener('click', (e) => {
     body.classList.toggle('light');

@@ -27,7 +27,12 @@ body {
   font-weight: 400;
   background-color: var(--primary-background-color);
   transition: color 1s ease-in-out;
-  overflow: hidden;
+  overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
 }
 
 body.light {
@@ -104,12 +109,22 @@ body.light .fa-moon {
 .sidebar {
   position: fixed;
   width: 300px;
-  height: 100%;
+  height: calc(100vh - 60px);
   padding: 3rem;
   color: var(--text-color);
   background-color: var(--secondary-background-color);
   animation: slide-right 0.8s ease-in-out;
   z-index: 2;
+}
+
+.sidebar.show {
+  transition: 0.8s ease-in-out;
+  transform: translateX(0px);
+}
+
+.sidebar.hide {
+  transition: 0.8s ease-in-out;
+  transform: translateX(-300px);
 }
 
 .sidebar > .home {
@@ -349,11 +364,17 @@ button:hover {
 }
 
 .main {
-  height: calc(100vh - 60px);
-  margin-left: 300px;
+  min-height: calc(100vh - 60px);
   padding: 3.2rem 3rem;
+  margin-left: 300px;
   color: var(--text-color);
+  transition: margin 0.8s ease-in-out;
   animation: slide-left 1s ease-in-out;
+}
+
+.main.full-width {
+  transition: margin 0.8s ease-in-out;
+  margin-left: 0px;
 }
 
 .tasks-header {
