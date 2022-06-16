@@ -70,7 +70,8 @@ body.light .fa-moon {
     var(--primary-purple) 0%,
     var(--primary-pink) 100%
   );
-  animation: slide-down 0.3s ease-in;
+  animation: slide-down 0.3s ease-in-out;
+  z-index: 2;
 }
 
 .header-left {
@@ -107,7 +108,8 @@ body.light .fa-moon {
   padding: 3rem;
   color: var(--text-color);
   background-color: var(--secondary-background-color);
-  animation: slide-right 0.8s ease-in;
+  animation: slide-right 0.8s ease-in-out;
+  z-index: 2;
 }
 
 .sidebar > .home {
@@ -336,7 +338,7 @@ button {
   color: var(--text-color);
   border: none;
   background-color: transparent;
-  padding: 0.4rem 0.6rem;
+  padding: 0.6rem 0.6rem;
   border-radius: 3px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -349,13 +351,33 @@ button:hover {
 .main {
   height: calc(100vh - 60px);
   margin-left: 300px;
-  padding: 3.4rem 3rem;
+  padding: 3.2rem 3rem;
   color: var(--text-color);
-  animation: slide-left 1s ease;
+  animation: slide-left 1s ease-in-out;
+}
+
+.tasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.6rem;
 }
 
 .tasks-title {
   font-size: 2.2rem;
+}
+
+.add-task-button {
+  font-size: inherit;
+  font-size: 1.4rem;
+  color: #fafafa;
+  padding: 0.6rem 1.2rem;
+  background-color: var(--primary-purple);
+}
+
+.add-task-button:hover,
+.add-task-button:active {
+  background-color: var(--primary-pink);
 }
 
 .tasks {
@@ -366,6 +388,7 @@ button:hover {
 }
 
 .task-card {
+  height: 185px;
   font-size: 1.4rem;
   padding: 1.4rem;
   background-color: var(--secondary-background-color);
@@ -385,7 +408,17 @@ button:hover {
   border-left: 4px solid var(--primary-purple);
 }
 
+.new-task-form {
+  display: none;
+}
+
+.new-task-form.show {
+  display: block;
+  animation: 0.6s slide-right ease-in-out;
+}
+
 .add-new-card {
+  height: 185px;
   font-size: 1.4rem;
   padding: 1.4rem;
   background-color: var(--secondary-background-color);
@@ -426,12 +459,15 @@ button:hover {
 
 .new-card-footer input[type='date'] {
   width: 55%;
-  padding: 5px;
+  padding: 14px 5px;
+  border-radius: 3px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 
 textarea {
   width: 100%;
-  min-height: 75px;
+  height: 70px;
   font-size: 1.4rem;
   padding: 5px;
   border: none;
@@ -469,7 +505,7 @@ select {
   width: 75px;
   border: 2px solid transparent;
   border-radius: 0.25em;
-  padding: 0.25em 0.5em;
+  padding: 0.4em 0.5em;
   font-size: 1.25rem;
   cursor: pointer;
   line-height: 1.1;
@@ -505,8 +541,7 @@ select:focus + .select-focus {
   top: -2px;
   left: -2px;
   right: -2px;
-  bottom: -2px;
-  border: 2px solid var(--primary-pink);
+  border: 1px solid var(--primary-pink);
   border-radius: inherit;
 }
 
@@ -625,10 +660,12 @@ select:focus + .select-focus {
 
 @keyframes slide-down {
   0% {
+    opacity: 0;
     transform: translateY(-100%);
   }
   100% {
     transform: translateY(0%);
+    opacity: 1;
   }
 }
 

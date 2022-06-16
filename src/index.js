@@ -16,3 +16,9 @@ addNewProject.addEventListener('click', (e) => {
   const divNewProject = document.querySelector('.new-project');
   divNewProject.classList.toggle('show');
 });
+
+const newTaskForm = document.querySelector('.new-task-form');
+const addNewBtn = document.querySelector('.add-task-button');
+addNewBtn.addEventListener('click', (e) => {
+  newTaskForm.classList.toggle('show');
+});

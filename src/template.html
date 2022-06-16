@@ -185,8 +185,16 @@
 
     <main class="main">
       <div class="tasks-container">
-        <h2 class="tasks-title">All tasks</h2>
-        <div class="tasks">
+        <header class="tasks-header">
+          <div class="tasks-header-left">
+            <h2 class="tasks-title">All tasks</h2>
+          </div>
+          <div class="tasks-header-right">
+            <button class="add-task-button">Add new</button>
+          </div>
+        </header>
+
+        <section class="tasks">
           <!-- Add new task form. Hidden by default -->
           <form class="new-task-form">
             <div class="add-new-card">
@@ -318,7 +326,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </div>
     </main>
 
