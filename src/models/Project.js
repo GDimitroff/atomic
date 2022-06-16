@@ -1,39 +1,39 @@
 export default class Project {
-  #name;
+  #title;
   #color;
   #tasks;
 
-  constructor(name, color) {
-    this.#name = name;
+  constructor(title, color) {
+    this.#title = title;
     this.#color = color;
     this.#tasks = [];
   }
 
-  get name() {
-    return this.#name;
+  get title() {
+    return this.#title;
   }
 
-  set name(newName) {
-    this.#name = newName;
+  set title(title) {
+    this.#title = title;
   }
 
   get color() {
     return this.#color;
   }
 
-  set color(newColor) {
-    this.#color = newColor;
+  set color(color) {
+    this.#color = color;
   }
 
   get tasks() {
     return this.#tasks;
   }
 
-  set tasks(newTasks) {
-    this.#tasks = newTasks;
+  set tasks(tasks) {
+    this.#tasks = tasks;
   }
 
-  addTask(newTask) {
-    this.#tasks.push(newTask);
+  addTask(task) {
+    this.#tasks.push(task);
   }
 }
