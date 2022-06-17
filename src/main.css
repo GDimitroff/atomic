@@ -469,19 +469,20 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 6px;
 }
 
 .card-footer-left {
   display: flex;
-  gap: 8px;
+  gap: 6px;
 }
 
 .new-card-header input[type='text'] {
   width: 70%;
 }
 
-.new-card-footer input[type='date'] {
-  width: 55%;
+input[type='date'] {
+  max-width: 120px;
   padding: 14px 5px;
   border-radius: 3px;
   border-top-left-radius: 0px;
@@ -605,6 +606,10 @@ select:focus + .select-focus {
 .card-footer {
   color: var(--grey-text-color);
   margin-top: 2rem;
+}
+
+.card-footer-left .select {
+  width: 60px;
 }
 
 .card-actions {
