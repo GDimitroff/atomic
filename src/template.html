@@ -199,22 +199,29 @@
           <form class="new-task-form">
             <div class="add-new-card">
               <div class="new-card-header">
-                <input type="text" placeholder="Task title..." required />
-                <div class="select">
-                  <select name="projects" id="projects">
-                    <option value="default">Default</option>
-                    <option value="education">Education</option>
-                    <option value="workout">Workout</option>
-                  </select>
-                  <span class="select-focus"></span>
+                <div class="left">
+                  <div class="select">
+                    <select name="projects" id="projects">
+                      <option value="default">Default</option>
+                      <option value="education">Education</option>
+                      <option value="workout">Workout</option>
+                    </select>
+                    <span class="select-focus"></span>
+                  </div>
+                  <input type="text" placeholder="Task title..." required />
+                </div>
+                <div class="right">
+                  <i class="fa-solid fa-xmark"></i>
                 </div>
               </div>
+
               <div class="new-card-content">
                 <textarea
                   id="task-description"
                   placeholder="Your description here..."
                 ></textarea>
               </div>
+
               <div class="new-card-footer">
                 <div class="card-footer-left">
                   <div class="select">
