@@ -19,6 +19,7 @@
 
 html {
   font-size: 62.5%;
+  user-select: none;
 }
 
 body {
@@ -114,12 +115,8 @@ body.light .fa-moon {
   color: var(--text-color);
   background-color: var(--secondary-background-color);
   animation: slide-right 0.8s ease-in-out;
-  z-index: 2;
-}
-
-.sidebar.show {
   transition: 0.8s ease-in-out;
-  transform: translateX(0px);
+  z-index: 2;
 }
 
 .sidebar.hide {
@@ -377,6 +374,11 @@ button:hover {
   margin-left: 0px;
 }
 
+.main.inactive {
+  filter: blur(3px);
+  pointer-events: none;
+}
+
 .tasks-header {
   display: flex;
   justify-content: space-between;
@@ -404,7 +406,7 @@ button:hover {
 .tasks {
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 12px;
 }
 
@@ -709,5 +711,44 @@ select:focus + .select-focus {
   100% {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+/************************************/
+/* BELOW 940px (Tablets)            */
+/************************************/
+
+@media (max-width: 59em) {
+  html {
+    font-size: 56.25%;
+  }
+}
+
+/************************************/
+/* BELOW 704px (Smaller Tablets)    */
+/************************************/
+
+@media (max-width: 44em) {
+  .sidebar {
+    display: none;
+  }
+
+  .main {
+    margin-left: 0px;
+    animation: 1.5s slide-down;
+  }
+}
+
+/************************************/
+/* BELOW 544px (Phones)             */
+/************************************/
+
+@media (max-width: 34em) {
+  .sidebar {
+    width: 260px;
+  }
+
+  .tasks {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
 }

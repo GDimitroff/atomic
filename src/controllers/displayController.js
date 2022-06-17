@@ -10,10 +10,32 @@ export const displayController = (() => {
   const newTaskBtn = body.querySelector('.add-task-button');
   const newTaskForm = body.querySelector('.new-task-form');
 
+  if (window.innerWidth < 704) {
+    sidebar.classList.add('hide');
+    main.classList.add('full-width');
+  } else {
+    sidebar.classList.remove('hide');
+  }
+
+  window.addEventListener('resize', (e) => {
+    main.classList.remove('inactive');
+    main.classList.remove('full-width');
+
+    if (window.innerWidth < 704) {
+      sidebar.classList.add('hide');
+    } else {
+      sidebar.classList.remove('hide');
+    }
+  });
+
   toggleMenu.addEventListener('click', (e) => {
+    sidebar.style.display = 'block';
     sidebar.classList.toggle('hide');
-    sidebar.classList.toggle('show');
     main.classList.toggle('full-width');
+
+    if (window.innerWidth < 704) {
+      main.classList.toggle('inactive');
+    }
   });
 
   changeTheme.addEventListener('click', (e) => {
