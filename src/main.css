@@ -87,7 +87,7 @@ body.light .fa-moon {
 }
 
 .toggle-menu {
-  /* display: none; */
+  display: none;
   border-radius: 6px;
   transition: all 0.3s ease;
 }
@@ -119,8 +119,14 @@ body.light .fa-moon {
   font-size: 2.4rem;
 }
 
+.main {
+  display: flex;
+  color: var(--text-color);
+}
+
 .sidebar {
-  position: fixed;
+  position: sticky;
+  top: 60px;
   width: 300px;
   height: calc(100vh - 60px);
   padding: 3rem;
@@ -129,15 +135,6 @@ body.light .fa-moon {
   animation: slide-right 0.8s ease-in-out;
   transition: 0.8s ease-in-out;
   z-index: 2;
-}
-
-.sidebar.hide {
-  transition: 0.8s ease-in-out;
-  transform: translateX(-300px);
-}
-
-.sidebar > .home {
-  margin-bottom: 2rem;
 }
 
 .projects-tiles {
@@ -244,23 +241,18 @@ hr {
   justify-content: flex-end;
 }
 
-.main {
+.section-tasks {
+  flex: 1;
   min-height: calc(100vh - 60px);
   padding: 3.2rem 3rem;
-  margin-left: 300px;
-  color: var(--text-color);
-  transition: margin 0.8s ease-in-out;
   animation: slide-left 1s ease-in-out;
 }
 
-.main.full-width {
-  transition: margin 0.8s ease-in-out;
-  margin-left: 0px;
-}
-
-.main.inactive {
-  filter: blur(3px);
-  pointer-events: none;
+.tasks-cards {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 12px;
 }
 
 .tasks-header {
@@ -272,13 +264,6 @@ hr {
 
 .tasks-title {
   font-size: 2.2rem;
-}
-
-.tasks {
-  margin-top: 1rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 12px;
 }
 
 .task-card {
@@ -745,13 +730,12 @@ select:focus + .select-focus {
 /************************************/
 
 @media (max-width: 44em) {
-  .sidebar {
-    display: none;
+  .toggle-menu {
+    display: block;
   }
 
-  .main {
-    margin-left: 0px;
-    animation: 1.5s slide-down;
+  .sidebar {
+    display: none;
   }
 }
 
@@ -760,10 +744,6 @@ select:focus + .select-focus {
 /************************************/
 
 @media (max-width: 34em) {
-  .sidebar {
-    width: 260px;
-  }
-
   .tasks {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
