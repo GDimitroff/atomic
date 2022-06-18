@@ -44,6 +44,12 @@ export const displayController = (() => {
   });
 
   newProjectBtn.addEventListener('click', (e) => {
+    if (newProjectBtn.className === 'fa-solid fa-plus') {
+      newProjectBtn.className = 'fa-solid fa-angle-down';
+    } else {
+      newProjectBtn.className = 'fa-solid fa-plus';
+    }
+
     const newProjectSection = body.querySelector('.new-project');
     newProjectSection.classList.toggle('show');
   });

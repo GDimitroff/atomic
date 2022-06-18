@@ -163,6 +163,10 @@ body.light .fa-moon {
   background-color: var(--primary-purple);
 }
 
+.projects {
+  margin-top: 2rem;
+}
+
 .projects-header {
   font-size: 1.4rem;
   font-weight: 700;
@@ -174,6 +178,7 @@ body.light .fa-moon {
 }
 
 .projects-header > i {
+  min-width: 32px;
   color: var(--text-color);
   padding: 5px 10px;
   border-radius: 6px;
