@@ -1,6 +1,5 @@
 :root {
   --primary-purple: #6710c2;
-  --primary-blue: #1d4ed8;
   --primary-pink: #ff00cc;
   --primary-grey: #94a3b8;
   --primary-cyan: #57ddff;
@@ -243,7 +242,6 @@ hr {
 .new-project-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 2px;
 }
 
 .main {
@@ -519,6 +517,10 @@ input[type='text'] {
   transition: all 0.7s ease;
 }
 
+.card-header > .left > input[type='text'] {
+  width: 300px;
+}
+
 input[type='text']:focus {
   background-color: var(--primary-background-color);
   border-left: 2px solid var(--primary-pink);
@@ -575,10 +577,6 @@ input[class='cyan'] {
   background-color: var(--primary-cyan);
 }
 
-input[class='blue'] {
-  background-color: var(--primary-blue);
-}
-
 input[class='lime'] {
   background-color: var(--primary-lime);
 }
@@ -595,16 +593,24 @@ input[class='orange'] {
   background-color: var(--primary-orange);
 }
 
-.new-card-header input[type='text'] {
-  width: 70%;
-}
-
 input[type='date'] {
-  max-width: 120px;
-  padding: 14px 5px;
+  font-family: inherit;
+  font-size: 1.2rem;
+  height: 28px;
+  padding: 5px;
+  outline: none;
+  border: none;
+  border-top: 2px solid transparent;
   border-radius: 3px;
   border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
+  border-top-right-radius: 0px;
+  color: var(--text-color);
+  background-color: var(--primary-background-color);
+  max-width: 110px;
+}
+
+input[type='date']:focus {
+  border-top: 2px solid var(--primary-pink);
 }
 
 textarea {
@@ -644,7 +650,7 @@ select {
 }
 
 .select {
-  width: 75px;
+  width: 65px;
   height: 28px;
   border: 2px solid transparent;
   border-radius: 3px;
@@ -760,5 +766,9 @@ select:focus + .select-focus {
 
   .tasks {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+
+  .card-header > .left > input[type='text'] {
+    width: 140px;
   }
 }

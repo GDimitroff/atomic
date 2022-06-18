@@ -121,9 +121,6 @@
                 <input type="radio" name="radio" class="cyan" />
               </label>
               <label class="form-control">
-                <input type="radio" name="radio" class="blue" />
-              </label>
-              <label class="form-control">
                 <input type="radio" name="radio" class="purple" />
               </label>
               <label class="form-control">
@@ -141,7 +138,7 @@
             </div>
 
             <div class="new-project-actions">
-              <button type="submit" class="btn btn-submit">Add</button>
+              <button type="submit" class="btn">Add</button>
             </div>
           </form>
         </div>
@@ -207,6 +204,7 @@
           <form class="new-task-form">
             <div class="card-header">
               <div class="left">
+                <input type="text" placeholder="Task title..." required />
                 <div class="select">
                   <select name="projects" id="projects">
                     <option value="default">Default</option>
@@ -215,7 +213,6 @@
                   </select>
                   <span class="select-focus"></span>
                 </div>
-                <input type="text" placeholder="Task title..." required />
               </div>
               <div class="right">
                 <button type="button" class="btn">X</button>
