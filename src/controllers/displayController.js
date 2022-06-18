@@ -5,10 +5,10 @@ export const displayController = (() => {
   const sidebar = body.querySelector('.sidebar');
   const main = body.querySelector('.main');
   const toggleMenu = body.querySelector('.toggle-menu');
-  const changeTheme = body.querySelector('.header-right');
+  const changeTheme = body.querySelector('.header > .right');
   const newProjectBtn = body.querySelector('.projects-header > .fa-plus');
-  const newTaskBtn = body.querySelector('.add-task-button');
-  const newTaskForm = body.querySelector('.new-task-form');
+  const newTaskBtn = body.querySelector('.btn-add');
+  const newTaskCard = body.querySelector('.new-task-card');
 
   if (window.innerWidth < 704) {
     sidebar.classList.add('hide');
@@ -49,7 +49,7 @@ export const displayController = (() => {
   });
 
   newTaskBtn.addEventListener('click', (e) => {
-    newTaskForm.classList.toggle('show');
+    newTaskCard.classList.toggle('show');
   });
 
   const taskCards = document.querySelectorAll('.task-card');

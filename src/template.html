@@ -18,17 +18,18 @@
   </head>
   <body>
     <header class="header">
-      <div class="header-left">
+      <div class="left">
         <div class="toggle-menu">
           <i class="fa-solid fa-bars"></i>
         </div>
 
         <div class="logo">
+          <i class="fa-solid fa-rocket"></i>
           <h1>Atomic</h1>
         </div>
       </div>
 
-      <div class="header-right">
+      <div class="right">
         <i class="fa-solid fa-sun"></i>
         <i class="fa-solid fa-moon"></i>
       </div>
@@ -38,47 +39,47 @@
       <div class="home">
         <div class="projects-tiles">
           <div class="tile active">
-            <div class="tile-left">
+            <div class="left">
               <i class="fa-solid fa-globe"></i>
               <p>All</p>
             </div>
-            <div class="tile-right">
+            <div class="right">
               <p>26</p>
             </div>
           </div>
           <div class="tile">
-            <div class="tile-left">
+            <div class="left">
               <i class="fa-solid fa-calendar-day"></i>
               <p>Today</p>
             </div>
-            <div class="tile-right">
+            <div class="right">
               <p>3</p>
             </div>
           </div>
           <div class="tile">
-            <div class="tile-left">
+            <div class="left">
               <i class="fa-solid fa-calendar-days"></i>
               <p>Next 7 days</p>
             </div>
-            <div class="tile-right">
+            <div class="right">
               <p>13</p>
             </div>
           </div>
           <div class="tile">
-            <div class="tile-left">
+            <div class="left">
               <i class="fa-solid fa-star"></i>
               <p>Important</p>
             </div>
-            <div class="tile-right">
+            <div class="right">
               <p>2</p>
             </div>
           </div>
           <div class="tile">
-            <div class="tile-left">
+            <div class="left">
               <i class="fa-solid fa-check-double"></i>
               <p>Completed</p>
             </div>
-            <div class="tile-right">
+            <div class="right">
               <p>9</p>
             </div>
           </div>
@@ -132,49 +133,48 @@
             </div>
 
             <div class="new-project-actions">
-              <button type="button" class="btn-cancel">Cancel</button>
-              <button type="submit" class="btn-submit">Add</button>
+              <button type="submit" class="btn btn-submit">Add</button>
             </div>
           </form>
         </div>
 
         <div class="projects-list">
           <div class="tile">
-            <div class="tile-left">
+            <div class="left">
               <i class="fa-solid fa-circle-dot pink"></i>
               <p>Personal</p>
             </div>
-            <div class="tile-right">
+            <div class="right">
               <i class="fa-solid fa-pen-to-square"></i>
               <i class="fa-solid fa-trash-can"></i>
             </div>
           </div>
           <div class="tile">
-            <div class="tile-left">
+            <div class="left">
               <i class="fa-solid fa-circle-dot green"></i>
               <p>Workout</p>
             </div>
-            <div class="tile-right">
+            <div class="right">
               <i class="fa-solid fa-pen-to-square"></i>
               <i class="fa-solid fa-trash-can"></i>
             </div>
           </div>
           <div class="tile">
-            <div class="tile-left">
+            <div class="left">
               <i class="fa-solid fa-circle-dot gold"></i>
               <p>Education</p>
             </div>
-            <div class="tile-right">
+            <div class="right">
               <i class="fa-solid fa-pen-to-square"></i>
               <i class="fa-solid fa-trash-can"></i>
             </div>
           </div>
           <div class="tile">
-            <div class="tile-left">
+            <div class="left">
               <i class="fa-solid fa-circle-dot cyan"></i>
               <p>Work</p>
             </div>
-            <div class="tile-right">
+            <div class="right">
               <i class="fa-solid fa-pen-to-square"></i>
               <i class="fa-solid fa-trash-can"></i>
             </div>
@@ -184,77 +184,82 @@
     </nav>
 
     <main class="main">
-      <div class="tasks-container">
-        <header class="tasks-header">
-          <div class="tasks-header-left">
-            <h2 class="tasks-title">All tasks</h2>
-          </div>
-          <div class="tasks-header-right">
-            <button class="add-task-button">Add new</button>
-          </div>
-        </header>
+      <header class="tasks-header">
+        <div class="left">
+          <h2 class="tasks-title">All tasks</h2>
+        </div>
+        <div class="right">
+          <button class="btn btn-add">Add new</button>
+        </div>
+      </header>
 
-        <section class="tasks">
-          <!-- Add new task form. Hidden by default -->
+      <section class="tasks">
+        <!-- Add new task form. Hidden by default -->
+        <div class="new-task-card">
           <form class="new-task-form">
-            <div class="add-new-card">
-              <div class="new-card-header">
-                <div class="left">
-                  <div class="select">
-                    <select name="projects" id="projects">
-                      <option value="default">Default</option>
-                      <option value="education">Education</option>
-                      <option value="workout">Workout</option>
-                    </select>
-                    <span class="select-focus"></span>
-                  </div>
-                  <input type="text" placeholder="Task title..." required />
+            <div class="card-header">
+              <div class="left">
+                <div class="select">
+                  <select name="projects" id="projects">
+                    <option value="default">Default</option>
+                    <option value="education">Education</option>
+                    <option value="workout">Workout</option>
+                  </select>
+                  <span class="select-focus"></span>
                 </div>
-                <div class="right">
-                  <i class="fa-solid fa-xmark"></i>
-                </div>
+                <input type="text" placeholder="Task title..." required />
               </div>
-
-              <div class="new-card-content">
-                <textarea
-                  id="task-description"
-                  placeholder="Your description here..."
-                ></textarea>
+              <div class="right">
+                <button class="btn">X</button>
               </div>
+            </div>
 
-              <div class="new-card-footer">
-                <div class="card-footer-left">
-                  <div class="select">
-                    <select name="priority" id="priority">
-                      <option value="low">Low</option>
-                      <option value="medium">Medium</option>
-                      <option value="high">High</option>
-                    </select>
-                    <span class="select-focus"></span>
-                  </div>
-                  <input type="date" id="date" name="date" value="2022-06-17" />
+            <div class="card-content">
+              <textarea
+                id="task-description"
+                placeholder="Your description here..."
+              ></textarea>
+            </div>
+
+            <div class="card-footer">
+              <div class="left">
+                <div class="select">
+                  <select name="priority" id="priority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                  </select>
+                  <span class="select-focus"></span>
                 </div>
-                <div class="card-footer-right">
-                  <button type="submit" class="btn-submit">Add</button>
-                </div>
+                <input type="date" id="date" name="date" value="2022-06-17" />
+              </div>
+              <div class="right">
+                <button type="submit" class="btn btn-submit">Add</button>
               </div>
             </div>
           </form>
+        </div>
 
-          <div class="task-card">
-            <div class="card-header">
+        <div class="task-card">
+          <div class="card-header">
+            <div class="left">
               <h3>Buy gift for my bae</h3>
+            </div>
+            <div class="right">
               <p class="pink">Personal</p>
             </div>
-            <p class="card-date">11.03.2023</p>
-            <div class="card-content">
-              <p>
-                If you dare to miss this you are gonna be homeless... and
-                single!
-              </p>
-            </div>
-            <div class="card-footer">
+          </div>
+          <p class="card-date">11.03.2023</p>
+          <div class="card-content">
+            <p>
+              If you dare to miss this you are gonna be homeless... and single!
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="left">
               <i class="fa-solid fa-circle red"></i>
+            </div>
+            <div class="right">
               <div class="card-actions">
                 <i class="fa-solid fa-star important"></i>
                 <i class="fa-solid fa-pen-to-square"></i>
@@ -262,76 +267,95 @@
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="task-card">
-            <div class="card-header">
-              <h3>Finish The Odin Project Curriculum</h3>
-              <p class="gold">Education</p>
-            </div>
-            <p class="card-date">25.09.2022</p>
-            <div class="card-content">
-              <p>
-                That Audi and these 'чантички' won't buy themselves you know.
-                Study hard! You can do it!
-              </p>
-            </div>
-            <div class="card-footer">
-              <i class="fa-solid fa-circle gold"></i>
-              <div class="card-actions">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-pen-to-square"></i>
-                <i class="fa-solid fa-trash-can"></i>
-              </div>
-            </div>
-          </div>
-
-          <div class="task-card completed">
-            <div class="card-header">
-              <h3>Practice display: grid</h3>
-              <p class="darkgoldenrod">Education</p>
-            </div>
-            <p class="card-date">25.09.2022</p>
-            <div class="card-content">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Exercitationem in necessitatibus neque magni esse, saepe
-                officiis, corporis dicta consequuntur eaque magnam nam quam ea!
-                Labore.
-              </p>
-            </div>
-            <div class="card-footer">
-              <i class="fa-solid fa-circle green"></i>
-              <div class="card-actions">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-pen-to-square"></i>
-                <i class="fa-solid fa-trash-can"></i>
-              </div>
-            </div>
-          </div>
-
-          <div class="task-card">
-            <div class="card-header">
+        <div class="task-card">
+          <div class="card-header">
+            <div class="left">
               <h3>Buy gift for my bae</h3>
-              <p class="green">Personal</p>
             </div>
-            <p class="card-date">11.03.2023</p>
-            <div class="card-content">
-              <p>
-                If you dare to miss this you are gonna be homeless... and
-                single!
-              </p>
+            <div class="right">
+              <p class="pink">Personal</p>
             </div>
-            <div class="card-footer">
+          </div>
+          <p class="card-date">11.03.2023</p>
+          <div class="card-content">
+            <p>
+              If you dare to miss this you are gonna be homeless... and single!
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="left">
               <i class="fa-solid fa-circle red"></i>
+            </div>
+            <div class="right">
               <div class="card-actions">
-                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star important"></i>
                 <i class="fa-solid fa-pen-to-square"></i>
                 <i class="fa-solid fa-trash-can"></i>
               </div>
             </div>
           </div>
-        </section>
-      </div>
+        </div>
+
+        <div class="task-card">
+          <div class="card-header">
+            <div class="left">
+              <h3>Buy gift for my bae</h3>
+            </div>
+            <div class="right">
+              <p class="pink">Personal</p>
+            </div>
+          </div>
+          <p class="card-date">11.03.2023</p>
+          <div class="card-content">
+            <p>
+              If you dare to miss this you are gonna be homeless... and single!
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="left">
+              <i class="fa-solid fa-circle red"></i>
+            </div>
+            <div class="right">
+              <div class="card-actions">
+                <i class="fa-solid fa-star important"></i>
+                <i class="fa-solid fa-pen-to-square"></i>
+                <i class="fa-solid fa-trash-can"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-card">
+          <div class="card-header">
+            <div class="left">
+              <h3>Buy gift for my bae</h3>
+            </div>
+            <div class="right">
+              <p class="pink">Personal</p>
+            </div>
+          </div>
+          <p class="card-date">11.03.2023</p>
+          <div class="card-content">
+            <p>
+              If you dare to miss this you are gonna be homeless... and single!
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="left">
+              <i class="fa-solid fa-circle red"></i>
+            </div>
+            <div class="right">
+              <div class="card-actions">
+                <i class="fa-solid fa-star important"></i>
+                <i class="fa-solid fa-pen-to-square"></i>
+                <i class="fa-solid fa-trash-can"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <div class="overlay"></div>

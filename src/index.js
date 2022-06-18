@@ -1,6 +1,6 @@
 import './main.css';
-import { displayController } from './controllers/displayController';
 import { projectsController } from './controllers/projectsController';
+import { displayController } from './controllers/displayController';
 
 projectsController.init();
 displayController.init();
