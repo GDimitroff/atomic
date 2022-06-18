@@ -1,10 +1,13 @@
 :root {
   --primary-purple: #6710c2;
+  --primary-blue: #1d4ed8;
   --primary-pink: #ff00cc;
   --primary-grey: #94a3b8;
   --primary-cyan: #57ddff;
   --primary-gold: #eab308;
+  --primary-orange: #f97316;
   --primary-red: #ff0000;
+  --primary-lime: #65a30d;
   --primary-green: #22c55e;
 
   --text-color: #fafafa;
@@ -222,7 +225,7 @@ hr {
 
 .new-project.show {
   opacity: 1;
-  height: 110px;
+  height: 100px;
 }
 
 .new-project-form {
@@ -235,11 +238,6 @@ hr {
 .colors {
   display: flex;
   justify-content: space-between;
-}
-
-.colors > p {
-  font-size: 1.4rem;
-  padding-left: 2px;
 }
 
 .new-project-actions {
@@ -450,14 +448,13 @@ i {
   color: var(--text-color);
   border: none;
   background-color: transparent;
-  padding: 0.6rem 1rem;
   border-radius: 3px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .btn:hover {
-  background-color: var(--primary-background-color);
+  color: var(--primary-pink);
 }
 
 .btn-add {
@@ -469,6 +466,7 @@ i {
 
 .btn-add:hover,
 .btn-add:active {
+  color: #fafafa;
   background-color: var(--primary-pink);
 }
 
@@ -577,12 +575,24 @@ input[class='cyan'] {
   background-color: var(--primary-cyan);
 }
 
+input[class='blue'] {
+  background-color: var(--primary-blue);
+}
+
+input[class='lime'] {
+  background-color: var(--primary-lime);
+}
+
 input[class='green'] {
   background-color: var(--primary-green);
 }
 
 input[class='red'] {
   background-color: var(--primary-red);
+}
+
+input[class='orange'] {
+  background-color: var(--primary-orange);
 }
 
 .new-card-header input[type='text'] {
@@ -599,8 +609,8 @@ input[type='date'] {
 
 textarea {
   width: 100%;
+  font-family: inherit;
   min-height: 70px;
-  font-size: 1.4rem;
   padding: 5px;
   border: none;
   border-left: 2px solid transparent;
