@@ -1,12 +1,13 @@
-import createCard from '../components/card';
 import { projectsController } from './projectsController';
+import createCard from '../components/card';
+import createNewCardForm from '../components/new-card-form';
 
 export const displayController = (() => {
   const body = document.querySelector('body');
   const main = body.querySelector('.main');
   const sidebar = body.querySelector('.sidebar');
-  const tasksCards = body.querySelector('.tasks-cards');
   const sectionTasks = body.querySelector('.section-tasks');
+  const tasksCards = body.querySelector('.tasks-cards');
   const toggleMenu = body.querySelector('.toggle-menu');
   const changeTheme = body.querySelector('.header > .right');
   const newProjectBtn = body.querySelector('.projects-header > .fa-plus');
@@ -52,7 +53,14 @@ export const displayController = (() => {
   });
 
   newTaskBtn.addEventListener('click', (e) => {
-    newTaskCard.classList.toggle('show');
+    if (tasksCards.children[0].classList.contains('new-task-card')) return;
+
+    const newTaskForm = createNewCardForm();
+    tasksCards.prepend(newTaskForm);
+
+    newTaskForm.querySelector('.btn').addEventListener('click', (e) => {
+      newTaskForm.remove();
+    });
   });
 
   const taskCards = document.querySelectorAll('.task-card');

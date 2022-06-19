@@ -21,7 +21,7 @@ export const projectsController = (() => {
         'Finish education',
         defaultProject2,
         'If you dare to miss this you are gonna be homeless... and single!',
-        'high',
+        'medium',
         '11.03.2023',
         false,
         false

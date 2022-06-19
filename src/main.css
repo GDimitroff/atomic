@@ -362,16 +362,9 @@ hr {
   border: 2px solid transparent;
 
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 8px;
-  overflow: hidden;
-}
-
-.new-task-card {
-  display: none;
-}
-
-.new-task-card.show {
-  display: block;
   animation: 0.6s slide-right ease-in-out;
+
+  overflow: hidden;
 }
 
 .new-task-form {
