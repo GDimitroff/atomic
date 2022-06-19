@@ -6,17 +6,30 @@ export const projectsController = (() => {
 
   const init = () => {
     if (localStorage.getItem('projects') === null) {
-      const defaultProject = new Project('Default', 'default');
-      const defaultTask = new Task(
+      const defaultProject1 = new Project('Workout', 'purple');
+      const defaultProject2 = new Project('Education', 'gold');
+      const defaultTask1 = new Task(
         'Buy gift for my bae',
-        defaultProject,
+        defaultProject1,
         'If you dare to miss this you are gonna be homeless... and single!',
         'high',
         '11.03.2023',
+        false,
+        true
+      );
+      const defaultTask2 = new Task(
+        'Finish education',
+        defaultProject2,
+        'If you dare to miss this you are gonna be homeless... and single!',
+        'high',
+        '11.03.2023',
+        false,
         false
       );
-      defaultProject.addTask(defaultTask);
-      projects.push(defaultProject);
+      defaultProject1.addTask(defaultTask1);
+      defaultProject2.addTask(defaultTask2);
+      projects.push(defaultProject1);
+      projects.push(defaultProject2);
     } else {
       projects = localStorage.getItem('projects');
     }

@@ -493,19 +493,22 @@ i {
   color: var(--primary-pink);
 }
 
-.gold {
-  color: var(--primary-gold);
-}
-
 .cyan {
   color: var(--primary-cyan);
 }
 
-.green {
+.green,
+.low {
   color: var(--primary-green);
 }
 
-.red {
+.gold,
+.medium {
+  color: var(--primary-gold);
+}
+
+.red,
+.high {
   color: var(--primary-red);
 }
 

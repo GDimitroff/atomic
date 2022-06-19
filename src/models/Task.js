@@ -5,14 +5,24 @@ export default class Task {
   #priority;
   #date;
   #isCompleted;
+  #isImportant;
 
-  constructor(title, project, description, priority, date, isCompleted) {
+  constructor(
+    title,
+    project,
+    description,
+    priority,
+    date,
+    isCompleted,
+    isImportant
+  ) {
     this.#title = title;
     this.#project = project;
     this.#description = description;
     this.#priority = priority;
     this.#date = date;
     this.#isCompleted = isCompleted;
+    this.#isImportant = isImportant;
   }
 
   get title() {
@@ -61,5 +71,13 @@ export default class Task {
 
   set isCompleted(isCompleted) {
     this.#isCompleted = isCompleted;
+  }
+
+  get isImportant() {
+    return this.#isImportant;
+  }
+
+  set isImportant(isImportant) {
+    this.#isImportant = isImportant;
   }
 }

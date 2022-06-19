@@ -1,9 +1,11 @@
+import createCard from '../components/card';
 import { projectsController } from './projectsController';
 
 export const displayController = (() => {
   const body = document.querySelector('body');
-  const sidebar = body.querySelector('.sidebar');
   const main = body.querySelector('.main');
+  const sidebar = body.querySelector('.sidebar');
+  const tasksCards = body.querySelector('.tasks-cards');
   const sectionTasks = body.querySelector('.section-tasks');
   const toggleMenu = body.querySelector('.toggle-menu');
   const changeTheme = body.querySelector('.header > .right');
@@ -60,6 +62,16 @@ export const displayController = (() => {
     });
   });
 
+  function renderCards(filter) {
+    const projects = projectsController.getProjects();
+
+    projects.forEach((project) => {
+      project.tasks.forEach((task) => {
+        tasksCards.appendChild(createCard(project.title, task, project.color));
+      });
+    });
+  }
+
   const init = () => {
     const theme = localStorage.getItem('theme');
     if (theme) {
@@ -68,7 +80,7 @@ export const displayController = (() => {
         : body.classList.remove('light');
     }
 
-    const projects = projectsController.getProjects();
+    renderCards('all');
   };
 
   return {
