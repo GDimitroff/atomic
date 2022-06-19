@@ -33,7 +33,6 @@ body {
   font-size: 1.6rem;
   font-weight: 400;
   background-color: var(--primary-background-color);
-  transition: color 1s ease-in-out;
   overflow-x: hidden;
 }
 
@@ -77,15 +76,6 @@ body.light .fa-moon {
   z-index: 2;
 }
 
-.fa-moon {
-  display: none;
-}
-
-.fa-sun {
-  display: block;
-  animation: 0.6s slide-down;
-}
-
 .toggle-menu {
   display: none;
   border-radius: 6px;
@@ -94,6 +84,17 @@ body.light .fa-moon {
 
 .toggle-menu:hover {
   background-color: var(--primary-background-color);
+}
+
+.toggle-menu > i {
+  min-width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggle-menu > .fa-xmark {
+  display: none;
 }
 
 .header i {
@@ -119,6 +120,15 @@ body.light .fa-moon {
   font-size: 2.4rem;
 }
 
+.fa-moon {
+  display: none;
+}
+
+.fa-sun {
+  display: block;
+  animation: 0.6s slide-down;
+}
+
 .main {
   display: flex;
   color: var(--text-color);
@@ -132,8 +142,8 @@ body.light .fa-moon {
   padding: 2rem;
   color: var(--text-color);
   background-color: var(--secondary-background-color);
-  animation: slide-right 0.8s ease-in-out;
-  transition: 0.8s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 8px;
+  animation: slide-right 0.4s ease-in-out;
   z-index: 2;
 }
 
@@ -250,7 +260,12 @@ hr {
   flex: 1;
   min-height: calc(100vh - 60px);
   padding: 2.2rem 2rem;
-  animation: slide-left 1s ease-in-out;
+  animation: slide-left 0.6s ease-in-out;
+}
+
+.section-tasks.inactive {
+  filter: grayscale(80%) blur(5px);
+  pointer-events: none;
 }
 
 .tasks-cards {
@@ -731,7 +746,20 @@ select:focus + .select-focus {
   }
 
   .sidebar {
-    display: none;
+    position: fixed;
+    top: 60px;
+    transform: translateX(-100%);
+    animation: none;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+    transition: 0.4s ease-in-out;
+  }
+
+  .sidebar.close {
+    transform: translateX(-100%);
+    transition: 0.4s ease-in-out;
   }
 }
 

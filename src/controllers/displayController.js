@@ -4,37 +4,26 @@ export const displayController = (() => {
   const body = document.querySelector('body');
   const sidebar = body.querySelector('.sidebar');
   const main = body.querySelector('.main');
+  const sectionTasks = body.querySelector('.section-tasks');
   const toggleMenu = body.querySelector('.toggle-menu');
   const changeTheme = body.querySelector('.header > .right');
   const newProjectBtn = body.querySelector('.projects-header > .fa-plus');
   const newTaskBtn = body.querySelector('.btn-add');
   const newTaskCard = body.querySelector('.new-task-card');
 
-  if (window.innerWidth < 704) {
-    sidebar.classList.add('hide');
-    main.classList.add('full-width');
-  } else {
-    sidebar.classList.remove('hide');
-  }
-
-  window.addEventListener('resize', (e) => {
-    main.classList.remove('inactive');
-    main.classList.remove('full-width');
-
-    if (window.innerWidth < 704) {
-      sidebar.classList.add('hide');
-    } else {
-      sidebar.classList.remove('hide');
-    }
-  });
-
   toggleMenu.addEventListener('click', (e) => {
-    sidebar.style.display = 'block';
-    sidebar.classList.toggle('hide');
-    main.classList.toggle('full-width');
-
-    if (window.innerWidth < 704) {
-      main.classList.toggle('inactive');
+    if (sidebar.classList.contains('open')) {
+      sidebar.classList.remove('open');
+      sidebar.classList.add('close');
+      sectionTasks.classList.remove('inactive');
+      toggleMenu.querySelector('.fa-bars').style.display = 'flex';
+      toggleMenu.querySelector('.fa-xmark').style.display = 'none';
+    } else {
+      sidebar.classList.add('open');
+      sidebar.classList.remove('close');
+      sectionTasks.classList.add('inactive');
+      toggleMenu.querySelector('.fa-bars').style.display = 'none';
+      toggleMenu.querySelector('.fa-xmark').style.display = 'flex';
     }
   });
 
