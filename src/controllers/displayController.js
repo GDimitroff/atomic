@@ -64,6 +64,17 @@ export const displayController = (() => {
     );
   };
 
+  const setActiveProjects = (tile) => {
+    const projectTiles = body.querySelectorAll('.tile');
+    projectTiles.forEach((tile) => {
+      tile.classList.remove('active');
+    });
+
+    tile.classList.add('active');
+    renderCards(tile.dataset.id);
+    closeSidebar();
+  };
+
   const renderTiles = () => {
     const projects = projectsController.getProjects();
     projects.forEach((project) => {
@@ -110,5 +121,6 @@ export const displayController = (() => {
     toggleNewProjectForm,
     openNewTaskForm,
     closeNewTaskForm,
+    setActiveProjects,
   };
 })();

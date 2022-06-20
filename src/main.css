@@ -144,7 +144,8 @@ body.light .fa-moon {
   z-index: 2;
 }
 
-.projects-tiles {
+.projects-tiles,
+.projects-list {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -158,11 +159,15 @@ body.light .fa-moon {
   border-radius: 6px;
   padding: 8px 10px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease-in-out;
 }
 
 .tile:hover {
   background-color: var(--primary-background-color);
+}
+
+.tile .right > i:hover {
+  color: var(--text-color);
 }
 
 .tile.active {
@@ -341,6 +346,10 @@ hr {
   gap: 6px;
 }
 
+.card-footer .right i:hover {
+  color: var(--text-color);
+}
+
 .card-actions > .fa-star.important {
   color: #eab308;
 }
@@ -432,10 +441,6 @@ hr {
 
 .right {
   color: var(--primary-grey);
-}
-
-.right > i:hover {
-  color: var(--text-color);
 }
 
 i {

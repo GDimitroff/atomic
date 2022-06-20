@@ -5,3 +5,4 @@ import { actionsController } from './controllers/actionsController';
 
 projectsController.init();
 displayController.init();
+actionsController.init();
