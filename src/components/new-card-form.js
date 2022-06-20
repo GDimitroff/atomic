@@ -16,7 +16,7 @@ export default function createNewCardForm(edit = false) {
           </div>
         </div>
         <div class="right">
-          <button type="button" class="btn">X</button>
+          <button type="button" class="btn close-task">X</button>
         </div>
       </div>
   
