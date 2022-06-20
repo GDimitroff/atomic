@@ -72,18 +72,15 @@ body.light .fa-moon {
     var(--primary-purple) 0%,
     var(--primary-pink) 100%
   );
-  animation: slide-down 0.3s ease-in-out;
+  animation: slide-down 1s ease-in-out;
   z-index: 2;
 }
 
 .toggle-menu {
   display: none;
   border-radius: 6px;
-  transition: all 0.3s ease;
-}
-
-.toggle-menu:hover {
   background-color: var(--primary-background-color);
+  margin-right: 1rem;
 }
 
 .toggle-menu > i {
@@ -143,7 +140,7 @@ body.light .fa-moon {
   color: var(--text-color);
   background-color: var(--secondary-background-color);
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 8px;
-  animation: slide-right 0.4s ease-in-out;
+  animation: slide-right 1s ease-in-out;
   z-index: 2;
 }
 
@@ -260,7 +257,6 @@ hr {
   flex: 1;
   min-height: calc(100vh - 60px);
   padding: 2.2rem 2rem;
-  animation: slide-left 0.6s ease-in-out;
 }
 
 .section-tasks.inactive {
@@ -280,6 +276,7 @@ hr {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.6rem;
+  animation: slide-down 1s ease-in-out;
 }
 
 .tasks-title {
@@ -298,6 +295,7 @@ hr {
   display: flex;
   flex-direction: column;
   text-decoration: line-through 2px transparent;
+  animation: 1s slide-left;
   transition: all 0.6s ease;
   cursor: pointer;
 }
@@ -362,7 +360,7 @@ hr {
   border: 2px solid transparent;
 
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 8px;
-  animation: 0.6s slide-right ease-in-out;
+  animation: 0.6s fade-in;
 
   overflow: hidden;
 }
@@ -465,13 +463,13 @@ i {
   font-size: 1.4rem;
   color: #fafafa;
   padding: 0.6rem 1.2rem;
-  background-color: var(--primary-purple);
+  background-color: var(--primary-pink);
 }
 
 .btn-add:hover,
 .btn-add:active {
   color: #fafafa;
-  background-color: var(--primary-pink);
+  background-color: var(--primary-purple);
 }
 
 .default {
@@ -696,6 +694,28 @@ select:focus + .select-focus {
 }
 
 /* ANIMATIONS */
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
 
 @keyframes slide-down {
   0% {

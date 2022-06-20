@@ -12,7 +12,6 @@ export const displayController = (() => {
   const changeTheme = body.querySelector('.header > .right');
   const newProjectBtn = body.querySelector('.projects-header > .fa-plus');
   const newTaskBtn = body.querySelector('.btn-add');
-  const newTaskCard = body.querySelector('.new-task-card');
 
   toggleMenu.addEventListener('click', (e) => {
     if (sidebar.classList.contains('open')) {
@@ -59,7 +58,15 @@ export const displayController = (() => {
     tasksCards.prepend(newTaskForm);
 
     newTaskForm.querySelector('.btn').addEventListener('click', (e) => {
-      newTaskForm.remove();
+      newTaskForm.style.animation = '0.4s fade-out';
+
+      newTaskForm.addEventListener(
+        'animationend',
+        (e) => {
+          newTaskForm.remove();
+        },
+        { once: true }
+      );
     });
   });
 
