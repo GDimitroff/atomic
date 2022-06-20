@@ -1,7 +1,8 @@
 export default function createCard(project, task, color) {
   const card = document.createElement('div');
   card.classList.add('task-card');
-  
+  card.dataset.id = task.id;
+
   if (task.isCompleted) {
     card.classList.add('completed');
   }

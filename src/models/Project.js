@@ -1,12 +1,22 @@
 export default class Project {
+  #id;
   #title;
   #color;
   #tasks;
 
-  constructor(title, color) {
+  constructor(id, title, color) {
+    this.#id = id;
     this.#title = title;
     this.#color = color;
     this.#tasks = [];
+  }
+
+  get id() {
+    return this.#id;
+  }
+
+  set id(id) {
+    this.#id = id;
   }
 
   get title() {

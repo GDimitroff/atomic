@@ -1,14 +1,16 @@
 import Project from './models/Project';
 import Task from './models/Task';
+import { v4 as uuidv4 } from 'uuid';
 
 export const defaultData = () => {
   let projects = [];
 
-  const personal = new Project('Personal', 'pink');
-  const workout = new Project('Workout', 'green');
-  const education = new Project('Education', 'gold');
+  const personal = new Project(uuidv4(), 'Personal', 'pink');
+  const workout = new Project(uuidv4(), 'Workout', 'green');
+  const education = new Project(uuidv4(), 'Education', 'gold');
 
   const gift = new Task(
+    uuidv4(),
     'Buy gift for my bae',
     personal,
     'If you dare to miss this you are gonna be homeless... and single!',
@@ -19,6 +21,7 @@ export const defaultData = () => {
   );
 
   const flowers = new Task(
+    uuidv4(),
     'Buy flowers for my sweetheart',
     personal,
     "Every woman loves flowers even if the say they don't",
@@ -32,6 +35,7 @@ export const defaultData = () => {
   personal.addTask(flowers);
 
   const upperBodyWorkout = new Task(
+    uuidv4(),
     'Upper body workout',
     workout,
     'Go hard of go home!',
@@ -44,6 +48,7 @@ export const defaultData = () => {
   workout.addTask(upperBodyWorkout);
 
   const finishEducation = new Task(
+    uuidv4(),
     'Finish The Odin Project curriculum',
     education,
     "When it's hard remember why you are doing it...",
