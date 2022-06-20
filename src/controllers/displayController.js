@@ -1,11 +1,13 @@
 import { projectsController } from './projectsController';
 import createCard from '../components/card';
 import createNewCardForm from '../components/new-card-form';
+import createTile from '../components/tile';
 
 export const displayController = (() => {
   const body = document.querySelector('body');
   const main = body.querySelector('.main');
   const sidebar = body.querySelector('.sidebar');
+  const projectsList = body.querySelector('.projects-list');
   const sectionTasks = body.querySelector('.section-tasks');
   const tasksCards = body.querySelector('.tasks-cards');
   const toggleMenu = body.querySelector('.toggle-menu');
@@ -77,6 +79,13 @@ export const displayController = (() => {
     });
   });
 
+  function renderProjectsTiles() {
+    const projects = projectsController.getProjects();
+    projects.forEach((project) => {
+      projectsList.appendChild(createTile(project));
+    });
+  }
+
   function renderCards(filter) {
     const projects = projectsController.getProjects();
 
@@ -95,6 +104,7 @@ export const displayController = (() => {
         : body.classList.remove('light');
     }
 
+    renderProjectsTiles();
     renderCards('all');
   };
 
