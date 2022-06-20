@@ -493,6 +493,14 @@ i {
   color: var(--primary-cyan);
 }
 
+.lime {
+  color: var(--primary-lime);
+}
+
+.orange {
+  color: var(--primary-orange);
+}
+
 .green,
 .low {
   color: var(--primary-green);

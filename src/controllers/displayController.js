@@ -64,28 +64,33 @@ export const displayController = (() => {
     );
   };
 
-  const setActiveProjects = (tile) => {
+  const setActiveProject = (id) => {
     const projectTiles = body.querySelectorAll('.tile');
     projectTiles.forEach((tile) => {
       tile.classList.remove('active');
+      if (tile.dataset.id === id) {
+        tile.classList.add('active');
+      }
     });
 
-    tile.classList.add('active');
-    renderCards(tile.dataset.id);
+    renderTasks(id);
     closeSidebar();
   };
 
-  const renderTiles = () => {
+  const renderProjects = () => {
+    projectsList.innerHTML = '';
+
     const projects = projectsController.getProjects();
+
     projects.forEach((project) => {
       const projectTile = createTile(project);
 
-      renderCards(project.id);
+      renderTasks(project.id);
       projectsList.appendChild(projectTile);
     });
   };
 
-  const renderCards = (filter) => {
+  const renderTasks = (filter) => {
     tasksCards.innerHTML = '';
 
     const projects = projectsController.getProjects();
@@ -109,8 +114,8 @@ export const displayController = (() => {
         : body.classList.remove('light');
     }
 
-    renderTiles();
-    renderCards('all');
+    renderProjects();
+    renderTasks('all');
   };
 
   return {
@@ -121,6 +126,7 @@ export const displayController = (() => {
     toggleNewProjectForm,
     openNewTaskForm,
     closeNewTaskForm,
-    setActiveProjects,
+    setActiveProject,
+    renderProjects,
   };
 })();

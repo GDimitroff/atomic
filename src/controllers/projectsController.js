@@ -7,6 +7,10 @@ export const projectsController = (() => {
     return projects;
   };
 
+  const addProject = (project) => {
+    projects.push(project);
+  };
+
   const init = () => {
     if (localStorage.getItem('projects') === null) {
       projects = defaultData();
@@ -15,5 +19,5 @@ export const projectsController = (() => {
     }
   };
 
-  return { init, getProjects };
+  return { init, getProjects, addProject };
 })();

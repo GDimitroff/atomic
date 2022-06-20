@@ -1,4 +1,7 @@
 import { displayController } from './displayController';
+import { projectsController } from './projectsController';
+import Project from '../models/Project';
+import { v4 as uuidv4 } from 'uuid';
 
 export const actionsController = (() => {
   const header = document.querySelector('.header');
@@ -36,15 +39,35 @@ export const actionsController = (() => {
       }
 
       if (classes.contains('tile')) {
-        displayController.setActiveProjects(e.target);
+        displayController.setActiveProject(e.target.dataset.id);
         return;
       }
 
       if (e.target.parentElement.parentElement.classList.contains('tile')) {
-        displayController.setActiveProjects(
-          e.target.parentElement.parentElement
+        displayController.setActiveProject(
+          e.target.parentElement.parentElement.dataset.id
         );
         return;
+      }
+
+      if (e.target.type === 'submit') {
+        e.preventDefault();
+
+        const form = e.target.parentElement.parentElement;
+        const formData = new FormData(form);
+        const projectTitle = formData.get('project-title');
+        const projectColor = formData.get('color');
+
+        if (projectTitle.trim() === '' || projectColor.trim() === '') return;
+
+        const projectId = uuidv4();
+        const project = new Project(projectId, projectTitle, projectColor);
+        projectsController.addProject(project);
+        displayController.renderProjects();
+        displayController.setActiveProject(projectId);
+        displayController.toggleNewProjectForm();
+
+        form.reset();
       }
     });
   };
