@@ -14,6 +14,11 @@ export const projectsController = (() => {
     updateStorage();
   };
 
+  const removeProject = (id) => {
+    projects = projects.filter((project) => project.id !== id);
+    updateStorage();
+  };
+
   const loadStorage = () => {
     const storage = JSON.parse(localStorage.getItem('projects'));
     const convertedProjects = storage.map((proj) => {
@@ -40,5 +45,5 @@ export const projectsController = (() => {
     }
   };
 
-  return { init, getProjects, addProject };
+  return { init, getProjects, addProject, removeProject };
 })();

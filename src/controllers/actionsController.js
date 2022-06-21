@@ -38,6 +38,17 @@ export const actionsController = (() => {
         return;
       }
 
+      if (classes.contains('fa-trash-can')) {
+        // TODO: Modal to confirm removal should be implemented
+        const projectId = e.target.parentElement.parentElement.dataset.id;
+        projectsController.removeProject(projectId);
+
+        displayController.setTasksCount();
+        displayController.renderProjects();
+        displayController.setActiveProject('all');
+        return;
+      }
+
       if (classes.contains('tile')) {
         displayController.setActiveProject(e.target.dataset.id);
         return;

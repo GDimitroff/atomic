@@ -155,5 +155,6 @@ export const displayController = (() => {
     closeNewTaskForm,
     setActiveProject,
     renderProjects,
+    setTasksCount,
   };
 })();
