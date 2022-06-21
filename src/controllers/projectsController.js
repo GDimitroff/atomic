@@ -9,6 +9,10 @@ export const projectsController = (() => {
     return projects;
   };
 
+  const getProjectById = (id) => {
+    return projects.find((project) => project.id === id);
+  };
+
   const addProject = (project) => {
     projects.unshift(project);
     updateStorage();
@@ -16,6 +20,11 @@ export const projectsController = (() => {
 
   const removeProject = (id) => {
     projects = projects.filter((project) => project.id !== id);
+    updateStorage();
+  };
+
+  const addTask = (project, newTask) => {
+    project.addTask(newTask);
     updateStorage();
   };
 
@@ -45,5 +54,12 @@ export const projectsController = (() => {
     }
   };
 
-  return { init, getProjects, addProject, removeProject };
+  return {
+    init,
+    getProjects,
+    getProjectById,
+    addProject,
+    removeProject,
+    addTask,
+  };
 })();

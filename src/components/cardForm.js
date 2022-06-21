@@ -1,17 +1,35 @@
-export default function createNewCardForm(edit = false) {
+import { projectsController } from '../controllers/projectsController';
+
+export default function createNewCardForm(mode, headerTitle) {
+  // Create select element with existing projects
+  const projects = projectsController.getProjects();
+  const select = document.createElement('select');
+  select.name = 'projectId';
+  select.id = 'projectId';
+
+  projects
+    .map((project) => {
+      const option = document.createElement('option');
+      option.value = project.id;
+      option.textContent = project.name;
+
+      if (option.textContent === headerTitle) {
+        option.defaultSelected = true;
+      }
+
+      return option;
+    })
+    .forEach((option) => select.appendChild(option));
+
   const newCardForm = document.createElement('div');
   newCardForm.classList.add('new-task-card');
   newCardForm.innerHTML = `
     <form class="new-task-form">
       <div class="card-header">
         <div class="left">
-          <input type="text" placeholder="Task title..." required />
+          <input name="title" type="text" placeholder="Task title..." required />
           <div class="select">
-            <select name="projects" id="projects">
-              <option value="default">Default</option>
-              <option value="education">Education</option>
-              <option value="workout">Workout</option>
-            </select>
+            ${select.outerHTML}
             <span class="select-focus"></span>
           </div>
         </div>
@@ -21,7 +39,7 @@ export default function createNewCardForm(edit = false) {
       </div>
   
       <div class="card-content">
-        <textarea id="task-description" placeholder="Your description here..."></textarea>
+        <textarea name="description" id="description" placeholder="Your description here..."></textarea>
       </div>
 
       <div class="card-footer">

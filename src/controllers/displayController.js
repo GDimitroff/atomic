@@ -1,6 +1,6 @@
 import { projectsController } from './projectsController';
 import createCard from '../components/card';
-import createNewCardForm from '../components/new-card-form';
+import createNewCardForm from '../components/cardForm';
 import createTile from '../components/tile';
 
 export const displayController = (() => {
@@ -47,14 +47,15 @@ export const displayController = (() => {
     newProjectSection.classList.toggle('show');
   };
 
-  const openNewTaskForm = () => {
-    if (tasksCards.children[0].classList.contains('new-task-card')) return;
+  const openTaskForm = (mode, projectName) => {
+    const firstCard = tasksCards.children[0];
+    if (firstCard && firstCard.classList.contains('new-task-card')) return;
 
-    const newTaskForm = createNewCardForm();
+    const newTaskForm = createNewCardForm(mode, projectName);
     tasksCards.prepend(newTaskForm);
   };
 
-  const closeNewTaskForm = () => {
+  const closeTaskForm = () => {
     const newTaskForm = tasksCards.children[0];
     newTaskForm.style.animation = '0.4s fade-out';
 
@@ -101,6 +102,16 @@ export const displayController = (() => {
     closeSidebar();
   };
 
+  const appendTask = (newTask, projectId) => {
+    if (tasksTitle.textContent === 'All tasks') {
+      const taskFormCard = document.querySelector('.new-task-card');
+      taskFormCard.after(createCard(newTask));
+      return;
+    }
+
+    setActiveProject(projectId);
+  };
+
   const renderProjects = () => {
     projectsList.innerHTML = '';
 
@@ -125,9 +136,7 @@ export const displayController = (() => {
       .filter((project) => project.id === filter || filter === 'all')
       .forEach((project) => {
         project.tasks.forEach((task) => {
-          tasksCards.appendChild(
-            createCard(project.title, task, project.color)
-          );
+          tasksCards.appendChild(createCard(task));
         });
       });
   };
@@ -151,9 +160,10 @@ export const displayController = (() => {
     closeSidebar,
     toggleTheme,
     toggleNewProjectForm,
-    openNewTaskForm,
-    closeNewTaskForm,
+    openTaskForm,
+    closeTaskForm,
     setActiveProject,
+    appendTask,
     renderProjects,
     setTasksCount,
   };

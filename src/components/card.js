@@ -1,4 +1,4 @@
-export default function createCard(project, task, color) {
+export default function createCard(task) {
   const card = document.createElement('div');
   card.classList.add('task-card');
   card.dataset.id = task.id;
@@ -13,7 +13,7 @@ export default function createCard(project, task, color) {
         <h3>${task.title}</h3>
       </div>
       <div class="right">
-        <p class="${color}">${project}</p>
+        <p class="${task.projectColor}">${task.projectName}</p>
       </div>
     </div>
     <p class="card-date">${task.date}</p>

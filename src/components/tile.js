@@ -6,7 +6,7 @@ export default function createTile(project) {
   tile.innerHTML = `
     <div class="left">
       <i class="fa-solid fa-circle-dot ${project.color}"></i>
-      <p>${project.title}</p>
+      <p>${project.name}</p>
     </div>
     <div class="right">
       <i class="fa-solid fa-pen-to-square"></i>

@@ -1,7 +1,7 @@
 export default class Project {
-  constructor(id, title, color) {
+  constructor(id, name, color) {
     this.id = id;
-    this.title = title;
+    this.name = name;
     this.color = color;
     this.tasks = [];
   }
@@ -14,12 +14,12 @@ export default class Project {
     this._id = id;
   }
 
-  get title() {
-    return this._title;
+  get name() {
+    return this._name;
   }
 
-  set title(title) {
-    this._title = title;
+  set name(name) {
+    this._name = name;
   }
 
   get color() {
