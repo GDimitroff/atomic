@@ -1,94 +1,85 @@
 export default class Task {
-  #id;
-  #title;
-  #project;
-  #description;
-  #priority;
-  #date;
-  #isCompleted;
-  #isImportant;
-
   constructor(
     id,
     title,
-    project,
+    projectId,
     description,
     priority,
     date,
     isCompleted,
     isImportant
   ) {
-    this.#id = id;
-    this.#title = title;
-    this.#project = project;
-    this.#description = description;
-    this.#priority = priority;
-    this.#date = date;
-    this.#isCompleted = isCompleted;
-    this.#isImportant = isImportant;
+    this.id = id;
+    this.title = title;
+    this.projectId = projectId;
+    this.description = description;
+    this.priority = priority;
+    this.date = date;
+    this.isCompleted = isCompleted;
+    this.isImportant = isImportant;
   }
 
   get id() {
-    return this.#id;
+    return this._id;
   }
 
   set id(id) {
-    this.#id = id;
+    this._id = id;
   }
 
   get title() {
-    return this.#title;
+    return this._title;
   }
 
   set title(title) {
-    this.#title = title;
+    this._title = title;
   }
 
-  get project() {
-    return this.#project;
+  get projectId() {
+    return this._projectId;
   }
 
-  set project(project) {
-    this.#project = project;
+  set projectId(projectId) {
+    this._projectId = projectId;
   }
 
   get description() {
-    return this.#description;
+    return this._description;
   }
 
   set description(description) {
-    this.#description = description;
+    this._description = description;
   }
 
   get priority() {
-    return this.#priority;
+    return this._priority;
   }
 
   set priority(priority) {
-    this.#priority = priority;
+    this._priority = priority;
   }
 
   get date() {
-    return this.#date;
+    return this._date;
   }
 
   set date(date) {
-    this.#date = date;
+    this._date = date;
   }
 
   get isCompleted() {
-    return this.#isCompleted;
+    return this._isCompleted;
   }
 
   set isCompleted(isCompleted) {
-    this.#isCompleted = isCompleted;
+    this._isCompleted = isCompleted;
   }
 
   get isImportant() {
-    return this.#isImportant;
+    return this._isImportant;
   }
 
   set isImportant(isImportant) {
-    this.#isImportant = isImportant;
+    this._isImportant = isImportant;
   }
 }

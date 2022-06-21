@@ -12,7 +12,7 @@ export const defaultData = () => {
   const gift = new Task(
     uuidv4(),
     'Buy gift for my bae',
-    personal,
+    personal.id,
     'If you dare to miss this you are gonna be homeless... and single!',
     'high',
     '11.03.2023',
@@ -23,7 +23,7 @@ export const defaultData = () => {
   const flowers = new Task(
     uuidv4(),
     'Buy flowers for my sweetheart',
-    personal,
+    personal.id,
     "Every woman loves flowers even if the say they don't",
     'medium',
     '23.06.2022',
@@ -37,7 +37,7 @@ export const defaultData = () => {
   const upperBodyWorkout = new Task(
     uuidv4(),
     'Upper body workout',
-    workout,
+    workout.id,
     'Go hard of go home!',
     'low',
     '21.06.2022',
@@ -50,7 +50,7 @@ export const defaultData = () => {
   const finishEducation = new Task(
     uuidv4(),
     'Finish The Odin Project curriculum',
-    education,
+    education.id,
     "When it's hard remember why you are doing it...",
     'medium',
     '28.08.2022',
@@ -61,6 +61,5 @@ export const defaultData = () => {
   education.addTask(finishEducation);
 
   projects.push(personal, workout, education);
-
   return projects;
 };

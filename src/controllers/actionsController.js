@@ -65,7 +65,6 @@ export const actionsController = (() => {
         projectsController.addProject(project);
         displayController.renderProjects();
         displayController.setActiveProject(projectId);
-        displayController.toggleNewProjectForm();
 
         form.reset();
       }

@@ -1,49 +1,44 @@
 export default class Project {
-  #id;
-  #title;
-  #color;
-  #tasks;
-
   constructor(id, title, color) {
-    this.#id = id;
-    this.#title = title;
-    this.#color = color;
-    this.#tasks = [];
+    this.id = id;
+    this.title = title;
+    this.color = color;
+    this.tasks = [];
   }
 
   get id() {
-    return this.#id;
+    return this._id;
   }
 
   set id(id) {
-    this.#id = id;
+    this._id = id;
   }
 
   get title() {
-    return this.#title;
+    return this._title;
   }
 
   set title(title) {
-    this.#title = title;
+    this._title = title;
   }
 
   get color() {
-    return this.#color;
+    return this._color;
   }
 
   set color(color) {
-    this.#color = color;
+    this._color = color;
   }
 
   get tasks() {
-    return this.#tasks;
+    return this._tasks;
   }
 
   set tasks(tasks) {
-    this.#tasks = tasks;
+    this._tasks = tasks;
   }
 
   addTask(task) {
-    this.#tasks.push(task);
+    this.tasks.push(task);
   }
 }
