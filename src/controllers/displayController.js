@@ -6,6 +6,7 @@ import createTile from '../components/tile';
 export const displayController = (() => {
   const body = document.querySelector('body');
   const sidebar = body.querySelector('.sidebar');
+  const projectsTiles = body.querySelectorAll('.projects-tiles > .tile');
   const projectsList = body.querySelector('.projects-list');
   const projectsCount = body.querySelector('.projects-count');
   const sectionTasks = body.querySelector('.section-tasks');
@@ -66,6 +67,26 @@ export const displayController = (() => {
     );
   };
 
+  const setTasksCount = () => {
+    projectsTiles.forEach((tile) => {
+      const tasksCount = tile.children[1].children[0];
+
+      if (tile.dataset.id === 'all') {
+        let count = 0;
+        projectsController.getProjects().forEach((project) => {
+          project.tasks.forEach((task) => {
+            count += 1;
+          });
+        });
+
+        tasksCount.textContent = count;
+      } else {
+        // TODO: Implement correct dates first
+        tasksCount.textContent = '';
+      }
+    });
+  };
+
   const setActiveProject = (id) => {
     const projectTiles = body.querySelectorAll('.tile');
     projectTiles.forEach((tile) => {
@@ -75,7 +96,7 @@ export const displayController = (() => {
         tile.classList.add('active');
       }
     });
-    
+
     renderTasks(id);
     closeSidebar();
   };
@@ -119,6 +140,7 @@ export const displayController = (() => {
         : body.classList.remove('light');
     }
 
+    setTasksCount();
     renderProjects();
     renderTasks('all');
   };
