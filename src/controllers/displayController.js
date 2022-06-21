@@ -7,7 +7,9 @@ export const displayController = (() => {
   const body = document.querySelector('body');
   const sidebar = body.querySelector('.sidebar');
   const projectsList = body.querySelector('.projects-list');
+  const projectsCount = body.querySelector('.projects-count');
   const sectionTasks = body.querySelector('.section-tasks');
+  const tasksTitle = body.querySelector('.tasks-title');
   const tasksCards = body.querySelector('.tasks-cards');
   const toggleMenu = body.querySelector('.toggle-menu');
   const newProjectBtn = body.querySelector('.projects-header > .fa-plus');
@@ -69,10 +71,11 @@ export const displayController = (() => {
     projectTiles.forEach((tile) => {
       tile.classList.remove('active');
       if (tile.dataset.id === id) {
+        tasksTitle.textContent = tile.querySelector('.left > p').textContent;
         tile.classList.add('active');
       }
     });
-
+    
     renderTasks(id);
     closeSidebar();
   };
@@ -88,6 +91,8 @@ export const displayController = (() => {
       renderTasks(project.id);
       projectsList.appendChild(projectTile);
     });
+
+    projectsCount.textContent = projects.length;
   };
 
   const renderTasks = (filter) => {

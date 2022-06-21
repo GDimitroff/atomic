@@ -10,7 +10,7 @@ export const projectsController = (() => {
   };
 
   const addProject = (project) => {
-    projects.push(project);
+    projects.unshift(project);
     updateStorage();
   };
 
