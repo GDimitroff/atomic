@@ -103,13 +103,22 @@ export const displayController = (() => {
   };
 
   const appendTask = (newTask, projectId) => {
-    if (tasksTitle.textContent === 'All tasks') {
+    const project = projectsController.getProjectById(projectId);
+
+    if (
+      tasksTitle.textContent === 'All tasks' ||
+      project.name === tasksTitle.textContent
+    ) {
       const taskFormCard = document.querySelector('.new-task-card');
-      taskFormCard.after(createCard(newTask));
+      taskFormCard.after(createCard(newTask, project));
       return;
     }
 
     setActiveProject(projectId);
+  };
+
+  const removeCard = (taskId) => {
+    // TODO: remove card
   };
 
   const renderProjects = () => {
@@ -136,7 +145,7 @@ export const displayController = (() => {
       .filter((project) => project.id === filter || filter === 'all')
       .forEach((project) => {
         project.tasks.forEach((task) => {
-          tasksCards.appendChild(createCard(task));
+          tasksCards.appendChild(createCard(task, project));
         });
       });
   };
@@ -164,6 +173,7 @@ export const displayController = (() => {
     closeTaskForm,
     setActiveProject,
     appendTask,
+    removeCard,
     renderProjects,
     setTasksCount,
   };

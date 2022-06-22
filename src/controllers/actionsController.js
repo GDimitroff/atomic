@@ -67,13 +67,13 @@ export const actionsController = (() => {
 
         const form = e.target.parentElement.parentElement;
         const formData = new FormData(form);
-        const projectTitle = formData.get('project-title');
+        const projectName = formData.get('project-name');
         const projectColor = formData.get('color');
 
-        if (projectTitle.trim() === '' || projectColor.trim() === '') return;
+        if (projectName.trim() === '' || projectColor.trim() === '') return;
 
         const projectId = uuidv4();
-        const project = new Project(projectId, projectTitle, projectColor);
+        const project = new Project(projectId, projectName, projectColor);
         projectsController.addProject(project);
         displayController.renderProjects();
         displayController.setActiveProject(projectId);
@@ -85,12 +85,22 @@ export const actionsController = (() => {
 
   const handleTasksClicks = () => {
     sectionTasks.addEventListener('click', (e) => {
-      const projectName =
-        sectionTasks.children[0].children[0].children[0].textContent;
       const classes = e.target.classList;
 
       if (classes.contains('btn-add')) {
+        const projectName =
+          sectionTasks.children[0].children[0].children[0].textContent;
+        console.log(projectName);
         displayController.openTaskForm(false, projectName);
+        return;
+      }
+
+      if (classes.contains('fa-trash-can')) {
+        const taskId =
+          e.target.parentElement.parentElement.parentElement.parentElement
+            .dataset.id;
+        projectsController.removeTask(taskId);
+        displayController.removeCard(taskId);
         return;
       }
 
@@ -106,12 +116,10 @@ export const actionsController = (() => {
         const formData = new FormData(form);
         const { title, projectId, description, priority, date } =
           Object.fromEntries(formData);
-        const project = projectsController.getProjectById(projectId);
 
         const newTask = new Task(
           uuidv4(),
-          project.name,
-          project.color,
+          projectId,
           title,
           description,
           priority,
@@ -120,7 +128,7 @@ export const actionsController = (() => {
           false
         );
 
-        projectsController.addTask(project, newTask);
+        projectsController.addTask(projectId, newTask);
         displayController.appendTask(newTask, projectId);
         displayController.setTasksCount();
         form.reset();

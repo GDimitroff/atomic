@@ -23,8 +23,16 @@ export const projectsController = (() => {
     updateStorage();
   };
 
-  const addTask = (project, newTask) => {
+  const addTask = (projectId, newTask) => {
+    const project = getProjectById(projectId);
     project.addTask(newTask);
+    updateStorage();
+  };
+
+  const removeTask = (taskId) => {
+    projects.forEach((project) => {
+      project.tasks.filter((task) => task.id !== taskId);
+    });
     updateStorage();
   };
 
@@ -61,5 +69,6 @@ export const projectsController = (() => {
     addProject,
     removeProject,
     addTask,
+    removeTask,
   };
 })();

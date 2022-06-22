@@ -11,8 +11,7 @@ export const defaultData = () => {
 
   const gift = new Task(
     uuidv4(),
-    personal.name,
-    personal.color,
+    personal.id,
     'Buy gift for my bae',
     'If you dare to miss this you are gonna be homeless... and single!',
     'high',
@@ -23,8 +22,7 @@ export const defaultData = () => {
 
   const flowers = new Task(
     uuidv4(),
-    personal.name,
-    personal.color,
+    personal.id,
     'Buy flowers for my sweetheart',
     "Every woman loves flowers even if the say they don't",
     'medium',
@@ -38,8 +36,7 @@ export const defaultData = () => {
 
   const upperBodyWorkout = new Task(
     uuidv4(),
-    workout.name,
-    workout.color,
+    workout.id,
     'Upper body workout',
     'Go hard of go home!',
     'low',
@@ -52,8 +49,7 @@ export const defaultData = () => {
 
   const finishEducation = new Task(
     uuidv4(),
-    education.name,
-    education.color,
+    education.id,
     'Finish The Odin Project curriculum',
     "When it's hard remember why you are doing it...",
     'medium',

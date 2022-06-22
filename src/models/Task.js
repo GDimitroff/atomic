@@ -1,8 +1,7 @@
 export default class Task {
   constructor(
     id,
-    projectName,
-    projectColor,
+    projectId,
     title,
     description,
     priority,
@@ -11,8 +10,7 @@ export default class Task {
     isImportant
   ) {
     this.id = id;
-    this.projectName = projectName;
-    this.projectColor = projectColor;
+    this.projectId = projectId;
     this.title = title;
     this.description = description;
     this.priority = priority;
@@ -29,20 +27,12 @@ export default class Task {
     this._id = id;
   }
 
-  get projectName() {
-    return this._projectName;
+  get projectId() {
+    return this._projectId;
   }
 
-  set projectName(projectName) {
-    this._projectName = projectName;
-  }
-
-  get projectColor() {
-    return this._projectColor;
-  }
-
-  set projectColor(projectColor) {
-    this._projectColor = projectColor;
+  set projectId(projectId) {
+    this._projectId = projectId;
   }
 
   get title() {

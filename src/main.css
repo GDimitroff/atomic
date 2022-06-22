@@ -272,8 +272,9 @@ hr {
 .tasks-cards {
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 20px;
+  animation: 1s slide-left;
 }
 
 .tasks-header {
@@ -289,7 +290,7 @@ hr {
 }
 
 .task-card {
-  height: 185px;
+  height: 175px;
   font-size: 1.4rem;
   padding: 1.4rem;
   background-color: var(--secondary-background-color);
@@ -300,14 +301,16 @@ hr {
   display: flex;
   flex-direction: column;
   text-decoration: line-through 2px transparent;
-  animation: 1s slide-left;
+  animation: 0.6s fade-in;
   transition: all 0.6s ease;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 8px;
   cursor: pointer;
 }
 
 .task-card:hover {
   border-right: 2px solid var(--primary-pink);
   border-left: 2px solid var(--primary-purple);
+  box-shadow: rgba(0, 0, 0, 0.185) 0px 8px 8px;
 }
 
 .task-card.completed {
@@ -336,7 +339,7 @@ hr {
 .card-content {
   flex: 1;
   font-size: 1.2rem;
-  margin: 1rem 0;
+  margin: 0.8rem 0;
   min-height: 70px;
   line-height: 1.6;
 }
@@ -355,7 +358,7 @@ hr {
 }
 
 .new-task-card {
-  height: 185px;
+  height: 175px;
   font-size: 1.4rem;
   padding: 1.4rem;
   background: linear-gradient(
