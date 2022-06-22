@@ -1,7 +1,8 @@
 import { projectsController } from './projectsController';
 import createCard from '../components/card';
-import createNewCardForm from '../components/cardForm';
+import createCardForm from '../components/cardForm';
 import createTile from '../components/tile';
+import createTasksHeader from '../components/tasksHeader';
 
 export const displayController = (() => {
   const body = document.querySelector('body');
@@ -10,7 +11,6 @@ export const displayController = (() => {
   const projectsList = body.querySelector('.projects-list');
   const projectsCount = body.querySelector('.projects-count');
   const sectionTasks = body.querySelector('.section-tasks');
-  const tasksTitle = body.querySelector('.tasks-title');
   const tasksCards = body.querySelector('.tasks-cards');
   const toggleMenu = body.querySelector('.toggle-menu');
   const newProjectBtn = body.querySelector('.projects-header > .fa-plus');
@@ -51,7 +51,7 @@ export const displayController = (() => {
     const firstCard = tasksCards.children[0];
     if (firstCard && firstCard.classList.contains('new-task-card')) return;
 
-    const newTaskForm = createNewCardForm(mode, projectName);
+    const newTaskForm = createCardForm(mode, projectName);
     tasksCards.prepend(newTaskForm);
   };
 
@@ -93,8 +93,14 @@ export const displayController = (() => {
     projectTiles.forEach((tile) => {
       tile.classList.remove('active');
       if (tile.dataset.id === id) {
-        tasksTitle.textContent = tile.querySelector('.left > p').textContent;
         tile.classList.add('active');
+
+        const displayText = tile.querySelector('.left > p').textContent;
+        if (tile.parentElement.classList.contains('projects-tiles')) {
+          renderTasksHeader(displayText, false);
+        } else {
+          renderTasksHeader(displayText, true);
+        }
       }
     });
 
@@ -103,13 +109,11 @@ export const displayController = (() => {
   };
 
   const appendTask = (newTask, projectId) => {
+    const tasksTitle = body.querySelector('.tasks-title');
     const project = projectsController.getProjectById(projectId);
 
-    if (
-      tasksTitle.textContent === 'All tasks' ||
-      project.name === tasksTitle.textContent
-    ) {
-      const taskFormCard = document.querySelector('.new-task-card');
+    if (project.name === tasksTitle.textContent) {
+      const taskFormCard = body.querySelector('.new-task-card');
       taskFormCard.after(createCard(newTask, project));
       return;
     }
@@ -136,6 +140,16 @@ export const displayController = (() => {
     projectsCount.textContent = projects.length;
   };
 
+  const renderTasksHeader = (title, showButton = false) => {
+    const currentHeader = sectionTasks.querySelector('.tasks-header');
+    if (currentHeader) {
+      sectionTasks.children[0].remove();
+    }
+
+    const tasksHeader = createTasksHeader(title, showButton);
+    sectionTasks.prepend(tasksHeader);
+  };
+
   const renderTasks = (filter) => {
     tasksCards.innerHTML = '';
 
@@ -160,6 +174,7 @@ export const displayController = (() => {
 
     setTasksCount();
     renderProjects();
+    renderTasksHeader('All tasks');
     renderTasks('all');
   };
 

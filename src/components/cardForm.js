@@ -1,7 +1,7 @@
+import { actionsController } from '../controllers/actionsController';
 import { projectsController } from '../controllers/projectsController';
 
-export default function createNewCardForm(mode, headerTitle) {
-  // Create select element with existing projects
+export default function createCardForm(mode, headerTitle) {
   const projects = projectsController.getProjects();
   const select = document.createElement('select');
   select.name = 'projectId';
@@ -21,9 +21,9 @@ export default function createNewCardForm(mode, headerTitle) {
     })
     .forEach((option) => select.appendChild(option));
 
-  const newCardForm = document.createElement('div');
-  newCardForm.classList.add('new-task-card');
-  newCardForm.innerHTML = `
+  const cardForm = document.createElement('div');
+  cardForm.classList.add('new-task-card');
+  cardForm.innerHTML = `
     <form class="new-task-form">
       <div class="card-header">
         <div class="left">
@@ -61,5 +61,6 @@ export default function createNewCardForm(mode, headerTitle) {
     </form>
   `;
 
-  return newCardForm;
+  actionsController.handleCardForm(cardForm);
+  return cardForm;
 }

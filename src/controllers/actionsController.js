@@ -7,9 +7,8 @@ import { v4 as uuidv4 } from 'uuid';
 export const actionsController = (() => {
   const header = document.querySelector('.header');
   const sidebar = document.querySelector('.sidebar');
-  const sectionTasks = document.querySelector('.section-tasks');
 
-  const handleHeaderClicks = () => {
+  const handleHeader = () => {
     header.addEventListener('click', (e) => {
       const classes = e.target.classList;
 
@@ -30,7 +29,7 @@ export const actionsController = (() => {
     });
   };
 
-  const handleSidebarClicks = () => {
+  const handleSidebar = () => {
     sidebar.addEventListener('click', (e) => {
       const classes = e.target.classList;
 
@@ -77,42 +76,39 @@ export const actionsController = (() => {
         projectsController.addProject(project);
         displayController.renderProjects();
         displayController.setActiveProject(projectId);
+        displayController.toggleNewProjectForm();
 
         form.reset();
       }
     });
   };
 
-  const handleTasksClicks = () => {
-    sectionTasks.addEventListener('click', (e) => {
-      const classes = e.target.classList;
+  const handleTasksHeader = (tasksHeader, title) => {
+    tasksHeader.addEventListener('click', (e) => {
+      const target = e.target;
+      const classes = target.classList;
 
       if (classes.contains('btn-add')) {
-        const projectName =
-          sectionTasks.children[0].children[0].children[0].textContent;
-        console.log(projectName);
+        const projectName = title;
         displayController.openTaskForm(false, projectName);
         return;
       }
+    });
+  };
 
-      if (classes.contains('fa-trash-can')) {
-        const taskId =
-          e.target.parentElement.parentElement.parentElement.parentElement
-            .dataset.id;
-        projectsController.removeTask(taskId);
-        displayController.removeCard(taskId);
-        return;
-      }
+  const handleCardForm = (cardForm) => {
+    cardForm.addEventListener('click', (e) => {
+      const target = e.target;
+      const classes = target.classList;
 
       if (classes.contains('close-task')) {
         displayController.closeTaskForm();
-        return;
       }
 
-      if (e.target.type === 'submit') {
+      if (target.type === 'submit') {
         e.preventDefault();
 
-        const form = e.target.parentElement.parentElement.parentElement;
+        const form = cardForm.children[0];
         const formData = new FormData(form);
         const { title, projectId, description, priority, date } =
           Object.fromEntries(formData);
@@ -127,23 +123,43 @@ export const actionsController = (() => {
           false,
           false
         );
-
+        
         projectsController.addTask(projectId, newTask);
         displayController.appendTask(newTask, projectId);
         displayController.setTasksCount();
         form.reset();
-        return;
       }
     });
   };
 
+  const handleCard = (card) => {
+    card.addEventListener('click', (e) => {
+      const target = e.target;
+      const classes = target.classList;
+      const id = e.currentTarget.dataset.id;
+
+      // TODO: refactor and split code
+
+      // if (classes.contains('fa-trash-can')) {
+      //   const taskId =
+      //     e.target.parentElement.parentElement.parentElement.parentElement
+      //       .dataset.id;
+      //   projectsController.removeTask(taskId);
+      //   displayController.removeCard(taskId);
+      //   return;
+      // }
+    });
+  };
+
   const init = () => {
-    handleHeaderClicks();
-    handleSidebarClicks();
-    handleTasksClicks();
+    handleHeader();
+    handleSidebar();
   };
 
   return {
     init,
+    handleTasksHeader,
+    handleCard,
+    handleCardForm,
   };
 })();

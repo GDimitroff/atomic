@@ -282,7 +282,7 @@ hr {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.6rem;
-  animation: slide-down 1s ease-in-out;
+  animation: slide-down 0.6s ease;
 }
 
 .tasks-title {
@@ -372,7 +372,7 @@ hr {
   border: 2px solid transparent;
 
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 8px;
-  animation: 0.6s fade-in;
+  animation: 0.6s slide-right;
 
   overflow: hidden;
 }
