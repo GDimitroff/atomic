@@ -121,8 +121,16 @@ export const displayController = (() => {
     setActiveProject(projectId);
   };
 
-  const removeCard = (taskId) => {
-    // TODO: remove card
+  const removeCard = (task) => {
+    task.style.animation = '0.4s fade-out';
+
+    task.addEventListener(
+      'animationend',
+      (e) => {
+        task.remove();
+      },
+      { once: true }
+    );
   };
 
   const renderProjects = () => {

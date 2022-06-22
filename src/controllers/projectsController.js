@@ -31,8 +31,9 @@ export const projectsController = (() => {
 
   const removeTask = (taskId) => {
     projects.forEach((project) => {
-      project.tasks.filter((task) => task.id !== taskId);
+      project.tasks = project.tasks.filter((task) => task.id !== taskId);
     });
+
     updateStorage();
   };
 

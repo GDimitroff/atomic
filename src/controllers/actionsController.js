@@ -123,7 +123,7 @@ export const actionsController = (() => {
           false,
           false
         );
-        
+
         projectsController.addTask(projectId, newTask);
         displayController.appendTask(newTask, projectId);
         displayController.setTasksCount();
@@ -134,20 +134,13 @@ export const actionsController = (() => {
 
   const handleCard = (card) => {
     card.addEventListener('click', (e) => {
-      const target = e.target;
-      const classes = target.classList;
+      const classes = e.target.classList;
       const id = e.currentTarget.dataset.id;
 
-      // TODO: refactor and split code
-
-      // if (classes.contains('fa-trash-can')) {
-      //   const taskId =
-      //     e.target.parentElement.parentElement.parentElement.parentElement
-      //       .dataset.id;
-      //   projectsController.removeTask(taskId);
-      //   displayController.removeCard(taskId);
-      //   return;
-      // }
+      if (classes.contains('fa-trash-can')) {
+        projectsController.removeTask(id);
+        displayController.removeCard(card);
+      }
     });
   };
 
