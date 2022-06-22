@@ -136,10 +136,16 @@ export const actionsController = (() => {
     card.addEventListener('click', (e) => {
       const classes = e.target.classList;
       const id = e.currentTarget.dataset.id;
+      const projectId = e.currentTarget.dataset.projectId;
 
       if (classes.contains('fa-trash-can')) {
-        projectsController.removeTask(id);
+        projectsController.removeTask(id, projectId);
         displayController.removeCard(card);
+      }
+
+      if (classes.contains('fa-star')) {
+        projectsController.toggleImportant(id, projectId);
+        displayController.toggleImportant(card);
       }
     });
   };

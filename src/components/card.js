@@ -1,9 +1,14 @@
-import { actionsController } from "../controllers/actionsController";
+import { actionsController } from '../controllers/actionsController';
 
 export default function createCard(task, project) {
   const card = document.createElement('div');
   card.classList.add('task-card');
   card.dataset.id = task.id;
+  card.dataset.projectId = project.id;
+
+  if (task.isImportant) {
+    card.classList.add('important');
+  }
 
   if (task.isCompleted) {
     card.classList.add('completed');
@@ -28,9 +33,7 @@ export default function createCard(task, project) {
       </div>
       <div class="right">
         <div class="card-actions">
-          <i class="fa-solid fa-star ${
-            task.isImportant ? 'important' : ''
-          }"></i>
+          <i class="fa-solid fa-star"></i>
           <i class="fa-solid fa-pen-to-square"></i>
           <i class="fa-solid fa-trash-can"></i>
         </div>

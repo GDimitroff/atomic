@@ -318,6 +318,10 @@ hr {
   filter: grayscale(100%);
 }
 
+.task-card.important .card-actions > .fa-star {
+  color: #eab308;
+}
+
 .card-header,
 .card-footer {
   display: flex;
@@ -351,10 +355,6 @@ hr {
 
 .card-footer .right i:hover {
   color: var(--text-color);
-}
-
-.card-actions > .fa-star.important {
-  color: #eab308;
 }
 
 .new-task-card {

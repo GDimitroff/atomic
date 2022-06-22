@@ -23,17 +23,22 @@ export const projectsController = (() => {
     updateStorage();
   };
 
-  const addTask = (projectId, newTask) => {
-    const project = getProjectById(projectId);
+  const addTask = (id, newTask) => {
+    const project = getProjectById(id);
     project.addTask(newTask);
     updateStorage();
   };
 
-  const removeTask = (taskId) => {
-    projects.forEach((project) => {
-      project.tasks = project.tasks.filter((task) => task.id !== taskId);
-    });
+  const removeTask = (id, projectId) => {
+    const project = getProjectById(projectId);
+    project.tasks = project.tasks.filter((task) => task.id !== id);
+    updateStorage();
+  };
 
+  const toggleImportant = (id, projectId) => {
+    const project = getProjectById(projectId);
+    const task = project.tasks.find((task) => task.id === id);
+    task.isImportant = !task.isImportant;
     updateStorage();
   };
 
@@ -71,5 +76,6 @@ export const projectsController = (() => {
     removeProject,
     addTask,
     removeTask,
+    toggleImportant,
   };
 })();
