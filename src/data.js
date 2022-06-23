@@ -31,9 +31,6 @@ export const defaultData = () => {
     true
   );
 
-  personal.addTask(gift);
-  personal.addTask(flowers);
-
   const upperBodyWorkout = new Task(
     uuidv4(),
     workout.id,
@@ -44,8 +41,6 @@ export const defaultData = () => {
     false,
     false
   );
-
-  workout.addTask(upperBodyWorkout);
 
   const finishEducation = new Task(
     uuidv4(),
@@ -58,6 +53,9 @@ export const defaultData = () => {
     false
   );
 
+  personal.addTask(gift);
+  personal.addTask(flowers);
+  workout.addTask(upperBodyWorkout);
   education.addTask(finishEducation);
 
   projects.push(personal, workout, education);

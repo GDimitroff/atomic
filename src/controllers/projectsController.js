@@ -42,6 +42,13 @@ export const projectsController = (() => {
     updateStorage();
   };
 
+  const toggleCompleted = (id, projectId) => {
+    const project = getProjectById(projectId);
+    const task = project.tasks.find((task) => task.id === id);
+    task.isCompleted = !task.isCompleted;
+    updateStorage();
+  };
+
   const loadStorage = () => {
     const storage = JSON.parse(localStorage.getItem('projects'));
     const convertedProjects = storage.map((proj) => {
@@ -77,5 +84,6 @@ export const projectsController = (() => {
     addTask,
     removeTask,
     toggleImportant,
+    toggleCompleted
   };
 })();

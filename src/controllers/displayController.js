@@ -137,6 +137,10 @@ export const displayController = (() => {
     task.classList.toggle('important');
   };
 
+  const toggleCompleted = (task) => {
+    task.classList.toggle('completed');
+  };
+
   const renderProjects = () => {
     projectsList.innerHTML = '';
 
@@ -202,6 +206,7 @@ export const displayController = (() => {
     appendTask,
     removeCard,
     toggleImportant,
+    toggleCompleted,
     renderProjects,
     setTasksCount,
   };

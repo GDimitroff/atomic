@@ -141,12 +141,17 @@ export const actionsController = (() => {
       if (classes.contains('fa-trash-can')) {
         projectsController.removeTask(id, projectId);
         displayController.removeCard(card);
+        return;
       }
 
       if (classes.contains('fa-star')) {
         projectsController.toggleImportant(id, projectId);
         displayController.toggleImportant(card);
+        return;
       }
+
+      projectsController.toggleCompleted(id, projectId);
+      displayController.toggleCompleted(card);
     });
   };
 
