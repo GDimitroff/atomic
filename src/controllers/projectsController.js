@@ -23,6 +23,32 @@ export const projectsController = (() => {
     updateStorage();
   };
 
+  const getImportantTasks = () => {
+    const importantTasks = [];
+    projects.forEach((project) => {
+      project.tasks.filter((task) => {
+        if (task.isImportant) {
+          importantTasks.push(task);
+        }
+      });
+    });
+
+    return importantTasks;
+  };
+
+  const getCompletedTasks = () => {
+    const completedTasks = [];
+    projects.forEach((project) => {
+      project.tasks.filter((task) => {
+        if (task.isCompleted) {
+          completedTasks.push(task);
+        }
+      });
+    });
+
+    return completedTasks;
+  };
+
   const addTask = (id, newTask) => {
     const project = getProjectById(id);
     project.addTask(newTask);
@@ -81,9 +107,11 @@ export const projectsController = (() => {
     getProjectById,
     addProject,
     removeProject,
+    getImportantTasks,
+    getCompletedTasks,
     addTask,
     removeTask,
     toggleImportant,
-    toggleCompleted
+    toggleCompleted,
   };
 })();

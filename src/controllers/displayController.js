@@ -88,11 +88,11 @@ export const displayController = (() => {
     });
   };
 
-  const setActiveProject = (id) => {
+  const setActiveProject = (filter) => {
     const projectTiles = body.querySelectorAll('.tile');
     projectTiles.forEach((tile) => {
       tile.classList.remove('active');
-      if (tile.dataset.id === id) {
+      if (tile.dataset.id === filter) {
         tile.classList.add('active');
 
         const displayText = tile.querySelector('.left > p').textContent;
@@ -104,7 +104,7 @@ export const displayController = (() => {
       }
     });
 
-    renderTasks(id);
+    renderTasks(filter);
     closeSidebar();
   };
 
@@ -169,15 +169,27 @@ export const displayController = (() => {
   const renderTasks = (filter) => {
     tasksCards.innerHTML = '';
 
-    const projects = projectsController.getProjects();
-
-    projects
-      .filter((project) => project.id === filter || filter === 'all')
-      .forEach((project) => {
-        project.tasks.forEach((task) => {
-          tasksCards.appendChild(createCard(task, project));
-        });
+    let tasks = [];
+    if (filter === 'all') {
+      projectsController.getProjects().forEach((project) => {
+        tasks.push(...project.tasks);
       });
+    } else if (filter === 'important') {
+      tasks = projectsController.getImportantTasks();
+    } else if (filter === 'completed') {
+      tasks = projectsController.getCompletedTasks();
+    } else {
+      projectsController.getProjects().forEach((project) => {
+        if (project.id === filter) {
+          tasks.push(...project.tasks);
+        }
+      });
+    }
+
+    tasks.forEach((task) => {
+      const project = projectsController.getProjectById(task.projectId);
+      tasksCards.appendChild(createCard(task, project));
+    });
   };
 
   const init = () => {
