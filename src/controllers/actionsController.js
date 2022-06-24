@@ -138,7 +138,12 @@ export const actionsController = (() => {
       const id = e.currentTarget.dataset.id;
       const projectId = e.currentTarget.dataset.projectId;
 
-      if (classes.contains('fa-trash-can')) {
+      if (classes.contains('fa-trash-can') || e.target.classList.contains('cancel')) {
+        displayController.toggleConfirmationScreen(card);
+        return;
+      }
+
+      if (e.target.classList.contains('delete')) {
         projectsController.removeTask(id, projectId);
         displayController.removeCard(card);
         return;

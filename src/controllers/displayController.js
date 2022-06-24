@@ -141,6 +141,11 @@ export const displayController = (() => {
     task.classList.toggle('completed');
   };
 
+  const toggleConfirmationScreen = (card) => {
+    card.classList.toggle('inactive');
+    card.children[0].classList.toggle('active');
+  };
+
   const renderProjects = () => {
     projectsList.innerHTML = '';
 
@@ -221,5 +226,6 @@ export const displayController = (() => {
     toggleCompleted,
     renderProjects,
     setTasksCount,
+    toggleConfirmationScreen,
   };
 })();

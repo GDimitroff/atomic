@@ -289,7 +289,72 @@ hr {
   font-size: 2.2rem;
 }
 
+.confirm {
+  position: absolute;
+  bottom: -2px;
+  left: -2px;
+  right: -2px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+
+  color: #fafafa;
+  background-color: var(--primary-red);
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+
+.confirm.active {
+  opacity: 1;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 8px;
+}
+
+.confirm-buttons {
+  display: flex;
+  gap: 3px;
+}
+
+.confirm-btn {
+  font-size: inherit;
+  border: 0;
+  outline: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 3px;
+  color: #fafafa;
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+}
+
+.confirm.active .confirm-btn {
+  pointer-events: auto;
+}
+
+.confirm-btn:hover,
+.confirm-btn:active {
+  color: #cbd5e1;
+}
+
+.confirm-btn.delete {
+  color: #161722;
+  background-color: #fafafa;
+  border: 2px solid #fafafa;
+}
+
+.confirm-btn.delete:hover,
+.confirm-btn.delete:active {
+  color: #fafafa;
+  background-color: var(--primary-red);
+}
+
 .task-card {
+  position: relative;
   height: 175px;
   font-size: 1.4rem;
   padding: 1.4rem;
@@ -311,6 +376,16 @@ hr {
   border-right: 2px solid var(--primary-pink);
   border-left: 2px solid var(--primary-purple);
   box-shadow: rgba(0, 0, 0, 0.185) 0px 8px 8px;
+}
+
+.task-card.inactive {
+  pointer-events: none;
+}
+
+.task-card.inactive:hover {
+  border-right: 2px solid transparent;
+  border-left: 2px solid transparent;
+  box-shadow: none;
 }
 
 .task-card.completed {

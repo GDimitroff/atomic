@@ -15,6 +15,13 @@ export default function createCard(task, project) {
   }
 
   card.innerHTML = `
+    <div class="confirm">
+      <p>Please confirm you want to delete this task?</p>
+      <div class="confirm-buttons">
+        <button type="button" class="confirm-btn cancel">Cancel</button>
+        <button type="button" class="confirm-btn delete">Delete</button>
+      </div>
+    </div>
     <div class="card-header">
       <div class="left">
         <h3>${task.title}</h3>
