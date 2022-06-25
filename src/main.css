@@ -289,6 +289,55 @@ hr {
   font-size: 2.2rem;
 }
 
+.task-card {
+  position: relative;
+  height: 175px;
+  font-size: 1.4rem;
+  padding: 1.4rem;
+  background-color: var(--secondary-background-color);
+  border-radius: 6px;
+  border-right: 2px solid transparent;
+  border-left: 2px solid transparent;
+
+  display: flex;
+  flex-direction: column;
+  text-decoration: line-through 2px transparent;
+  animation: 0.6s fade-in;
+  transition: all 0.6s ease;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 8px;
+  cursor: pointer;
+}
+
+.task-card:hover {
+  border-right: 2px solid var(--primary-pink);
+  border-left: 2px solid var(--primary-purple);
+  box-shadow: rgba(0, 0, 0, 0.185) 0px 8px 8px;
+}
+
+.task-card.inactive {
+  pointer-events: none;
+}
+
+.task-card.inactive:hover {
+  border-right: 2px solid transparent;
+  border-left: 2px solid transparent;
+  box-shadow: none;
+}
+
+.task-card.completed > div {
+  text-decoration: line-through 2px var(--text-color);
+}
+
+.task-card.completed .confirm,
+.task-card.completed .card-footer {
+  text-decoration: none;
+}
+
+.task-card.important .card-actions > .fa-star {
+  color: var(--primary-gold);
+  animation: 0.4s fade-in;
+}
+
 .confirm {
   position: absolute;
   bottom: -2px;
@@ -298,8 +347,9 @@ hr {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
 
+  font-size: 1.2rem;
+  padding: 1rem;
   color: #fafafa;
   background-color: var(--primary-red);
   border-bottom-left-radius: 3px;
@@ -308,6 +358,7 @@ hr {
   opacity: 0;
   pointer-events: none;
   transition: all 0.4s ease;
+  z-index: 2;
 }
 
 .confirm.active {
@@ -351,55 +402,6 @@ hr {
 .confirm-btn.delete:active {
   color: #fafafa;
   background-color: var(--primary-red);
-}
-
-.task-card {
-  position: relative;
-  height: 175px;
-  font-size: 1.4rem;
-  padding: 1.4rem;
-  background-color: var(--secondary-background-color);
-  border-radius: 6px;
-  border-right: 2px solid transparent;
-  border-left: 2px solid transparent;
-
-  display: flex;
-  flex-direction: column;
-  text-decoration: line-through 2px transparent;
-  animation: 0.6s fade-in;
-  transition: all 0.6s ease;
-  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 8px;
-  cursor: pointer;
-}
-
-.task-card:hover {
-  border-right: 2px solid var(--primary-pink);
-  border-left: 2px solid var(--primary-purple);
-  box-shadow: rgba(0, 0, 0, 0.185) 0px 8px 8px;
-}
-
-.task-card.inactive {
-  pointer-events: none;
-}
-
-.task-card.inactive:hover {
-  border-right: 2px solid transparent;
-  border-left: 2px solid transparent;
-  box-shadow: none;
-}
-
-.task-card.completed {
-  text-decoration: line-through 2px var(--text-color);
-  filter: grayscale(100%);
-}
-
-.task-card.completed .card-footer {
-  pointer-events: none;
-}
-
-.task-card.important .card-actions > .fa-star {
-  color: var(--primary-gold);
-  animation: 0.4s fade-in;
 }
 
 .card-header,
@@ -468,45 +470,6 @@ hr {
 
 .new-task-form .card-header {
   gap: 18px;
-}
-
-/* MODAL */
-
-.overlay {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  pointer-events: none;
-  opacity: 0;
-  transition: 0.5s ease;
-}
-
-.overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  max-width: 400px;
-  height: 400px;
-  border-radius: 6px;
-  color: var(--text-color);
-  background: var(--secondary-background-color);
-  transform: translate(-50%, -50%) scale(0);
-  transition: 0.5s ease;
-  pointer-events: auto;
-  overflow: hidden;
-  z-index: 2;
-}
-
-.modal.active {
-  transform: translate(-50%, -50%) scale(1);
 }
 
 /* UTILITY */

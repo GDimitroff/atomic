@@ -16,7 +16,7 @@ export default function createCard(task, project) {
 
   card.innerHTML = `
     <div class="confirm">
-      <p>Please confirm you want to delete this task?</p>
+      <p>You cannot undo this. Are you sure?</p>
       <div class="confirm-buttons">
         <button type="button" class="confirm-btn cancel">Cancel</button>
         <button type="button" class="confirm-btn delete">Delete</button>
