@@ -3,6 +3,7 @@ import createCard from '../components/card';
 import createCardForm from '../components/cardForm';
 import createTile from '../components/tile';
 import createTasksHeader from '../components/tasksHeader';
+import { isToday, isThisWeek } from 'date-fns';
 
 export const displayController = (() => {
   const body = document.querySelector('body');
@@ -179,6 +180,10 @@ export const displayController = (() => {
       projectsController.getProjects().forEach((project) => {
         tasks.push(...project.tasks);
       });
+    } else if (filter === 'today') {
+      tasks = projectsController.getTasksByDate(isToday);
+    } else if (filter === 'week') {
+      tasks = projectsController.getTasksByDate(isThisWeek);
     } else if (filter === 'important') {
       tasks = projectsController.getImportantTasks();
     } else if (filter === 'completed') {

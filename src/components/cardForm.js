@@ -52,7 +52,7 @@ export default function createCardForm(mode, headerTitle) {
             </select>
             <span class="select-focus"></span>
           </div>
-          <input type="date" id="date" name="date" value="2022-06-17" />
+          <input type="date" id="date" name="date" />
         </div>
         <div class="right">
           <button type="submit" class="btn btn-submit">Add</button>

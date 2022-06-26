@@ -30,7 +30,7 @@ export default function createCard(task, project) {
         <p class="${project.color}">${project.name}</p>
       </div>
     </div>
-    <p class="card-date">${task.date}</p>
+    <p class="card-date">${task.date ? task.date : 'No due date'}</p>
     <div class="card-content">
       <p>${task.description}</p>
     </div>

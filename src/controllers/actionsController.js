@@ -39,7 +39,6 @@ export const actionsController = (() => {
       }
 
       if (classes.contains('fa-trash-can')) {
-        // TODO: Modal to confirm removal should be implemented
         const projectId = e.target.parentElement.parentElement.dataset.id;
         projectsController.removeProject(projectId);
 
@@ -110,8 +109,15 @@ export const actionsController = (() => {
 
         const form = cardForm.children[0];
         const formData = new FormData(form);
-        const { title, projectId, description, priority, date } =
+        let { title, projectId, description, priority, date } =
           Object.fromEntries(formData);
+
+        if (!date) {
+          date = null;
+        } else {
+          const [year, month, day] = date.split('-');
+          date = `${day}.${month}.${year}`;
+        }
 
         const newTask = new Task(
           uuidv4(),
@@ -138,7 +144,10 @@ export const actionsController = (() => {
       const id = e.currentTarget.dataset.id;
       const projectId = e.currentTarget.dataset.projectId;
 
-      if (classes.contains('fa-trash-can') || e.target.classList.contains('cancel')) {
+      if (
+        classes.contains('fa-trash-can') ||
+        e.target.classList.contains('cancel')
+      ) {
         displayController.toggleConfirmationScreen(card);
         return;
       }

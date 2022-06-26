@@ -15,7 +15,7 @@ export const defaultData = () => {
     'Buy gift for my bae',
     'If you dare to miss this you are gonna be homeless... and single!',
     'high',
-    '11.03.2023',
+    '11.03.2022',
     false,
     true
   );
@@ -37,7 +37,7 @@ export const defaultData = () => {
     'Upper body workout',
     'Go hard of go home!',
     'low',
-    '21.06.2022',
+    '12.07.2022',
     false,
     false
   );
@@ -48,7 +48,7 @@ export const defaultData = () => {
     'Finish The Odin Project curriculum',
     "When it's hard remember why you are doing it...",
     'medium',
-    '28.08.2022',
+    '15.09.2022',
     false,
     false
   );
