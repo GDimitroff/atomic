@@ -328,9 +328,25 @@ hr {
   text-decoration: line-through 2px var(--text-color);
 }
 
-.task-card.completed .confirm,
-.task-card.completed .card-footer {
-  text-decoration: none;
+.task-card.completed::before {
+  position: absolute;
+  content: '\2713';
+  top: 0;
+  left: -2px;
+  right: -2px;
+  bottom: 0;
+
+  font-size: 4rem;
+  font-weight: 700;
+  padding: 2rem;
+  color: #fafafa;
+  background-color: #6610c2e1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  animation: 0.5s show-up;
 }
 
 .task-card.important .card-actions > .fa-star {
@@ -380,7 +396,7 @@ hr {
   color: #fafafa;
   background-color: transparent;
   cursor: pointer;
-  transition: 0.4s ease-in-out;
+  transition: 0.4s ease;
 }
 
 .confirm.active .confirm-btn {
@@ -432,7 +448,7 @@ hr {
 
 .card-actions {
   display: flex;
-  gap: 6px;
+  gap: 8px;
 }
 
 .card-footer .right i:hover {
@@ -478,7 +494,7 @@ hr {
 .right {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .left > i {
@@ -490,6 +506,7 @@ hr {
 }
 
 i {
+  font-size: 1.6rem;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -753,6 +770,15 @@ select:focus + .select-focus {
 }
 
 /* ANIMATIONS */
+
+@keyframes show-up {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
 @keyframes fade-in {
   0% {
