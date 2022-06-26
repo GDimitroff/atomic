@@ -159,7 +159,7 @@ body.light .fa-moon {
   border-radius: 6px;
   padding: 8px 10px;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease;
 }
 
 .tile:hover {
@@ -497,7 +497,7 @@ hr {
   gap: 8px;
 }
 
-.left > i {
+.left i {
   min-width: 18px;
 }
 
@@ -505,10 +505,13 @@ hr {
   color: var(--primary-grey);
 }
 
+.right i {
+  transition: all 0.3s ease;
+}
+
 i {
   font-size: 1.6rem;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 .btn {

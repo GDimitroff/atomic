@@ -23,8 +23,8 @@ export const defaultData = () => {
   const flowers = new Task(
     uuidv4(),
     personal.id,
-    'Buy flowers for my sweetheart',
-    "Every woman loves flowers even if the say they don't",
+    'Flowers for my sweetheart',
+    "Every woman loves flowers even if they say they don't",
     'medium',
     '23.06.2022',
     false,
@@ -38,7 +38,7 @@ export const defaultData = () => {
     'Go hard of go home!',
     'low',
     '12.07.2022',
-    false,
+    true,
     false
   );
 

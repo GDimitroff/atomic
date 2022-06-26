@@ -80,17 +80,19 @@ export const displayController = (() => {
           count += project.tasks.length;
         });
 
-        tasksCount.textContent = count;
+        tasksCount.textContent = count || '';
       } else if (tileId === 'today') {
         tasksCount.textContent =
-          projectsController.getTasksByDate(isToday).length;
+          projectsController.getTasksByDate(isToday).length || '';
       } else if (tileId === 'week') {
         tasksCount.textContent =
-          projectsController.getTasksByDate(isThisWeek).length;
+          projectsController.getTasksByDate(isThisWeek).length || '';
       } else if (tileId === 'important') {
-        tasksCount.textContent = projectsController.getImportantTasks().length;
+        tasksCount.textContent =
+          projectsController.getImportantTasks().length || '';
       } else if (tileId === 'completed') {
-        tasksCount.textContent = projectsController.getCompletedTasks().length;
+        tasksCount.textContent =
+          projectsController.getCompletedTasks().length || '';
       }
     });
   };
