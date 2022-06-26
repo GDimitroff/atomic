@@ -155,17 +155,20 @@ export const actionsController = (() => {
       if (e.target.classList.contains('delete')) {
         projectsController.removeTask(id, projectId);
         displayController.removeCard(card);
+        displayController.setTasksCount();
         return;
       }
 
       if (classes.contains('fa-star')) {
         projectsController.toggleImportant(id, projectId);
         displayController.toggleImportant(card);
+        displayController.setTasksCount();
         return;
       }
 
       projectsController.toggleCompleted(id, projectId);
       displayController.toggleCompleted(card);
+      displayController.setTasksCount();
     });
   };
 

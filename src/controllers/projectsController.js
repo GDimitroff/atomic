@@ -23,6 +23,15 @@ export const projectsController = (() => {
     updateStorage();
   };
 
+  const getTasks = () => {
+    let tasks = [];
+    projects.forEach((project) => {
+      tasks.push(...project.tasks);
+    });
+
+    return tasks;
+  };
+
   const getTasksByDate = (filter) => {
     let tasks = [];
     projects.forEach((project) => {
@@ -125,6 +134,7 @@ export const projectsController = (() => {
     getProjectById,
     addProject,
     removeProject,
+    getTasks,
     getTasksByDate,
     getImportantTasks,
     getCompletedTasks,

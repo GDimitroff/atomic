@@ -72,19 +72,25 @@ export const displayController = (() => {
   const setTasksCount = () => {
     projectsTiles.forEach((tile) => {
       const tasksCount = tile.children[1].children[0];
+      const tileId = tile.dataset.id;
 
-      if (tile.dataset.id === 'all') {
+      if (tileId === 'all') {
         let count = 0;
         projectsController.getProjects().forEach((project) => {
-          project.tasks.forEach((task) => {
-            count += 1;
-          });
+          count += project.tasks.length;
         });
 
         tasksCount.textContent = count;
-      } else {
-        // TODO: Implement correct dates first
-        tasksCount.textContent = '';
+      } else if (tileId === 'today') {
+        tasksCount.textContent =
+          projectsController.getTasksByDate(isToday).length;
+      } else if (tileId === 'week') {
+        tasksCount.textContent =
+          projectsController.getTasksByDate(isThisWeek).length;
+      } else if (tileId === 'important') {
+        tasksCount.textContent = projectsController.getImportantTasks().length;
+      } else if (tileId === 'completed') {
+        tasksCount.textContent = projectsController.getCompletedTasks().length;
       }
     });
   };
@@ -177,9 +183,7 @@ export const displayController = (() => {
 
     let tasks = [];
     if (filter === 'all') {
-      projectsController.getProjects().forEach((project) => {
-        tasks.push(...project.tasks);
-      });
+      tasks = projectsController.getTasks();
     } else if (filter === 'today') {
       tasks = projectsController.getTasksByDate(isToday);
     } else if (filter === 'week') {
@@ -189,11 +193,7 @@ export const displayController = (() => {
     } else if (filter === 'completed') {
       tasks = projectsController.getCompletedTasks();
     } else {
-      projectsController.getProjects().forEach((project) => {
-        if (project.id === filter) {
-          tasks.push(...project.tasks);
-        }
-      });
+      tasks = projectsController.getProjectById(filter).tasks;
     }
 
     tasks.forEach((task) => {
