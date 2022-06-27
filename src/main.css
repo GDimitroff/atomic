@@ -144,7 +144,7 @@ body.light .fa-moon {
   z-index: 2;
 }
 
-.projects-tiles,
+.menu-tiles,
 .projects-list {
   display: flex;
   flex-direction: column;
@@ -175,7 +175,7 @@ body.light .fa-moon {
   background-color: var(--primary-purple);
 }
 
-.projects {
+.form-container {
   margin-top: 1.6rem;
 }
 
@@ -189,8 +189,12 @@ body.light .fa-moon {
   margin-bottom: 1rem;
 }
 
-.projects-header > i {
-  min-width: 32px;
+.projects-header i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 36px;
   color: var(--text-color);
   padding: 5px 10px;
   border-radius: 6px;
@@ -442,7 +446,6 @@ hr {
   flex: 1;
   font-size: 1.2rem;
   margin: 0.8rem 0;
-  min-height: 70px;
   line-height: 1.6;
 }
 
@@ -497,7 +500,7 @@ hr {
   gap: 8px;
 }
 
-.left i {
+.left > i {
   min-width: 18px;
 }
 

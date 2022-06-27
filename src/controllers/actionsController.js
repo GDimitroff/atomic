@@ -1,86 +1,9 @@
 import { displayController } from './displayController';
 import { projectsController } from './projectsController';
-import Project from '../models/Project';
 import Task from '../models/Task';
 import { v4 as uuidv4 } from 'uuid';
 
 export const actionsController = (() => {
-  const header = document.querySelector('.header');
-  const sidebar = document.querySelector('.sidebar');
-
-  const handleHeader = () => {
-    header.addEventListener('click', (e) => {
-      const classes = e.target.classList;
-
-      if (classes.contains('fa-bars')) {
-        displayController.openSidebar();
-        return;
-      }
-
-      if (classes.contains('fa-xmark')) {
-        displayController.closeSidebar();
-        return;
-      }
-
-      if (classes.contains('fa-sun') || classes.contains('fa-moon')) {
-        displayController.toggleTheme();
-        return;
-      }
-    });
-  };
-
-  const handleSidebar = () => {
-    sidebar.addEventListener('click', (e) => {
-      const classes = e.target.classList;
-
-      if (classes.contains('fa-plus') || classes.contains('fa-angle-down')) {
-        displayController.toggleNewProjectForm();
-        return;
-      }
-
-      if (classes.contains('fa-trash-can')) {
-        const projectId = e.target.parentElement.parentElement.dataset.id;
-        projectsController.removeProject(projectId);
-
-        displayController.setTasksCount();
-        displayController.renderProjects();
-        displayController.setActiveProject('all');
-        return;
-      }
-
-      if (classes.contains('tile')) {
-        displayController.setActiveProject(e.target.dataset.id);
-        return;
-      }
-
-      if (e.target.parentElement.parentElement.classList.contains('tile')) {
-        displayController.setActiveProject(
-          e.target.parentElement.parentElement.dataset.id
-        );
-        return;
-      }
-
-      if (e.target.type === 'submit') {
-        e.preventDefault();
-
-        const form = e.target.parentElement.parentElement;
-        const formData = new FormData(form);
-        const projectName = formData.get('project-name');
-        const projectColor = formData.get('color');
-
-        if (projectName.trim() === '' || projectColor.trim() === '') return;
-
-        const projectId = uuidv4();
-        const project = new Project(projectId, projectName, projectColor);
-        projectsController.addProject(project);
-        displayController.renderProjects();
-        displayController.setActiveProject(projectId);
-        displayController.toggleNewProjectForm();
-
-        form.reset();
-      }
-    });
-  };
 
   const handleTasksHeader = (tasksHeader, title) => {
     tasksHeader.addEventListener('click', (e) => {
@@ -172,15 +95,5 @@ export const actionsController = (() => {
     });
   };
 
-  const init = () => {
-    handleHeader();
-    handleSidebar();
-  };
-
-  return {
-    init,
-    handleTasksHeader,
-    handleCard,
-    handleCardForm,
-  };
+  return;
 })();

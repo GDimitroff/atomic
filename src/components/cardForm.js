@@ -1,4 +1,3 @@
-import { actionsController } from '../controllers/actionsController';
 import { projectsController } from '../controllers/projectsController';
 
 export default function createCardForm(mode, headerTitle) {
@@ -61,6 +60,5 @@ export default function createCardForm(mode, headerTitle) {
     </form>
   `;
 
-  actionsController.handleCardForm(cardForm);
   return cardForm;
 }

@@ -1,5 +1,3 @@
-import { actionsController } from '../controllers/actionsController';
-
 export default function createCard(task, project) {
   const card = document.createElement('div');
   card.classList.add('task-card');
@@ -48,6 +46,5 @@ export default function createCard(task, project) {
     </div>
   `;
 
-  actionsController.handleCard(card);
   return card;
 }

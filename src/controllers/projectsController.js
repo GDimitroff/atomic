@@ -4,6 +4,7 @@ import Task from '../models/Task';
 
 export const projectsController = (() => {
   let projects = [];
+  let currentProject = null;
 
   const getProjects = () => {
     return projects;
