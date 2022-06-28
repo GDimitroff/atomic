@@ -262,13 +262,13 @@ hr {
   justify-content: flex-end;
 }
 
-.section-tasks {
+.tasks {
   flex: 1;
   min-height: calc(100vh - 60px);
   padding: 2.2rem 2rem;
 }
 
-.section-tasks.inactive {
+.tasks.inactive {
   filter: grayscale(80%) blur(5px);
   pointer-events: none;
 }

@@ -14,6 +14,19 @@ export const projectsController = (() => {
     return projects.find((project) => project.id === id);
   };
 
+  const getCurrentProject = () => {
+    return currentProject;
+  };
+
+  const setCurrentProject = (id) => {
+    if (!id) {
+      currentProject = null;
+      return;
+    }
+
+    currentProject = getProjectById(id);
+  };
+
   const addProject = (project) => {
     projects.unshift(project);
     updateStorage();
@@ -133,6 +146,8 @@ export const projectsController = (() => {
     init,
     getProjects,
     getProjectById,
+    getCurrentProject,
+    setCurrentProject,
     addProject,
     removeProject,
     getTasks,

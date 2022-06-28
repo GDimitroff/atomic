@@ -1,20 +1,128 @@
 import { displayController } from './displayController';
 import { projectsController } from './projectsController';
+import Project from '../models/Project';
 import Task from '../models/Task';
+import createTile from '../components/tile';
+import createCard from '../components/card';
 import { v4 as uuidv4 } from 'uuid';
 
 export const actionsController = (() => {
+  const handleHeader = (header) => {
+    header.addEventListener('click', (e) => {
+      const classes = e.target.classList;
 
-  const handleTasksHeader = (tasksHeader, title) => {
-    tasksHeader.addEventListener('click', (e) => {
-      const target = e.target;
-      const classes = target.classList;
-
-      if (classes.contains('btn-add')) {
-        const projectName = title;
-        displayController.openTaskForm(false, projectName);
+      if (classes.contains('fa-bars')) {
+        displayController.openSidebar();
         return;
       }
+
+      if (classes.contains('fa-xmark')) {
+        displayController.closeSidebar();
+        return;
+      }
+
+      if (classes.contains('fa-sun') || classes.contains('fa-moon')) {
+        displayController.toggleTheme();
+        return;
+      }
+    });
+  };
+
+  const handleSidebar = (sidebar) => {
+    sidebar.addEventListener('click', (e) => {
+      const classes = e.target.classList;
+
+      if (classes.contains('fa-plus') || classes.contains('fa-angle-down')) {
+        displayController.toggleNewProjectForm();
+        return;
+      }
+
+      if (classes.contains('fa-trash-can')) {
+        const projectTile = e.target.parentElement.parentElement;
+        const projectId = projectTile.dataset.id;
+
+        projectsController.removeProject(projectId);
+        projectTile.remove();
+
+        displayController.setTasksCount();
+        displayController.setActiveProject('all');
+        return;
+      }
+
+      if (classes.contains('tile')) {
+        displayController.setActiveProject(e.target.dataset.id);
+        return;
+      }
+
+      if (e.target.parentElement.parentElement.classList.contains('tile')) {
+        displayController.setActiveProject(
+          e.target.parentElement.parentElement.dataset.id
+        );
+        return;
+      }
+
+      if (e.target.type === 'submit') {
+        e.preventDefault();
+
+        const form = e.target.parentElement.parentElement;
+        const formData = new FormData(form);
+        const projectName = formData.get('project-name');
+        const projectColor = formData.get('color');
+
+        if (projectName.trim() === '' || projectColor.trim() === '') return;
+
+        const projectId = uuidv4();
+        const project = new Project(projectId, projectName, projectColor);
+        const projectTile = createTile(project);
+
+        projectsController.addProject(project);
+        displayController.appendProject(projectTile);
+        displayController.setActiveProject(projectId);
+        displayController.toggleNewProjectForm();
+        form.reset();
+      }
+    });
+  };
+
+  const handleCardsHeader = (cardsHeader) => {
+    cardsHeader.addEventListener('click', (e) => {
+      if (e.currentTarget === e.target) return;
+
+      if (e.target.classList.contains('btn-add')) {
+        const currentProject = projectsController.getCurrentProject();
+        displayController.openTaskForm(false, currentProject.name);
+      }
+    });
+  };
+
+  const handleCard = (card) => {
+    card.addEventListener('click', (e) => {
+      const classes = e.target.classList;
+      const id = card.dataset.id;
+      const projectId = card.dataset.projectId;
+
+      if (classes.contains('fa-trash-can') || classes.contains('cancel')) {
+        displayController.toggleConfirmationScreen(card);
+        return;
+      }
+
+      if (e.target.classList.contains('delete')) {
+        projectsController.removeTask(id, projectId);
+        displayController.removeCard(card);
+        displayController.setTasksCount();
+        return;
+      }
+
+      if (classes.contains('fa-star')) {
+        projectsController.toggleImportant(id, projectId);
+        displayController.toggleImportant(card);
+        displayController.setTasksCount();
+        return;
+      }
+
+      projectsController.toggleCompleted(id, projectId);
+      displayController.toggleCompleted(card);
+      displayController.setTasksCount();
     });
   };
 
@@ -53,47 +161,22 @@ export const actionsController = (() => {
           false
         );
 
+        const project = projectsController.getProjectById(projectId);
+        const newCard = createCard(newTask, project);
+
         projectsController.addTask(projectId, newTask);
-        displayController.appendTask(newTask, projectId);
+        displayController.appendCard(newCard, projectId);
         displayController.setTasksCount();
         form.reset();
       }
     });
   };
 
-  const handleCard = (card) => {
-    card.addEventListener('click', (e) => {
-      const classes = e.target.classList;
-      const id = e.currentTarget.dataset.id;
-      const projectId = e.currentTarget.dataset.projectId;
-
-      if (
-        classes.contains('fa-trash-can') ||
-        e.target.classList.contains('cancel')
-      ) {
-        displayController.toggleConfirmationScreen(card);
-        return;
-      }
-
-      if (e.target.classList.contains('delete')) {
-        projectsController.removeTask(id, projectId);
-        displayController.removeCard(card);
-        displayController.setTasksCount();
-        return;
-      }
-
-      if (classes.contains('fa-star')) {
-        projectsController.toggleImportant(id, projectId);
-        displayController.toggleImportant(card);
-        displayController.setTasksCount();
-        return;
-      }
-
-      projectsController.toggleCompleted(id, projectId);
-      displayController.toggleCompleted(card);
-      displayController.setTasksCount();
-    });
+  return {
+    handleHeader,
+    handleSidebar,
+    handleCardsHeader,
+    handleCard,
+    handleCardForm,
   };
-
-  return;
 })();

@@ -1,3 +1,5 @@
+import { actionsController } from '../controllers/actionsController';
+
 export default function createHeader() {
   const header = document.createElement('header');
   header.classList.add('header');
@@ -19,5 +21,6 @@ export default function createHeader() {
     </div>
   `;
 
+  actionsController.handleHeader(header);
   return header;
 }

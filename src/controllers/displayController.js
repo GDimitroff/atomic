@@ -1,110 +1,36 @@
 import { projectsController } from './projectsController';
+import createHeader from '../components/header';
 import createSidebar from '../components/sidebar';
+import createTasksSection from '../components/tasks';
 import createTasksHeader from '../components/tasksHeader';
 import createCard from '../components/card';
 import createCardForm from '../components/cardForm';
-import Project from '../models/Project';
-import { v4 as uuidv4 } from 'uuid';
 import { isToday, isThisWeek } from 'date-fns';
-import createTile from '../components/tile';
-import createHeader from '../components/header';
-import createTasksSection from '../components/tasks';
 
 export const displayController = (() => {
   const body = document.querySelector('body');
   const main = body.querySelector('.main');
 
-  let header = null;
-  let sidebar = null;
-  let sectionTasks = null;
-  
-  let tasksCards = null;
-  let toggleMenu = null;
+  function openSidebar() {
+    const sidebar = body.querySelector('.sidebar');
+    const toggleMenu = body.querySelector('.toggle-menu');
+    const tasks = body.querySelector('.tasks');
 
-  function handleHeader(e) {
-    const classes = e.target.classList;
-
-    if (classes.contains('fa-bars')) {
-      openSidebar(toggleMenu);
-      return;
-    }
-
-    if (classes.contains('fa-xmark')) {
-      closeSidebar(toggleMenu);
-      return;
-    }
-
-    if (classes.contains('fa-sun') || classes.contains('fa-moon')) {
-      toggleTheme();
-      return;
-    }
-  }
-
-  function handleSidebar(e) {
-    const projectsTiles = sidebar.querySelectorAll('.menu-tiles > .tile');
-    const projectsList = sidebar.querySelector('.projects-list');
-    const classes = e.target.classList;
-
-    if (classes.contains('fa-plus') || classes.contains('fa-angle-down')) {
-      toggleNewProjectForm();
-      return;
-    }
-
-    if (classes.contains('fa-trash-can')) {
-      const projectTile = e.target.parentElement.parentElement;
-      const projectId = projectTile.dataset.id;
-
-      projectsController.removeProject(projectId);
-      projectTile.remove();
-
-      setTasksCount(projectsTiles);
-      setActiveProject('all');
-      return;
-    }
-
-    if (classes.contains('tile')) {
-      setActiveProject(e.target.dataset.id);
-      return;
-    }
-
-    if (e.target.parentElement.parentElement.classList.contains('tile')) {
-      setActiveProject(e.target.parentElement.parentElement.dataset.id);
-      return;
-    }
-
-    if (e.target.type === 'submit') {
-      e.preventDefault();
-
-      const form = e.target.parentElement.parentElement;
-      const formData = new FormData(form);
-      const projectName = formData.get('project-name');
-      const projectColor = formData.get('color');
-
-      if (projectName.trim() === '' || projectColor.trim() === '') return;
-
-      const projectId = uuidv4();
-      const project = new Project(projectId, projectName, projectColor);
-
-      projectsController.addProject(project);
-      projectsList.prepend(createTile(project));
-      setActiveProject(projectId);
-      toggleNewProjectForm();
-      form.reset();
-    }
-  }
-
-  function openSidebar(toggleMenu) {
     sidebar.classList.add('open');
     sidebar.classList.remove('close');
-    sectionTasks.classList.add('inactive');
+    tasks.classList.add('inactive');
     toggleMenu.querySelector('.fa-bars').style.display = 'none';
     toggleMenu.querySelector('.fa-xmark').style.display = 'flex';
   }
 
-  function closeSidebar(toggleMenu) {
+  function closeSidebar() {
+    const sidebar = body.querySelector('.sidebar');
+    const toggleMenu = body.querySelector('.toggle-menu');
+    const tasks = body.querySelector('.tasks');
+
     sidebar.classList.remove('open');
     sidebar.classList.add('close');
-    sectionTasks.classList.remove('inactive');
+    tasks.classList.remove('inactive');
     toggleMenu.querySelector('.fa-bars').style.display = 'flex';
     toggleMenu.querySelector('.fa-xmark').style.display = 'none';
   }
@@ -115,6 +41,7 @@ export const displayController = (() => {
   }
 
   function toggleNewProjectForm() {
+    const sidebar = body.querySelector('.sidebar');
     const newProjectBtn = sidebar.querySelector('.projects-header > i');
 
     if (newProjectBtn.className === 'fa-solid fa-plus') {
@@ -127,8 +54,10 @@ export const displayController = (() => {
     newProjectSection.classList.toggle('show');
   }
 
-  function setTasksCount(projectsTiles) {
-    projectsTiles.forEach((tile) => {
+  function setTasksCount() {
+    const menuTiles = body.querySelectorAll('.menu-tiles > .tile');
+
+    menuTiles.forEach((tile) => {
       const tasksCount = tile.children[1].children[0];
       const tileId = tile.dataset.id;
 
@@ -156,27 +85,35 @@ export const displayController = (() => {
   }
 
   function setActiveProject(filter) {
-    const projectTiles = sidebar.querySelectorAll('.tile');
+    const tiles = body.querySelectorAll('.sidebar .tile');
 
-    projectTiles.forEach((tile) => {
+    tiles.forEach((tile) => {
       tile.classList.remove('active');
       if (tile.dataset.id === filter) {
         tile.classList.add('active');
 
         const displayText = tile.querySelector('.left > p').textContent;
-        if (tile.parentElement.classList.contains('projects-tiles')) {
+        if (tile.parentElement.classList.contains('menu-tiles')) {
           renderTasksHeader(displayText, false);
+          projectsController.setCurrentProject(null);
         } else {
           renderTasksHeader(displayText, true);
+          projectsController.setCurrentProject(tile.dataset.id);
         }
       }
     });
 
-    renderTasks(filter);
-    closeSidebar(toggleMenu);
+    renderCards(filter);
+    closeSidebar();
   }
 
+  const appendProject = (newProject) => {
+    const projectsList = body.querySelector('.projects-list');
+    projectsList.prepend(newProject);
+  };
+
   const openTaskForm = (mode, projectName) => {
+    const tasksCards = body.querySelector('.tasks-cards');
     const firstCard = tasksCards.children[0];
     if (firstCard && firstCard.classList.contains('new-task-card')) return;
 
@@ -185,6 +122,7 @@ export const displayController = (() => {
   };
 
   const closeTaskForm = () => {
+    const tasksCards = body.querySelector('.tasks-cards');
     const newTaskForm = tasksCards.children[0];
     newTaskForm.style.animation = '0.4s fade-out';
 
@@ -197,26 +135,26 @@ export const displayController = (() => {
     );
   };
 
-  const appendTask = (newTask, projectId) => {
-    const tasksTitle = body.querySelector('.tasks-title');
-    const project = projectsController.getProjectById(projectId);
+  const appendCard = (newCard, projectId) => {
+    const currentProject = projectsController.getCurrentProject();
+    const cardProject = projectsController.getProjectById(projectId);
 
-    if (project.name === tasksTitle.textContent) {
+    if (cardProject.id === currentProject.id) {
       const taskFormCard = body.querySelector('.new-task-card');
-      taskFormCard.after(createCard(newTask, project));
+      taskFormCard.after(newCard);
       return;
     }
 
     setActiveProject(projectId);
   };
 
-  const removeCard = (task) => {
-    task.style.animation = '0.4s fade-out';
+  const removeCard = (card) => {
+    card.style.animation = '0.4s fade-out';
 
-    task.addEventListener(
+    card.addEventListener(
       'animationend',
       (e) => {
-        task.remove();
+        card.remove();
       },
       { once: true }
     );
@@ -236,37 +174,34 @@ export const displayController = (() => {
   };
 
   function renderHeader() {
-    header = createHeader();
-    toggleMenu = header.querySelector('.toggle-menu');
-    header.addEventListener('click', handleHeader);
+    const header = createHeader();
     body.prepend(header);
   }
 
   function renderSidebar() {
-    sidebar = createSidebar();
-    sidebar.addEventListener('click', handleSidebar);
-
+    const sidebar = createSidebar();
     main.appendChild(sidebar);
   }
 
-  function renderTasksSection() {
-    sectionTasks = createTasksSection();
-    tasksCards = sectionTasks.querySelector('.tasks-cards');
-
-    main.appendChild(sectionTasks);
+  function renderTasks() {
+    const tasks = createTasksSection();
+    main.appendChild(tasks);
+    renderCards('all');
   }
 
   const renderTasksHeader = (title, showButton = false) => {
-    const currentHeader = sectionTasks.querySelector('.tasks-header');
+    const tasks = body.querySelector('.tasks');
+    const currentHeader = body.querySelector('.tasks-header');
     if (currentHeader) {
-      sectionTasks.children[0].remove();
+      tasks.children[0].remove();
     }
 
     const tasksHeader = createTasksHeader(title, showButton);
-    sectionTasks.prepend(tasksHeader);
+    tasks.prepend(tasksHeader);
   };
 
-  const renderTasks = (filter) => {
+  const renderCards = (filter) => {
+    const tasksCards = body.querySelector('.tasks-cards');
     tasksCards.innerHTML = '';
 
     let tasks = [];
@@ -300,12 +235,24 @@ export const displayController = (() => {
 
     renderHeader();
     renderSidebar();
-    renderTasksSection();
-    renderTasksHeader('All tasks');
-    renderTasks('all');
+    renderTasks();
   };
 
   return {
     init,
+    openSidebar,
+    closeSidebar,
+    toggleTheme,
+    toggleNewProjectForm,
+    setTasksCount,
+    setActiveProject,
+    appendProject,
+    toggleConfirmationScreen,
+    appendCard,
+    removeCard,
+    toggleCompleted,
+    toggleImportant,
+    openTaskForm,
+    closeTaskForm,
   };
 })();

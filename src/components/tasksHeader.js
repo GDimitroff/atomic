@@ -1,3 +1,5 @@
+import { actionsController } from '../controllers/actionsController';
+
 export default function createTasksHeader(title, showButton) {
   const header = document.createElement('header');
   header.classList.add('tasks-header');
@@ -17,5 +19,6 @@ export default function createTasksHeader(title, showButton) {
     header.appendChild(right);
   }
 
+  actionsController.handleCardsHeader(header);
   return header;
 }
