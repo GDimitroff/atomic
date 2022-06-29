@@ -142,6 +142,7 @@ body.light .fa-moon {
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 8px;
   animation: slide-right 1s ease-in-out;
   z-index: 2;
+  overflow-x: hidden;
 }
 
 .menu-tiles,
@@ -270,6 +271,8 @@ hr {
 
 .tasks.inactive {
   filter: grayscale(80%) blur(5px);
+  overflow: hidden;
+  height: calc(100vh - 60px);
   pointer-events: none;
 }
 
@@ -583,6 +586,28 @@ i {
 .red,
 .high {
   color: var(--primary-red);
+}
+
+/* SCROLLBAR */
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #cbd5e1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
 }
 
 /* INPUTS */
