@@ -11,7 +11,12 @@ export const displayController = (() => {
   const body = document.querySelector('body');
   const main = body.querySelector('.main');
 
-  function openSidebar() {
+  const toggleTheme = () => {
+    body.classList.toggle('light');
+    localStorage.setItem('theme', body.className);
+  };
+
+  const openSidebar = () => {
     const sidebar = body.querySelector('.sidebar');
     const toggleMenu = body.querySelector('.toggle-menu');
     const tasks = body.querySelector('.tasks');
@@ -21,9 +26,9 @@ export const displayController = (() => {
     tasks.classList.add('inactive');
     toggleMenu.querySelector('.fa-bars').style.display = 'none';
     toggleMenu.querySelector('.fa-xmark').style.display = 'flex';
-  }
+  };
 
-  function closeSidebar() {
+  const closeSidebar = () => {
     const sidebar = body.querySelector('.sidebar');
     const toggleMenu = body.querySelector('.toggle-menu');
     const tasks = body.querySelector('.tasks');
@@ -33,14 +38,9 @@ export const displayController = (() => {
     tasks.classList.remove('inactive');
     toggleMenu.querySelector('.fa-bars').style.display = 'flex';
     toggleMenu.querySelector('.fa-xmark').style.display = 'none';
-  }
+  };
 
-  function toggleTheme() {
-    body.classList.toggle('light');
-    localStorage.setItem('theme', body.className);
-  }
-
-  function toggleNewProjectForm() {
+  const toggleNewProjectForm = () => {
     const sidebar = body.querySelector('.sidebar');
     const newProjectBtn = sidebar.querySelector('.projects-header > i');
 
@@ -52,9 +52,9 @@ export const displayController = (() => {
 
     const newProjectSection = sidebar.querySelector('.new-project');
     newProjectSection.classList.toggle('show');
-  }
+  };
 
-  function setTasksCount() {
+  const setTasksCount = () => {
     const menuTiles = body.querySelectorAll('.menu-tiles > .tile');
 
     menuTiles.forEach((tile) => {
@@ -82,9 +82,9 @@ export const displayController = (() => {
           projectsController.getCompletedTasks().length || '';
       }
     });
-  }
+  };
 
-  function setActiveProject(filter) {
+  const setActiveProject = (filter) => {
     const tiles = body.querySelectorAll('.sidebar .tile');
 
     tiles.forEach((tile) => {
@@ -105,19 +105,19 @@ export const displayController = (() => {
 
     renderCards(filter);
     closeSidebar();
-  }
+  };
 
   const appendProject = (newProject) => {
     const projectsList = body.querySelector('.projects-list');
     projectsList.prepend(newProject);
   };
 
-  const openTaskForm = (mode, projectName) => {
+  const openTaskForm = (mode) => {
     const tasksCards = body.querySelector('.tasks-cards');
     const firstCard = tasksCards.children[0];
     if (firstCard && firstCard.classList.contains('new-task-card')) return;
 
-    const newTaskForm = createCardForm(mode, projectName);
+    const newTaskForm = createCardForm(mode);
     tasksCards.prepend(newTaskForm);
   };
 
@@ -173,34 +173,7 @@ export const displayController = (() => {
     card.children[0].classList.toggle('active');
   };
 
-  function renderHeader() {
-    const header = createHeader();
-    body.prepend(header);
-  }
-
-  function renderSidebar() {
-    const sidebar = createSidebar();
-    main.appendChild(sidebar);
-  }
-
-  function renderTasks() {
-    const tasks = createTasksSection();
-    main.appendChild(tasks);
-    renderCards('all');
-  }
-
-  const renderTasksHeader = (title, showButton = false) => {
-    const tasks = body.querySelector('.tasks');
-    const currentHeader = body.querySelector('.tasks-header');
-    if (currentHeader) {
-      tasks.children[0].remove();
-    }
-
-    const tasksHeader = createTasksHeader(title, showButton);
-    tasks.prepend(tasksHeader);
-  };
-
-  const renderCards = (filter) => {
+  function renderCards(filter) {
     const tasksCards = body.querySelector('.tasks-cards');
     tasksCards.innerHTML = '';
 
@@ -220,9 +193,35 @@ export const displayController = (() => {
     }
 
     tasks.forEach((task) => {
-      const project = projectsController.getProjectById(task.projectId);
-      tasksCards.appendChild(createCard(task, project));
+      tasksCards.appendChild(createCard(task));
     });
+  }
+
+  function renderTasksHeader(title, showButton = false) {
+    const tasks = body.querySelector('.tasks');
+    const currentHeader = body.querySelector('.tasks-header');
+    if (currentHeader) {
+      tasks.children[0].remove();
+    }
+
+    const tasksHeader = createTasksHeader(title, showButton);
+    tasks.prepend(tasksHeader);
+  }
+
+  const renderHeader = () => {
+    const header = createHeader();
+    body.prepend(header);
+  };
+
+  const renderSidebar = () => {
+    const sidebar = createSidebar();
+    main.appendChild(sidebar);
+  };
+
+  const renderTasks = () => {
+    const tasks = createTasksSection();
+    main.appendChild(tasks);
+    renderCards('all');
   };
 
   const init = () => {

@@ -66,13 +66,13 @@ export const actionsController = (() => {
 
         const form = e.target.parentElement.parentElement;
         const formData = new FormData(form);
-        const projectName = formData.get('project-name');
+        const projectTitle = formData.get('project-title');
         const projectColor = formData.get('color');
 
-        if (projectName.trim() === '' || projectColor.trim() === '') return;
+        if (projectTitle.trim() === '' || projectColor.trim() === '') return;
 
         const projectId = uuidv4();
-        const project = new Project(projectId, projectName, projectColor);
+        const project = new Project(projectId, projectTitle, projectColor);
         const projectTile = createTile(project);
 
         projectsController.addProject(project);
@@ -89,8 +89,7 @@ export const actionsController = (() => {
       if (e.currentTarget === e.target) return;
 
       if (e.target.classList.contains('btn-add')) {
-        const currentProject = projectsController.getCurrentProject();
-        displayController.openTaskForm(false, currentProject.name);
+        displayController.openTaskForm(false);
       }
     });
   };
@@ -161,8 +160,7 @@ export const actionsController = (() => {
           false
         );
 
-        const project = projectsController.getProjectById(projectId);
-        const newCard = createCard(newTask, project);
+        const newCard = createCard(newTask);
 
         projectsController.addTask(projectId, newTask);
         displayController.appendCard(newCard, projectId);

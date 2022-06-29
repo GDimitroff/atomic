@@ -17,11 +17,11 @@ export default function createProjectForm() {
     <div class="new-project">
       <form class="new-project-form">
         <div class="input">
-          <label for="project-name">
+          <label for="project-title">
             <input
-              name="project-name"
+              name="project-title"
               type="text"
-              id="project-name"
+              id="project-title"
               placeholder="Name..."
               required
             />

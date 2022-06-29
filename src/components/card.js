@@ -1,10 +1,13 @@
 import { actionsController } from '../controllers/actionsController';
+import { projectsController } from '../controllers/projectsController';
 
-export default function createCard(task, project) {
+export default function createCard(task) {
+  const project = projectsController.getProjectById(task.projectId);
+
   const card = document.createElement('div');
   card.classList.add('task-card');
   card.dataset.id = task.id;
-  card.dataset.projectId = project.id;
+  card.dataset.projectId = task.projectId;
 
   if (task.isImportant) {
     card.classList.add('important');
@@ -27,7 +30,7 @@ export default function createCard(task, project) {
         <h3>${task.title}</h3>
       </div>
       <div class="right">
-        <p class="${project.color}">${project.name}</p>
+        <p class="${project.color}">${project.title}</p>
       </div>
     </div>
     <p class="card-date">${task.date ? task.date : 'No due date'}</p>

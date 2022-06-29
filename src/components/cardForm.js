@@ -1,8 +1,10 @@
 import { actionsController } from '../controllers/actionsController';
 import { projectsController } from '../controllers/projectsController';
 
-export default function createCardForm(mode, headerTitle) {
+export default function createCardForm(mode) {
   const projects = projectsController.getProjects();
+  const currentProject = projectsController.getCurrentProject();
+
   const select = document.createElement('select');
   select.name = 'projectId';
   select.id = 'projectId';
@@ -11,9 +13,9 @@ export default function createCardForm(mode, headerTitle) {
     .map((project) => {
       const option = document.createElement('option');
       option.value = project.id;
-      option.textContent = project.name;
+      option.textContent = project.title;
 
-      if (option.textContent === headerTitle) {
+      if (project.id === currentProject.id) {
         option.defaultSelected = true;
       }
 
