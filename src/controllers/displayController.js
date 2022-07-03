@@ -40,18 +40,22 @@ export const displayController = (() => {
     toggleMenu.querySelector('.fa-xmark').style.display = 'none';
   };
 
-  const toggleNewProjectForm = () => {
+  const openProjectForm = () => {
     const sidebar = body.querySelector('.sidebar');
     const newProjectBtn = sidebar.querySelector('.projects-header > i');
-
-    if (newProjectBtn.className === 'fa-solid fa-plus') {
-      newProjectBtn.className = 'fa-solid fa-angle-down';
-    } else {
-      newProjectBtn.className = 'fa-solid fa-plus';
-    }
+    newProjectBtn.className = 'fa-solid fa-angle-down';
 
     const newProjectSection = sidebar.querySelector('.new-project');
-    newProjectSection.classList.toggle('show');
+    newProjectSection.classList.add('show');
+  };
+
+  const closeProjectForm = () => {
+    const sidebar = body.querySelector('.sidebar');
+    const newProjectBtn = sidebar.querySelector('.projects-header > i');
+    newProjectBtn.className = 'fa-solid fa-plus';
+
+    const newProjectSection = sidebar.querySelector('.new-project');
+    newProjectSection.classList.remove('show');
   };
 
   const setTasksCount = () => {
@@ -256,7 +260,8 @@ export const displayController = (() => {
     openSidebar,
     closeSidebar,
     toggleTheme,
-    toggleNewProjectForm,
+    openProjectForm,
+    closeProjectForm,
     setTasksCount,
     setActiveProject,
     appendProject,

@@ -28,53 +28,59 @@ export const actionsController = (() => {
     });
   };
 
-  const handleSidebar = (sidebar) => {
-    sidebar.addEventListener('click', (e) => {
+  const handleMenuTiles = (menuTiles) => {
+    Array.from(menuTiles.children).forEach((tile) => {
+      tile.addEventListener('click', (e) => {
+        displayController.setActiveProject(e.currentTarget.dataset.id);
+      });
+    });
+  };
+
+  const handleProjectTile = (tile) => {
+    tile.addEventListener('click', (e) => {
+      const id = e.currentTarget.dataset.id;
       const classes = e.target.classList;
 
-      if (classes.contains('fa-plus') || classes.contains('fa-angle-down')) {
-        displayController.toggleNewProjectForm();
+      if (classes.contains('fa-pen-to-square')) {
+        // TODO: Create modal
         return;
       }
 
-      if (classes.contains('fa-trash-can')) {
-        const projectTile = e.target.parentElement.parentElement;
-        displayController.toggleConfirmationScreen(projectTile);
-        return;
-      }
-
-      if (classes.contains('cancel')) {
-        const projectTile = e.target.parentElement.parentElement.parentElement;
-        displayController.toggleConfirmationScreen(projectTile);
+      if (classes.contains('fa-trash-can') || classes.contains('cancel')) {
+        displayController.toggleConfirmationScreen(tile);
         return;
       }
 
       if (classes.contains('delete')) {
-        const projectTile = e.target.parentElement.parentElement.parentElement;
-        const projectId = projectTile.dataset.id;
-        projectsController.removeProject(projectId);
-        projectTile.remove();
+        projectsController.removeProject(id);
+        tile.remove();
 
         displayController.setTasksCount();
         displayController.setActiveProject('all');
         return;
       }
 
-      if (classes.contains('tile')) {
-        displayController.setActiveProject(e.target.dataset.id);
+      displayController.setActiveProject(id);
+    });
+  };
+
+  const handleProjectForm = (formContainer) => {
+    formContainer.addEventListener('click', (e) => {
+      const classes = e.target.classList;
+
+      if (classes.contains('fa-plus')) {
+        displayController.openProjectForm();
         return;
       }
 
-      if (e.target.parentElement.parentElement.classList.contains('tile')) {
-        displayController.setActiveProject(
-          e.target.parentElement.parentElement.dataset.id
-        );
+      if (classes.contains('fa-angle-down')) {
+        displayController.closeProjectForm();
         return;
       }
 
       if (e.target.type === 'submit') {
         e.preventDefault();
-
+        
         const form = e.target.parentElement.parentElement;
         const formData = new FormData(form);
         const projectTitle = formData.get('project-title');
@@ -99,7 +105,7 @@ export const actionsController = (() => {
         projectsController.addProject(project);
         displayController.appendProject(projectTile);
         displayController.setActiveProject(projectId);
-        displayController.toggleNewProjectForm();
+        displayController.closeProjectForm();
         form.reset();
       }
     });
@@ -206,7 +212,9 @@ export const actionsController = (() => {
 
   return {
     handleHeader,
-    handleSidebar,
+    handleMenuTiles,
+    handleProjectTile,
+    handleProjectForm,
     handleCardsHeader,
     handleCard,
     handleCardForm,

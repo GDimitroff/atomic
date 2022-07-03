@@ -1,4 +1,5 @@
 import { projectsController } from '../controllers/projectsController';
+import { actionsController } from '../controllers/actionsController';
 import { isToday, isThisWeek } from 'date-fns';
 
 export default function createMenu() {
@@ -59,5 +60,6 @@ export default function createMenu() {
     </div>
   `;
 
+  actionsController.handleMenuTiles(menuTiles);
   return menuTiles;
 }

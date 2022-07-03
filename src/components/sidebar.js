@@ -1,4 +1,3 @@
-import { actionsController } from '../controllers/actionsController';
 import createMenu from './menu';
 import createProjectForm from './projectForm';
 import createProjectsList from './projectsList';
@@ -8,10 +7,9 @@ export default function createSidebar() {
   sidebar.classList.add('sidebar');
 
   const menu = createMenu();
-  const projectForm = createProjectForm();
+  const formContainer = createProjectForm();
   const projects = createProjectsList();
-  sidebar.append(menu, projectForm, projects);
 
-  actionsController.handleSidebar(sidebar);
+  sidebar.append(menu, formContainer, projects);
   return sidebar;
 }

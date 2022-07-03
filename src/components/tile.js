@@ -1,3 +1,5 @@
+import { actionsController } from '../controllers/actionsController';
+
 export default function createTile(project) {
   const tile = document.createElement('div');
   tile.classList.add('tile');
@@ -21,5 +23,6 @@ export default function createTile(project) {
     </div>
   `;
 
+  actionsController.handleProjectTile(tile);
   return tile;
 }

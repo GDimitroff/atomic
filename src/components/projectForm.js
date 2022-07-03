@@ -1,9 +1,9 @@
 import { projectsController } from '../controllers/projectsController';
+import { actionsController } from '../controllers/actionsController';
 
 export default function createProjectForm() {
   const formContainer = document.createElement('div');
   formContainer.classList.add('form-container');
-
   const projectsCount = projectsController.getProjects().length;
 
   formContainer.innerHTML = `
@@ -11,9 +11,7 @@ export default function createProjectForm() {
       <p>Projects (<span class="projects-count">${projectsCount}</span>)</p>
       <i class="fa-solid fa-plus"></i>
     </div>
-
     <hr />
-
     <div class="new-project">
       <form class="new-project-form">
         <div class="input">
@@ -37,11 +35,15 @@ export default function createProjectForm() {
               name="color"
               class="default"
               value="default"
-              checked
             />
           </label>
           <label class="form-control">
-            <input type="radio" name="color" class="gold" value="gold" />
+            <input 
+              type="radio" 
+              name="color" 
+              class="gold" 
+              value="gold"  
+            />
           </label>
           <label class="form-control">
             <input
@@ -52,7 +54,12 @@ export default function createProjectForm() {
             />
           </label>
           <label class="form-control">
-            <input type="radio" name="color" class="cyan" value="cyan" />
+            <input 
+              type="radio" 
+              name="color" 
+              class="cyan" 
+              value="cyan"  
+            />
           </label>
           <label class="form-control">
             <input
@@ -63,7 +70,12 @@ export default function createProjectForm() {
             />
           </label>
           <label class="form-control">
-            <input type="radio" name="color" class="pink" value="pink" />
+            <input 
+              type="radio" 
+              name="color" 
+              class="pink" 
+              value="pink"
+            />
           </label>
           <label class="form-control">
             <input
@@ -74,10 +86,20 @@ export default function createProjectForm() {
             />
           </label>
           <label class="form-control">
-            <input type="radio" name="color" class="lime" value="lime" />
+            <input 
+              type="radio" 
+              name="color" 
+              class="lime" 
+              value="lime"  
+            />
           </label>
           <label class="form-control">
-            <input type="radio" name="color" class="red" value="red" />
+            <input 
+              type="radio" 
+              name="color" 
+              class="red" 
+              value="red"  
+            />
           </label>
         </div>
 
@@ -88,5 +110,6 @@ export default function createProjectForm() {
     </div>
   `;
 
+  actionsController.handleProjectForm(formContainer);
   return formContainer;
 }
