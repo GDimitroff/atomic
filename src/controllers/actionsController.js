@@ -39,8 +39,19 @@ export const actionsController = (() => {
 
       if (classes.contains('fa-trash-can')) {
         const projectTile = e.target.parentElement.parentElement;
-        const projectId = projectTile.dataset.id;
+        displayController.toggleConfirmationScreen(projectTile);
+        return;
+      }
 
+      if (classes.contains('cancel')) {
+        const projectTile = e.target.parentElement.parentElement.parentElement;
+        displayController.toggleConfirmationScreen(projectTile);
+        return;
+      }
+
+      if (classes.contains('delete')) {
+        const projectTile = e.target.parentElement.parentElement.parentElement;
+        const projectId = projectTile.dataset.id;
         projectsController.removeProject(projectId);
         projectTile.remove();
 
@@ -69,7 +80,17 @@ export const actionsController = (() => {
         const projectTitle = formData.get('project-title');
         const projectColor = formData.get('color');
 
-        if (projectTitle.trim() === '' || projectColor.trim() === '') return;
+        if (projectTitle.trim() === '') {
+          const nameInput = form.querySelector('input[type="text"]');
+          nameInput.classList.add('invalid');
+
+          nameInput.addEventListener('focus', (e) => {
+            nameInput.classList.remove('invalid');
+          });
+          return;
+        }
+
+        if (projectColor.trim() === '') return;
 
         const projectId = uuidv4();
         const project = new Project(projectId, projectTitle, projectColor);
@@ -141,6 +162,19 @@ export const actionsController = (() => {
         const formData = new FormData(form);
         let { title, projectId, description, priority, date } =
           Object.fromEntries(formData);
+
+        if (title.trim() === '') {
+          const nameInput = form.querySelector('input[type="text"]');
+          nameInput.classList.add('invalid');
+
+          nameInput.addEventListener('focus', (e) => {
+            nameInput.classList.remove('invalid');
+          });
+
+          return;
+        }
+
+        if (projectId.trim() === '' || priority.trim() === '') return;
 
         if (!date) {
           date = null;

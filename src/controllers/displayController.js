@@ -86,6 +86,20 @@ export const displayController = (() => {
 
   const setActiveProject = (filter) => {
     const tiles = body.querySelectorAll('.sidebar .tile');
+    const currentProject = projectsController.getCurrentProject();
+    const currentTitle = body.querySelector('.tasks-title');
+
+    if (currentTitle.textContent === 'Today' && filter === 'today') return;
+
+    if (currentTitle.textContent === 'This week' && filter === 'week') return;
+
+    if (currentTitle.textContent === 'Important' && filter === 'important')
+      return;
+
+    if (currentTitle.textContent === 'Completed' && filter === 'completed')
+      return;
+
+    if (currentProject && filter === currentProject.id) return;
 
     tiles.forEach((tile) => {
       tile.classList.remove('active');
@@ -168,9 +182,9 @@ export const displayController = (() => {
     task.classList.toggle('completed');
   };
 
-  const toggleConfirmationScreen = (card) => {
-    card.classList.toggle('inactive');
-    card.children[0].classList.toggle('active');
+  const toggleConfirmationScreen = (element) => {
+    element.classList.toggle('inactive');
+    element.children[0].classList.toggle('active');
   };
 
   function renderCards(filter) {

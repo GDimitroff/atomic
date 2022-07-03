@@ -29,7 +29,7 @@ export default function createCardForm(mode) {
     <form class="new-task-form">
       <div class="card-header">
         <div class="left">
-          <input name="title" type="text" placeholder="Task title..." required />
+          <input name="title" type="text" placeholder="Title..." required />
           <div class="select">
             ${select.outerHTML}
             <span class="select-focus"></span>
@@ -41,7 +41,7 @@ export default function createCardForm(mode) {
       </div>
   
       <div class="card-content">
-        <textarea name="description" id="description" placeholder="Your description here..."></textarea>
+        <textarea name="description" id="description" placeholder="Description..."></textarea>
       </div>
 
       <div class="card-footer">

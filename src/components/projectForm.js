@@ -22,7 +22,9 @@ export default function createProjectForm() {
               name="project-title"
               type="text"
               id="project-title"
-              placeholder="Name..."
+              placeholder="Title..."
+              minlength="1"
+              maxlength="18"
               required
             />
           </label>

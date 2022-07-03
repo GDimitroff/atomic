@@ -14,7 +14,7 @@ export default function createTasksHeader(title, showButton) {
     const right = document.createElement('div');
     right.classList.add('right');
     right.innerHTML = `
-      <button class="btn btn-add">Add new</button>
+      <button class="btn btn-add">&plus; New task</button>
     `;
     header.appendChild(right);
   }
