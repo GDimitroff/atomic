@@ -75,7 +75,7 @@ export const actionsController = (() => {
 
       if (e.target.type === 'submit') {
         e.preventDefault();
-        
+
         const form = e.target.parentElement.parentElement;
         const formData = new FormData(form);
         const projectTitle = formData.get('project-title');
@@ -111,7 +111,7 @@ export const actionsController = (() => {
       if (e.currentTarget === e.target) return;
 
       if (e.target.classList.contains('btn-add')) {
-        displayController.openTaskForm(false);
+        displayController.openTaskForm();
       }
     });
   };
@@ -121,6 +121,11 @@ export const actionsController = (() => {
       const classes = e.target.classList;
       const id = card.dataset.id;
       const projectId = card.dataset.projectId;
+
+      if (classes.contains('fa-pen-to-square')) {
+        displayController.openEditTaskModal(id);
+        return;
+      }
 
       if (classes.contains('fa-trash-can') || classes.contains('cancel')) {
         displayController.toggleConfirmationScreen(card);

@@ -10,6 +10,8 @@ import { isToday, isThisWeek } from 'date-fns';
 export const displayController = (() => {
   const body = document.querySelector('body');
   const main = body.querySelector('.main');
+  const overlay = body.querySelector('.overlay');
+  const modal = body.querySelector('.modal');
 
   const toggleTheme = () => {
     body.classList.toggle('light');
@@ -130,12 +132,12 @@ export const displayController = (() => {
     projectsList.prepend(newProject);
   };
 
-  const openTaskForm = (mode) => {
+  const openTaskForm = () => {
     const tasksCards = body.querySelector('.tasks-cards');
     const firstCard = tasksCards.children[0];
     if (firstCard && firstCard.classList.contains('new-task-card')) return;
 
-    const newTaskForm = createCardForm(mode);
+    const newTaskForm = createCardForm();
     tasksCards.prepend(newTaskForm);
   };
 
@@ -151,6 +153,17 @@ export const displayController = (() => {
       },
       { once: true }
     );
+  };
+
+  const openEditTaskModal = (id) => {
+    overlay.classList.add('active');
+    modal.classList.add('active');
+    body.classList.add('inactive');
+
+    const editFormCard = createCardForm(id);
+    editFormCard.classList.add('edit-form-card');
+    console.log(editFormCard);
+    modal.appendChild(editFormCard);
   };
 
   const appendCard = (newCard, projectId) => {
@@ -272,5 +285,6 @@ export const displayController = (() => {
     toggleImportant,
     openTaskForm,
     closeTaskForm,
+    openEditTaskModal,
   };
 })();

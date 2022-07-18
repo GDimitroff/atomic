@@ -46,6 +46,20 @@ export const projectsController = (() => {
     return tasks;
   };
 
+  const getTaskById = (id) => {
+    let task = null;
+    projects.forEach((project) => {
+      project.tasks.find((t) => {
+        if (t.id === id) {
+          task = t;
+          return;
+        }
+      });
+    });
+
+    return task;
+  };
+
   const getTasksByDate = (filter) => {
     let tasks = [];
     projects.forEach((project) => {
@@ -151,6 +165,7 @@ export const projectsController = (() => {
     addProject,
     removeProject,
     getTasks,
+    getTaskById,
     getTasksByDate,
     getImportantTasks,
     getCompletedTasks,
