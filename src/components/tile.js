@@ -18,7 +18,6 @@ export default function createTile(project) {
       <p>${project.title}</p>
     </div>
     <div class="right">
-      <i class="fa-solid fa-pen-to-square"></i>
       <i class="fa-solid fa-trash-can"></i>
     </div>
   `;

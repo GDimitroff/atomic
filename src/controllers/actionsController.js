@@ -41,11 +41,6 @@ export const actionsController = (() => {
       const id = e.currentTarget.dataset.id;
       const classes = e.target.classList;
 
-      if (classes.contains('fa-pen-to-square')) {
-        // TODO: Create modal
-        return;
-      }
-
       if (classes.contains('fa-trash-can') || classes.contains('cancel')) {
         displayController.toggleConfirmationScreen(tile);
         return;
