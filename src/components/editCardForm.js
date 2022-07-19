@@ -7,7 +7,10 @@ export default function createEditCardForm(id) {
   const currentProject = projectsController.getCurrentProject();
 
   const task = projectsController.getTaskById(id);
-  const date = format(new Date(task.date), 'yyyy-MM-dd');
+  let date = null;
+  if (task.date) {
+    date = format(new Date(task.date), 'yyyy-MM-dd');
+  }
 
   const select = document.createElement('select');
   select.name = 'projectId';
@@ -65,7 +68,9 @@ export default function createEditCardForm(id) {
           </select>
           <span class="select-focus"></span>
         </div>
-        <input type="date" id="date" name="date" value="${date}"/>
+        <input type="date" id="date" name="date" value="${
+          task.date ? date : ''
+        }"/>
       </div>
 
       <div class="edit-form-footer">
