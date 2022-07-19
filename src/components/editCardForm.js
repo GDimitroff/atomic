@@ -32,6 +32,8 @@ export default function createEditCardForm(id) {
 
   const editCardForm = document.createElement('div');
   editCardForm.classList.add('edit-task');
+  editCardForm.dataset.id = id;
+  
   editCardForm.innerHTML = `
     <div class="edit-task-header">
       <h4>Edit task</h4>
@@ -41,7 +43,7 @@ export default function createEditCardForm(id) {
         <div class="left">
           <div class="input">
             <label for="title">Title</label>
-            <input name="title" type="text" value="${task.title}" required />
+            <input id="title" name="title" type="text" value="${task.title}" required />
           </div>
         </div>
         <div class="right">
@@ -90,7 +92,7 @@ export default function createEditCardForm(id) {
 
       <div class="edit-form-footer">
         <button type="button" class="btn btn-close">Cancel</button>
-        <button type="button" class="btn btn-submit">Save</button>
+        <button type="submit" class="btn btn-submit">Save</button>
       </div>
     </form>
   `;

@@ -212,8 +212,45 @@ export const actionsController = (() => {
 
   const handleEditTaskForm = (editTaskForm) => {
     editTaskForm.addEventListener('click', (e) => {
+      const id = editTaskForm.dataset.id;
+
       if (e.target.classList.contains('btn-close')) {
         displayController.closeEditTaskModal();
+      }
+
+      if (e.target.type === 'submit') {
+        e.preventDefault();
+
+        const form = editTaskForm.children[1];
+        const formData = new FormData(form);
+        let { title, projectId, description, priority, date } =
+          Object.fromEntries(formData);
+
+        if (title.trim() === '') {
+          const nameInput = form.querySelector('input[type="text"]');
+          nameInput.classList.add('invalid');
+
+          nameInput.addEventListener('focus', (e) => {
+            nameInput.classList.remove('invalid');
+          });
+
+          return;
+        }
+
+        if (projectId.trim() === '' || priority.trim() === '') return;
+
+        if (!date) {
+          date = null;
+        } else {
+          const [year, month, day] = date.split('-');
+          date = `${day}.${month}.${year}`;
+        }
+
+        projectsController.updateTask(id, title, description, priority, date);
+        displayController.updateCard(id);
+        displayController.setTasksCount();
+        displayController.closeEditTaskModal();
+        form.reset();
       }
     });
   };
@@ -226,6 +263,6 @@ export const actionsController = (() => {
     handleCardsHeader,
     handleCard,
     handleCardForm,
-    handleEditTaskForm
+    handleEditTaskForm,
   };
 })();

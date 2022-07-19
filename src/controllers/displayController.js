@@ -202,6 +202,21 @@ export const displayController = (() => {
     );
   };
 
+  const updateCard = (id) => {
+    const cards = body.querySelectorAll('.task-card');
+    let card = null;
+    cards.forEach((c) => {
+      if (c.dataset.id === id) {
+        card = c;
+        return;
+      }
+    });
+
+    const task = projectsController.getTaskById(id);
+    const newCard = createCard(task);
+    card.innerHTML = newCard.innerHTML;
+  };
+
   const toggleImportant = (task) => {
     task.classList.toggle('important');
   };
@@ -292,6 +307,7 @@ export const displayController = (() => {
     toggleConfirmationScreen,
     appendCard,
     removeCard,
+    updateCard,
     toggleCompleted,
     toggleImportant,
     openTaskForm,

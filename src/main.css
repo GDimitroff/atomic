@@ -490,7 +490,6 @@ hr {
       padding-box,
     linear-gradient(to right, var(--primary-purple), var(--primary-pink))
       border-box;
-  border-radius: 6px;
   border: 2px solid transparent;
 
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 8px;
@@ -518,8 +517,6 @@ hr {
 
 .edit-task-header {
   display: flex;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
   padding: 1rem 1.8rem;
   color: #fafafa;
   background: linear-gradient(
@@ -557,7 +554,19 @@ hr {
 }
 
 .edit-form-footer button {
+  font-size: 1.2rem;
   padding: 0.6rem 1.8rem;
+}
+
+.edit-form-footer button:first-child {
+  padding: 0;
+  background-color: transparent;
+  color: var(--primary-grey);
+}
+
+.edit-form-footer button:first-child:hover,
+.edit-form-footer button:first-child:active {
+  color: var(--text-color);
 }
 
 .input {
@@ -596,12 +605,13 @@ hr {
 .modal {
   display: block;
   position: fixed;
-  top: 110px;
+  top: 100px;
   left: 50%;
   opacity: 0;
   transform: translateX(-50%) scale(0);
   background-color: var(--primary-background-color);
-  border-radius: 3px;
+  border-radius: 6px;
+  overflow: hidden;
   pointer-events: none;
   z-index: 4;
 

@@ -116,6 +116,15 @@ export const projectsController = (() => {
     updateStorage();
   };
 
+  const updateTask = (id, title, description, priority, date) => {
+    const task = getTaskById(id);
+    task.title = title;
+    task.description = description;
+    task.priority = priority;
+    task.date = date;
+    updateStorage();
+  };
+
   const toggleImportant = (id, projectId) => {
     const project = getProjectById(projectId);
     const task = project.tasks.find((task) => task.id === id);
@@ -171,6 +180,7 @@ export const projectsController = (() => {
     getCompletedTasks,
     addTask,
     removeTask,
+    updateTask,
     toggleImportant,
     toggleCompleted,
   };
