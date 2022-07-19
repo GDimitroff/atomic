@@ -246,10 +246,24 @@ export const actionsController = (() => {
           date = `${day}.${month}.${year}`;
         }
 
-        projectsController.updateTask(id, title, description, priority, date);
+        projectsController.updateTask(
+          id,
+          projectId,
+          title,
+          description,
+          priority,
+          date
+        );
+
         displayController.updateCard(id);
         displayController.setTasksCount();
         displayController.closeEditTaskModal();
+
+        const currentProject = projectsController.getCurrentProject();
+        if (currentProject) {
+          displayController.setActiveProject(projectId);
+        }
+
         form.reset();
       }
     });

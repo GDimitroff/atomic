@@ -1,15 +1,16 @@
-import { actionsController } from '../controllers/actionsController';
 import { projectsController } from '../controllers/projectsController';
+import { actionsController } from '../controllers/actionsController';
 import { format } from 'date-fns';
 
 export default function createEditCardForm(id) {
   const projects = projectsController.getProjects();
-  const currentProject = projectsController.getCurrentProject();
 
   const task = projectsController.getTaskById(id);
   let date = null;
   if (task.date) {
-    date = format(new Date(task.date), 'yyyy-MM-dd');
+    const [day, month, year] = task.date.split('.');
+    date = `${year}-${month}-${day}`;
+    date = format(new Date(date), 'yyyy-MM-dd');
   }
 
   const select = document.createElement('select');
@@ -22,7 +23,7 @@ export default function createEditCardForm(id) {
       option.value = project.id;
       option.textContent = project.title;
 
-      if (currentProject && project.id === currentProject.id) {
+      if (task.projectId === project.id) {
         option.defaultSelected = true;
       }
 
@@ -33,7 +34,7 @@ export default function createEditCardForm(id) {
   const editCardForm = document.createElement('div');
   editCardForm.classList.add('edit-task');
   editCardForm.dataset.id = id;
-  
+
   editCardForm.innerHTML = `
     <div class="edit-task-header">
       <h4>Edit task</h4>
@@ -43,7 +44,9 @@ export default function createEditCardForm(id) {
         <div class="left">
           <div class="input">
             <label for="title">Title</label>
-            <input id="title" name="title" type="text" value="${task.title}" required />
+            <input id="title" name="title" type="text" value="${
+              task.title
+            }" required />
           </div>
         </div>
         <div class="right">

@@ -605,7 +605,7 @@ hr {
 .modal {
   display: block;
   position: fixed;
-  top: 100px;
+  top: 10vh;
   left: 50%;
   opacity: 0;
   transform: translateX(-50%) scale(0);

@@ -161,6 +161,8 @@ export const displayController = (() => {
   };
 
   const openEditTaskModal = (id) => {
+    modal.innerHTML = '';
+
     overlay.classList.add('active');
     modal.classList.add('active');
     body.classList.add('inactive');
@@ -173,8 +175,6 @@ export const displayController = (() => {
     overlay.classList.remove('active');
     modal.classList.remove('active');
     body.classList.remove('inactive');
-
-    modal.innerHTML = '';
   };
 
   const appendCard = (newCard, projectId) => {

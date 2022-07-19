@@ -116,13 +116,19 @@ export const projectsController = (() => {
     updateStorage();
   };
 
-  const updateTask = (id, title, description, priority, date) => {
+  const updateTask = (id, projectId, title, description, priority, date) => {
     const task = getTaskById(id);
+    task.projectId = projectId;
     task.title = title;
     task.description = description;
     task.priority = priority;
     task.date = date;
-    updateStorage();
+
+    projects.forEach((project) => {
+      project.tasks = project.tasks.filter((t) => t.id !== id);
+    });
+
+    addTask(projectId, task);
   };
 
   const toggleImportant = (id, projectId) => {

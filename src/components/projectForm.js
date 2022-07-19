@@ -14,7 +14,7 @@ export default function createProjectForm() {
     <hr />
     <div class="new-project">
       <form class="new-project-form">
-        <div class="input">
+        <div class="project-title">
           <label for="project-title">
             <input
               name="project-title"
