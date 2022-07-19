@@ -26,7 +26,7 @@ module.exports = merge(common, {
       new CssMinimizerPlugin(),
       new HtmlWebpackPlugin({
         template: './src/template.html',
-        // favicon: './src/assets/imgs/favicon.ico',
+        favicon: './src/favicon.ico',
         minify: true,
       }),
     ],
