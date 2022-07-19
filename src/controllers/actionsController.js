@@ -210,6 +210,12 @@ export const actionsController = (() => {
     });
   };
 
+  const handleEditTaskForm = (editTaskForm) => {
+    editTaskForm.addEventListener('click', (e) => {
+      console.log('here');
+    });
+  };
+
   return {
     handleHeader,
     handleMenuTiles,
@@ -218,5 +224,6 @@ export const actionsController = (() => {
     handleCardsHeader,
     handleCard,
     handleCardForm,
+    handleEditTaskForm
   };
 })();

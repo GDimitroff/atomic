@@ -6,6 +6,7 @@ import createTasksHeader from '../components/tasksHeader';
 import createCard from '../components/card';
 import createCardForm from '../components/cardForm';
 import { isToday, isThisWeek } from 'date-fns';
+import createEditCardForm from '../components/editCardForm';
 
 export const displayController = (() => {
   const body = document.querySelector('body');
@@ -160,10 +161,8 @@ export const displayController = (() => {
     modal.classList.add('active');
     body.classList.add('inactive');
 
-    const editFormCard = createCardForm(id);
-    editFormCard.classList.add('edit-form-card');
-    console.log(editFormCard);
-    modal.appendChild(editFormCard);
+    const editTask = createEditCardForm(id);
+    modal.appendChild(editTask);
   };
 
   const appendCard = (newCard, projectId) => {

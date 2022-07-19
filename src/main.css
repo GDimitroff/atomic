@@ -512,13 +512,63 @@ hr {
   gap: 18px;
 }
 
-.edit-form-card {
-  height: auto;
-  background: none;
+.edit-task {
+  min-width: 280px;
+}
+
+.edit-task-header {
+  display: flex;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  padding: 1rem 1.8rem;
+  color: #fafafa;
+  background: linear-gradient(
+    to right,
+    var(--primary-purple) 0%,
+    var(--primary-pink) 100%
+  );
+}
+
+.edit-form-header {
+  display: flex;
+  gap: 12px;
+}
+
+.edit-task-form {
   background-color: var(--secondary-background-color);
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  animation: none;
+  padding: 1.8rem;
+}
+
+.edit-task-form textarea {
+  margin-top: 1rem;
+}
+
+.edit-task-form .select {
+  width: 120px;
+}
+
+.edit-form-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-top: 0.6rem;
+}
+
+.edit-form-content input[type='date'] {
+  max-width: none;
+  width: 100%;
+}
+
+.edit-form-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 1.8rem;
+}
+
+.edit-form-footer button {
+  padding: 0.6rem 0.8rem;
 }
 
 .overlay {
@@ -544,10 +594,10 @@ hr {
 .modal {
   display: block;
   position: fixed;
-  top: 50%;
+  top: 100px;
   left: 50%;
   opacity: 0;
-  transform: translate(-50%, -50%) scale(0);
+  transform: translateX(-50%) scale(0);
   background-color: var(--primary-background-color);
   border-radius: 3px;
   pointer-events: none;
@@ -557,24 +607,11 @@ hr {
 }
 
 .modal.active {
-  transform: translate(-50%, -50%) scale(1);
+  transform: translateX(-50%) scale(1);
   opacity: 1;
   pointer-events: all;
 
   transition: all 0.4s ease-in-out;
-}
-
-.modal h4 {
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-  text-align: center;
-  padding: 1rem;
-  color: #fafafa;
-  background: linear-gradient(
-    to right,
-    var(--primary-purple) 0%,
-    var(--primary-pink) 100%
-  );
 }
 
 /* UTILITY */

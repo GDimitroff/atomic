@@ -1,14 +1,9 @@
 import { actionsController } from '../controllers/actionsController';
 import { projectsController } from '../controllers/projectsController';
 
-export default function createCardForm(id) {
+export default function createCardForm() {
   const projects = projectsController.getProjects();
   const currentProject = projectsController.getCurrentProject();
-
-  let task = null;
-  if (id) {
-    task = projectsController.getTaskById(id);
-  }
 
   const select = document.createElement('select');
   select.name = 'projectId';
@@ -68,6 +63,6 @@ export default function createCardForm(id) {
     </form>
   `;
 
-  actionsController.handleCardForm(cardForm);
+  actionsController.handleEditTaskForm(cardForm);
   return cardForm;
 }
