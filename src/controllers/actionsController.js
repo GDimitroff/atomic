@@ -212,7 +212,9 @@ export const actionsController = (() => {
 
   const handleEditTaskForm = (editTaskForm) => {
     editTaskForm.addEventListener('click', (e) => {
-      console.log('here');
+      if (e.target.classList.contains('btn-close')) {
+        displayController.closeEditTaskModal();
+      }
     });
   };
 

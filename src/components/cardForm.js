@@ -63,6 +63,6 @@ export default function createCardForm() {
     </form>
   `;
 
-  actionsController.handleEditTaskForm(cardForm);
+  actionsController.handleCardForm(cardForm);
   return cardForm;
 }

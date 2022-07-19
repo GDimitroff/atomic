@@ -14,6 +14,10 @@ export const displayController = (() => {
   const overlay = body.querySelector('.overlay');
   const modal = body.querySelector('.modal');
 
+  overlay.addEventListener('click', (e) => {
+    closeEditTaskModal();
+  });
+
   const toggleTheme = () => {
     body.classList.toggle('light');
     localStorage.setItem('theme', body.className);
@@ -165,6 +169,14 @@ export const displayController = (() => {
     modal.appendChild(editTask);
   };
 
+  const closeEditTaskModal = () => {
+    overlay.classList.remove('active');
+    modal.classList.remove('active');
+    body.classList.remove('inactive');
+
+    modal.innerHTML = '';
+  };
+
   const appendCard = (newCard, projectId) => {
     const currentProject = projectsController.getCurrentProject();
     const cardProject = projectsController.getProjectById(projectId);
@@ -285,5 +297,6 @@ export const displayController = (() => {
     openTaskForm,
     closeTaskForm,
     openEditTaskModal,
+    closeEditTaskModal,
   };
 })();
