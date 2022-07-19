@@ -65,7 +65,13 @@ export const displayController = (() => {
     newProjectSection.classList.remove('show');
   };
 
-  const setTasksCount = () => {
+  const updateProjectsCount = () => {
+    const projectsCount = body.querySelector('.projects-count');
+    const count = projectsController.getProjects().length;
+    projectsCount.textContent = count;
+  };
+
+  const updateTasksCount = () => {
     const menuTiles = body.querySelectorAll('.menu-tiles > .tile');
 
     menuTiles.forEach((tile) => {
@@ -301,7 +307,8 @@ export const displayController = (() => {
     toggleTheme,
     openProjectForm,
     closeProjectForm,
-    setTasksCount,
+    updateProjectsCount,
+    updateTasksCount,
     setActiveProject,
     appendProject,
     toggleConfirmationScreen,

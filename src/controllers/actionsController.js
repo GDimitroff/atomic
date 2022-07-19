@@ -50,8 +50,14 @@ export const actionsController = (() => {
         projectsController.removeProject(id);
         tile.remove();
 
-        displayController.setTasksCount();
-        displayController.setActiveProject('all');
+        displayController.updateTasksCount();
+        displayController.updateProjectsCount();
+
+        const currentProject = projectsController.getCurrentProject();
+        if (currentProject) {
+          displayController.setActiveProject('all');
+        }
+
         return;
       }
 
@@ -100,6 +106,7 @@ export const actionsController = (() => {
         projectsController.addProject(project);
         displayController.appendProject(projectTile);
         displayController.setActiveProject(projectId);
+        displayController.updateProjectsCount();
         displayController.closeProjectForm();
         form.reset();
       }
@@ -135,20 +142,20 @@ export const actionsController = (() => {
       if (e.target.classList.contains('delete')) {
         projectsController.removeTask(id, projectId);
         displayController.removeCard(card);
-        displayController.setTasksCount();
+        displayController.updateTasksCount();
         return;
       }
 
       if (classes.contains('fa-star')) {
         projectsController.toggleImportant(id, projectId);
         displayController.toggleImportant(card);
-        displayController.setTasksCount();
+        displayController.updateTasksCount();
         return;
       }
 
       projectsController.toggleCompleted(id, projectId);
       displayController.toggleCompleted(card);
-      displayController.setTasksCount();
+      displayController.updateTasksCount();
     });
   };
 
@@ -204,7 +211,7 @@ export const actionsController = (() => {
 
         projectsController.addTask(projectId, newTask);
         displayController.appendCard(newCard, projectId);
-        displayController.setTasksCount();
+        displayController.updateTasksCount();
         form.reset();
       }
     });
@@ -256,7 +263,7 @@ export const actionsController = (() => {
         );
 
         displayController.updateCard(id);
-        displayController.setTasksCount();
+        displayController.updateTasksCount();
         displayController.closeEditTaskModal();
 
         const currentProject = projectsController.getCurrentProject();
