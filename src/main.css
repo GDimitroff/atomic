@@ -539,20 +539,10 @@ hr {
   padding: 1.8rem;
 }
 
-.edit-task-form textarea {
-  margin-top: 1rem;
-}
-
-.edit-task-form .select {
-  width: 120px;
-}
-
 .edit-form-content {
   display: flex;
-  justify-content: space-between;
   gap: 12px;
   align-items: center;
-  margin-top: 0.6rem;
 }
 
 .edit-form-content input[type='date'] {
@@ -564,11 +554,23 @@ hr {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
-  margin-top: 1.8rem;
 }
 
 .edit-form-footer button {
-  padding: 0.6rem 0.8rem;
+  padding: 0.6rem 1.8rem;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 1.6rem;
+  width: 100%;
+}
+
+.input label {
+  font-size: 1.2rem;
+  color: var(--primary-grey);
 }
 
 .overlay {
@@ -594,7 +596,7 @@ hr {
 .modal {
   display: block;
   position: fixed;
-  top: 100px;
+  top: 110px;
   left: 50%;
   opacity: 0;
   transform: translateX(-50%) scale(0);

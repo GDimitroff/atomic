@@ -39,38 +39,53 @@ export default function createEditCardForm(id) {
     <form class="edit-task-form">
       <div class="edit-form-header">
         <div class="left">
-          <input name="title" type="text" value="${task.title}" required />
+          <div class="input">
+            <label for="title">Title</label>
+            <input name="title" type="text" value="${task.title}" required />
+          </div>
         </div>
         <div class="right">
-          <div class="select">
-            ${select.outerHTML}
-            <span class="select-focus"></span>
+          <div class="input">
+            <label for="">Project</label>
+            <div class="select">
+              ${select.outerHTML}
+              <span class="select-focus"></span>
+            </div>
           </div>
         </div>
       </div>
-  
-      <textarea name="description" id="description">${
-        task.description
-      }</textarea>
+
+      <div class="input">
+        <label for="description">Description</label>
+        <textarea name="description" id="description">${
+          task.description
+        }</textarea>
+      </div>
 
       <div class="edit-form-content">
-        <div class="select">
-          <select name="priority" id="priority">
-            <option value="low" ${
-              task.priority === 'low' ? 'selected' : ''
-            }>Low</option>
-            <option value="medium" ${
-              task.priority === 'medium' ? 'selected' : ''
-            }>Medium</option>
-            <option value="high" ${
-              task.priority === 'high' ? 'selected' : ''
-            }>High</option>
-          </select>
-          <span class="select-focus"></span>
+        <div class="input">
+          <label for="priority">Priority</label>
+          <div class="select">
+            <select name="priority" id="priority">
+              <option value="low" ${
+                task.priority === 'low' ? 'selected' : ''
+              }>Low</option>
+              <option value="medium" ${
+                task.priority === 'medium' ? 'selected' : ''
+              }>Medium</option>
+              <option value="high" ${
+                task.priority === 'high' ? 'selected' : ''
+              }>High</option>
+            </select>
+            <span class="select-focus"></span>
+          </div>
         </div>
-        <input type="date" id="date" name="date" value="${
-          task.date ? date : ''
-        }"/>
+        <div class="input">
+          <label for="priority">Priority</label>
+          <input type="date" id="date" name="date" value="${
+            task.date ? date : ''
+          }"/>
+        </div>
       </div>
 
       <div class="edit-form-footer">
