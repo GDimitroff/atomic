@@ -29,6 +29,7 @@ html {
 }
 
 body {
+  position: relative;
   font-family: 'Roboto', sans-serif;
   font-size: 1.6rem;
   font-weight: 400;
@@ -626,6 +627,49 @@ hr {
   transition: all 0.4s ease-in-out;
 }
 
+.notification {
+  position: fixed;
+  bottom: 5%;
+  left: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 1.4rem;
+  font-weight: 700;
+  width: 280px;
+  border-radius: 3px;
+  color: #fafafa;
+  padding: 1rem;
+  box-shadow: rgb(0 0 0 / 18%) 0px 2px 8px;
+  cursor: pointer;
+
+  transform: translateX(-50%);
+  animation: 0.4s slide-in;
+  z-index: 5;
+}
+
+.btn-notification {
+  font-family: inherit;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.4rem 0.8rem;
+  color: #fafafa;
+  background-color: transparent;
+  border: 1px solid #fafafa;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-notification:hover,
+.btn-notification:active {
+  color: #161722;
+  background-color: #fafafa;
+}
+
 /* UTILITY */
 
 .left,
@@ -713,6 +757,22 @@ i {
 .red,
 .high {
   color: var(--primary-red);
+}
+
+.bg-red {
+  background-color: var(--primary-red);
+}
+
+.bg-yellow {
+  background-color: var(--primary-gold);
+}
+
+.bg-green {
+  background-color: var(--primary-green);
+}
+
+.bg-purple {
+  background-color: var(--primary-purple);
 }
 
 /* SCROLLBAR */
@@ -983,6 +1043,28 @@ select:focus + .select-focus {
   100% {
     transform: translateX(0);
     opacity: 1;
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-50%);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
   }
 }
 

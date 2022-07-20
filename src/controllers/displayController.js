@@ -7,6 +7,7 @@ import createCard from '../components/card';
 import createCardForm from '../components/cardForm';
 import { isToday, isThisWeek } from 'date-fns';
 import createEditCardForm from '../components/editCardForm';
+import createNotification from '../components/notification';
 
 export const displayController = (() => {
   const body = document.querySelector('body');
@@ -224,6 +225,14 @@ export const displayController = (() => {
   };
 
   const toggleImportant = (task) => {
+    if (!task.classList.contains('important')) {
+      displayController.showNotification(
+        `Task marked as important!`,
+        'bg-yellow',
+        'star'
+      );
+    }
+
     task.classList.toggle('important');
   };
 
@@ -234,6 +243,28 @@ export const displayController = (() => {
   const toggleConfirmationScreen = (element) => {
     element.classList.toggle('inactive');
     element.children[0].classList.toggle('active');
+  };
+
+  const showNotification = (text, color, icon) => {
+    const currentNotification = body.querySelector('.notification');
+    if (currentNotification) {
+      currentNotification.remove();
+    }
+
+    const notification = createNotification(text, color, icon);
+    body.appendChild(notification);
+
+    setTimeout(() => {
+      notification.style.animation = '0.4s slide-out';
+
+      notification.addEventListener(
+        'animationend',
+        (e) => {
+          notification.remove();
+        },
+        { once: true }
+      );
+    }, 2500);
   };
 
   function renderCards(filter) {
@@ -321,5 +352,6 @@ export const displayController = (() => {
     closeTaskForm,
     openEditTaskModal,
     closeEditTaskModal,
+    showNotification,
   };
 })();

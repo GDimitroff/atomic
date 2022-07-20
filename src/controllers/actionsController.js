@@ -58,6 +58,11 @@ export const actionsController = (() => {
           displayController.setActiveProject('all');
         }
 
+        displayController.showNotification(
+          `Project deleted successfully!`,
+          'bg-red'
+        );
+
         return;
       }
 
@@ -108,6 +113,10 @@ export const actionsController = (() => {
         displayController.setActiveProject(projectId);
         displayController.updateProjectsCount();
         displayController.closeProjectForm();
+        displayController.showNotification(
+          `Project "${projectTitle}" added successfully!`,
+          'bg-green'
+        );
         form.reset();
       }
     });
@@ -143,6 +152,11 @@ export const actionsController = (() => {
         projectsController.removeTask(id, projectId);
         displayController.removeCard(card);
         displayController.updateTasksCount();
+
+        displayController.showNotification(
+          `Task deleted successfully!`,
+          'bg-red'
+        );
         return;
       }
 
@@ -212,6 +226,10 @@ export const actionsController = (() => {
         projectsController.addTask(projectId, newTask);
         displayController.appendCard(newCard, projectId);
         displayController.updateTasksCount();
+        displayController.showNotification(
+          `Task "${title}" added successfully!`,
+          'bg-green'
+        );
         form.reset();
       }
     });
@@ -265,6 +283,11 @@ export const actionsController = (() => {
         displayController.updateCard(id);
         displayController.updateTasksCount();
         displayController.closeEditTaskModal();
+
+        displayController.showNotification(
+          `Task "${title}" edited successfully!`,
+          'bg-green'
+        );
 
         const currentProject = projectsController.getCurrentProject();
         if (currentProject) {
