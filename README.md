@@ -35,7 +35,7 @@ In order to setup and work on this project on your own, you will need to:
 - Used **HTML5 semantic elements** for better structure and readability.
 - Used **CSS Grid** and **CSS Flexbox** modules to create layout.
 - Deepened knowledge of **DOM manipulation**.
-- Improved understanding of **npm**, **git** and **webpack**. 
+- Improved understanding of **npm**, **git** and **webpack**.
 - Learned to organize everything into **modules** and **components**.
 - Used **revealing module** and **factory patterns** for code organizing.
 - Tried to create a **stylish** and **atomic** look.
@@ -43,3 +43,5 @@ In order to setup and work on this project on your own, you will need to:
 - Made functionality of **saving data** to `localStorage`.
 - Made project to be **fully mobile responsive**.
 - Overall, I have **improved my learning abilities** A LOT! 🧠
+
+![Screenshot](./src/screenshot.png)
