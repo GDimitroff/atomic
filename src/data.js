@@ -1,6 +1,7 @@
 import Project from './models/Project';
 import Task from './models/Task';
 import { v4 as uuidv4 } from 'uuid';
+import { format, startOfToday } from 'date-fns';
 
 export const defaultData = () => {
   let projects = [];
@@ -8,6 +9,7 @@ export const defaultData = () => {
   const personal = new Project(uuidv4(), 'Personal', 'pink');
   const workout = new Project(uuidv4(), 'Workout', 'green');
   const education = new Project(uuidv4(), 'Education', 'gold');
+  const books = new Project(uuidv4(), 'Books', 'red');
 
   const gift = new Task(
     uuidv4(),
@@ -23,7 +25,7 @@ export const defaultData = () => {
   const flowers = new Task(
     uuidv4(),
     personal.id,
-    'Flowers for my sweetheart',
+    'Flowers for The One',
     "Every woman loves flowers even if they say they don't",
     'medium',
     '23.06.2022',
@@ -42,6 +44,18 @@ export const defaultData = () => {
     false
   );
 
+  const today = format(startOfToday(), 'dd.MM.yyyy');
+  const overallFitness = new Task(
+    uuidv4(),
+    workout.id,
+    'Gym',
+    'Make it happen and go to the gym you lazy moron!',
+    'high',
+    today,
+    false,
+    true
+  );
+
   const finishEducation = new Task(
     uuidv4(),
     education.id,
@@ -53,11 +67,36 @@ export const defaultData = () => {
     false
   );
 
+  const firstBook = new Task(
+    uuidv4(),
+    books.id,
+    '"Хроники на болката" от Иво Иванов',
+    'When you have the time.',
+    'low',
+    '15.09.2023',
+    false,
+    false
+  );
+
+  const secondBook = new Task(
+    uuidv4(),
+    books.id,
+    '12 Rules for Life: An Antidote to Chaos',
+    'Little by little.',
+    'low',
+    today,
+    false,
+    true
+  );
+
   personal.addTask(gift);
   personal.addTask(flowers);
+  workout.addTask(overallFitness);
   workout.addTask(upperBodyWorkout);
   education.addTask(finishEducation);
+  books.addTask(firstBook);
+  books.addTask(secondBook);
 
-  projects.push(personal, workout, education);
+  projects.push(books, workout, personal, education);
   return projects;
 };
