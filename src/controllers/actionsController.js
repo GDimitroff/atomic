@@ -74,7 +74,7 @@ export const actionsController = (() => {
     formContainer.addEventListener('click', (e) => {
       const classes = e.target.classList;
       const form = formContainer.querySelector('.new-project-form');
-      const nameInput = formContainer.querySelector('input[type="text"]');
+      const titleInput = formContainer.querySelector('input[type="text"]');
 
       if (classes.contains('fa-plus')) {
         displayController.openProjectForm();
@@ -83,24 +83,24 @@ export const actionsController = (() => {
 
       if (classes.contains('fa-angle-down')) {
         displayController.closeProjectForm();
-        nameInput.classList.remove('invalid');
+        titleInput.classList.remove('invalid');
         form.reset();
         return;
       }
 
       if (e.target.type === 'submit') {
         if (!form.checkValidity()) {
-          nameInput.addEventListener('input', () => {
-            nameInput.classList.remove('invalid');
-            nameInput.setCustomValidity('');
-            nameInput.checkValidity();
+          titleInput.addEventListener('input', () => {
+            titleInput.classList.remove('invalid');
+            titleInput.setCustomValidity('');
+            titleInput.checkValidity();
           });
 
-          nameInput.addEventListener('invalid', () => {
-            nameInput.classList.add('invalid');
+          titleInput.addEventListener('invalid', () => {
+            titleInput.classList.add('invalid');
 
-            if (nameInput.value === '') {
-              nameInput.setCustomValidity('Please enter project title!');
+            if (titleInput.value === '') {
+              titleInput.setCustomValidity('Please enter project title!');
             }
           });
 
@@ -108,7 +108,7 @@ export const actionsController = (() => {
         }
 
         e.preventDefault();
-        
+
         const formData = new FormData(form);
         const projectTitle = formData.get('project-title');
         const projectColor = formData.get('color');
@@ -191,26 +191,36 @@ export const actionsController = (() => {
 
       if (classes.contains('close-task')) {
         displayController.closeTaskForm();
+        return;
       }
 
       if (target.type === 'submit') {
-        e.preventDefault();
+        const form = cardForm.querySelector('.new-task-form');
+        const titleInput = cardForm.querySelector('input[type="text"]');
 
-        const form = cardForm.children[0];
-        const formData = new FormData(form);
-        let { title, projectId, description, priority, date } =
-          Object.fromEntries(formData);
+        if (!form.checkValidity()) {
+          titleInput.addEventListener('input', () => {
+            titleInput.classList.remove('invalid');
+            titleInput.setCustomValidity('');
+            titleInput.checkValidity();
+          });
 
-        if (title.trim() === '') {
-          const nameInput = form.querySelector('input[type="text"]');
-          nameInput.classList.add('invalid');
+          titleInput.addEventListener('invalid', () => {
+            titleInput.classList.add('invalid');
 
-          nameInput.addEventListener('focus', (e) => {
-            nameInput.classList.remove('invalid');
+            if (titleInput.value === '') {
+              titleInput.setCustomValidity('Please enter task title!');
+            }
           });
 
           return;
         }
+
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        let { title, projectId, description, priority, date } =
+          Object.fromEntries(formData);
 
         if (projectId.trim() === '' || priority.trim() === '') return;
 
@@ -252,12 +262,33 @@ export const actionsController = (() => {
 
       if (e.target.classList.contains('btn-close')) {
         displayController.closeEditTaskModal();
+        return;
       }
 
       if (e.target.type === 'submit') {
+        const form = editTaskForm.querySelector('.edit-task-form');
+        const titleInput = editTaskForm.querySelector('input[type="text"]');
+
+        if (!form.checkValidity()) {
+          titleInput.addEventListener('input', () => {
+            titleInput.classList.remove('invalid');
+            titleInput.setCustomValidity('');
+            titleInput.checkValidity();
+          });
+
+          titleInput.addEventListener('invalid', () => {
+            titleInput.classList.add('invalid');
+
+            if (titleInput.value === '') {
+              titleInput.setCustomValidity('Please enter task title!');
+            }
+          });
+
+          return;
+        }
+
         e.preventDefault();
 
-        const form = editTaskForm.children[1];
         const formData = new FormData(form);
         let { title, projectId, description, priority, date } =
           Object.fromEntries(formData);
