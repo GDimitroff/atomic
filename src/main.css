@@ -823,6 +823,10 @@ input[type='text']:focus {
   border-left: 2px solid var(--primary-pink);
 }
 
+input[type='text'][class='invalid']:focus {
+  border-left: 2px solid red;
+}
+
 input[type='text'][class='invalid'] {
   border-left: 2px solid red;
 }

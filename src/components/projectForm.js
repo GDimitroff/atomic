@@ -21,7 +21,6 @@ export default function createProjectForm() {
               type="text"
               id="project-title"
               placeholder="Title..."
-              minlength="1"
               maxlength="18"
               required
             />
@@ -35,6 +34,7 @@ export default function createProjectForm() {
               name="color"
               class="default"
               value="default"
+              checked
             />
           </label>
           <label class="form-control">

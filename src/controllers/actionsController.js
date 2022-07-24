@@ -73,6 +73,8 @@ export const actionsController = (() => {
   const handleProjectForm = (formContainer) => {
     formContainer.addEventListener('click', (e) => {
       const classes = e.target.classList;
+      const form = formContainer.querySelector('.new-project-form');
+      const nameInput = formContainer.querySelector('input[type="text"]');
 
       if (classes.contains('fa-plus')) {
         displayController.openProjectForm();
@@ -81,26 +83,35 @@ export const actionsController = (() => {
 
       if (classes.contains('fa-angle-down')) {
         displayController.closeProjectForm();
+        nameInput.classList.remove('invalid');
+        form.reset();
         return;
       }
 
       if (e.target.type === 'submit') {
-        e.preventDefault();
+        if (!form.checkValidity()) {
+          nameInput.addEventListener('input', () => {
+            nameInput.classList.remove('invalid');
+            nameInput.setCustomValidity('');
+            nameInput.checkValidity();
+          });
 
-        const form = e.target.parentElement.parentElement;
+          nameInput.addEventListener('invalid', () => {
+            nameInput.classList.add('invalid');
+
+            if (nameInput.value === '') {
+              nameInput.setCustomValidity('Please enter project title!');
+            }
+          });
+
+          return;
+        }
+
+        e.preventDefault();
+        
         const formData = new FormData(form);
         const projectTitle = formData.get('project-title');
         const projectColor = formData.get('color');
-
-        if (projectTitle.trim() === '') {
-          const nameInput = form.querySelector('input[type="text"]');
-          nameInput.classList.add('invalid');
-
-          nameInput.addEventListener('focus', (e) => {
-            nameInput.classList.remove('invalid');
-          });
-          return;
-        }
 
         if (projectColor.trim() === '') return;
 
